@@ -1,8 +1,8 @@
 # GoogleTranslate_IPFinder
 
-谷歌翻译服务器`translate.googleapis.com`在中国大陆的IP地址扫描、测速工具。
+谷歌翻译服务器（`translate.googleapis.com`）在中国大陆的IP地址扫描、测速工具。
 
-项目使用Python编写，GUI使用的是PySide6（Qt for Python 6）。
+项目使用Python编写，GUI使用的是`PySide6`（Qt for Python 6）。
 
 ## 快速上手
 
@@ -22,8 +22,16 @@ pip install -r requirements.txt
 python main.py
 ```
 
+## 开发计划
+
+- [x] IP 测速
+- [ ] IP 扫描
+- [ ] 自动写入 Hosts
+
+...（若有其他需求欢迎在[issues](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/issues)中提出）
+
 ## 版权说明
 
-本项目使用GPLv3版权许可。
+本项目使用[GPLv3](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/blob/main/LICENSE)版权许可。
 
 类似的项目：[hcfyapp/google-translate-cn-ip](https://github.com/hcfyapp/google-translate-cn-ip) [Ponderfly/GoogleTranslateIpCheck](https://github.com/Ponderfly/GoogleTranslateIpCheck)
