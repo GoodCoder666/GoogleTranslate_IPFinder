@@ -4,19 +4,23 @@ import sys
 from PySide6.QtWidgets import *
 from PySide6.QtCore import Qt, Slot
 
-from threads import SpeedtestThread
+from dlgScan import dlgScan
+from threads import ScanThread, SpeedtestThread
 from ui_MainWindow import Ui_MainWindow
-from utils import time_repr, DEFAULT_IPS
+from utils import DEFAULT_IPS, time_repr
+
 
 app = QApplication(sys.argv)
+
 
 class QTableWidgetTimeItem(QTableWidgetItem):
     def __init__(self, secs, time_str):
         super().__init__(time_str)
         self.secs = secs
-    
+
     def __lt__(self, other):
         return self.secs < other.secs
+
 
 class MainWindow(QMainWindow):
     SUPPORTED_FILTERS = '文本文件(*.txt);;所有文件(*.*)'
@@ -35,19 +39,19 @@ class MainWindow(QMainWindow):
             self.ui.ipList.addItem(QListWidgetItem(ip))
         
         self.clipboard = QApplication.clipboard()
-    
+
     def __load_ips(self, filename):
         self.ui.ipList.clear()
         with open(filename, 'r') as file:
             for line in file:
                 if line := line.rstrip():
                     self.ui.ipList.addItem(QListWidgetItem(line))
-    
+
     def __save_ips(self, filename):
         with open(filename, 'w') as file:
             for row in range(self.ui.resultTable.rowCount()):
                 file.write(self.ui.resultTable.item(row, 0).text() + '\n')
-    
+
     @Slot()
     def on_btnWait_Load_clicked(self):
         filename, _ = QFileDialog.getOpenFileName(self, '打开', filter=self.SUPPORTED_FILTERS)
@@ -76,6 +80,7 @@ class MainWindow(QMainWindow):
         self.ui.btnResult_Copy.setEnabled(enabled)
         self.ui.btnResult_Save.setEnabled(enabled)
         self.ui.btnWait_Load.setEnabled(enabled)
+        self.ui.btnWait_Scan.setEnabled(enabled)
         self.ui.btnWait_Test.setEnabled(enabled)
 
     def __add_result(self, ip, seconds):
@@ -101,17 +106,41 @@ class MainWindow(QMainWindow):
     def on_btnWait_Test_clicked(self):
         ips = [self.ui.ipList.item(i).text() for i in range(self.ui.ipList.count())]
         self.__set_buttons_enabled(False)
-        thread = SpeedtestThread(self, ips)
-        thread.foundAvailable.connect(self.__add_result)
-        thread.foundUnavaliable.connect(self.__found_unavailable)
+        self.ui.resultTable.setRowCount(0)
+        thread = SpeedtestThread(self, ips, self.__add_result, self.__found_unavailable)
         thread.finished.connect(self.__speedtest_finished)
         thread.start()
+
+    def __got_scan_result(self, ip):
+        self.ui.ipList.addItem(QListWidgetItem(ip))
+        self.ui.statusbar.showMessage(f'发现可用IP: {ip}')
+
+    def __scan_finished(self):
+        self.__set_buttons_enabled(True)
+        self.ui.statusbar.showMessage('扫描完成')
+
+    @Slot()
+    def on_btnWait_Scan_clicked(self):
+        dlg = dlgScan(self)
+        if dlg.exec() == QDialog.Accepted:
+            max_ips = dlg.ui.spinBox_MaxIP.value()
+            num_workers = int(dlg.ui.comboBox_threads.currentText())
+            enableOptimization = dlg.ui.chkBox_optimize.isChecked()
+
+            self.__set_buttons_enabled(False)
+            self.ui.ipList.clear()
+            self.ui.statusbar.showMessage('开始扫描，请稍候...')
+            thread = ScanThread(self, max_ips, num_workers, enableOptimization)
+            thread.finished.connect(self.__scan_finished)
+            thread.foundAvaliable.connect(self.__got_scan_result)
+            thread.start()
 
     def dragEnterEvent(self, event):
         event.accept()
 
     def dropEvent(self, event):
         self.__load_ips(event.mimeData().text()[8:]) # [8:] is to get rid of 'file:///'
+
 
 mainform = MainWindow()
 mainform.show()

@@ -43,6 +43,11 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout.addWidget(self.labIP)
 
+        self.btnWait_Scan = QPushButton(self.centralwidget)
+        self.btnWait_Scan.setObjectName(u"btnWait_Scan")
+
+        self.horizontalLayout.addWidget(self.btnWait_Scan)
+
         self.btnWait_Load = QPushButton(self.centralwidget)
         self.btnWait_Load.setObjectName(u"btnWait_Load")
 
@@ -116,6 +121,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"\u8c37\u6b4c\u7ffb\u8bd1IP\u6d4b\u901f\u5de5\u5177", None))
         self.labIP.setText(QCoreApplication.translate("MainWindow", u"\u5f85\u6d4b\u901f\u7684IP\uff1a", None))
+        self.btnWait_Scan.setText(QCoreApplication.translate("MainWindow", u"\u626b\u63cf", None))
         self.btnWait_Load.setText(QCoreApplication.translate("MainWindow", u"\u5bfc\u5165", None))
         self.btnWait_Test.setText(QCoreApplication.translate("MainWindow", u"\u6d4b\u901f", None))
         self.labTestResult.setText(QCoreApplication.translate("MainWindow", u"\u6d4b\u901f\u7ed3\u679c\uff1a", None))

@@ -34,6 +34,13 @@
          </widget>
         </item>
         <item>
+         <widget class="QPushButton" name="btnWait_Scan">
+          <property name="text">
+           <string>扫描</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QPushButton" name="btnWait_Load">
           <property name="text">
            <string>导入</string>
