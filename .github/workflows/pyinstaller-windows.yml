@@ -36,6 +36,6 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         automatic_release_tag: alpha
-        prerelease: true
-        title: Development Build
+        prerelease: false
+        title: GoogleTranslate_IPFinder
         files: checker.exe
