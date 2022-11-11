@@ -11,20 +11,16 @@
 |   IP 收集    | :heavy_check_mark: |                      :heavy_check_mark:                      |                      :heavy_check_mark:                      |                        :x:                         |
 |   IP 扫描    | :heavy_check_mark: |                      :heavy_check_mark:                      |                             :x:                              |                 :heavy_check_mark:                 |
 |   IP 测速    | :heavy_check_mark: |                      :heavy_check_mark:                      |                      :heavy_check_mark:                      |                        :x:                         |
-|  HOSTS 写入  |        :x:         |                      :heavy_check_mark:                      |                             :x:                              |                        :x:                         |
+|  HOSTS 写入  | :heavy_check_mark: |                      :heavy_check_mark:                      |                             :x:                              |                        :x:                         |
 | GUI 图形界面 | :heavy_check_mark: |                             :x:                              |                             :x:                              |                        :x:                         |
-
-## 屏幕截图
-
-
 
 ## 快速上手
 
-### 使用打包好的可执行文件（仅限Windows系统）
+### 使用打包好的可执行文件（仅限Windows和MacOS系统）
 
-从[Releases](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases)页面下载 `checker.exe`，双击运行即可。直达链接：https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases/download/alpha/checker.exe
+从[Releases](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases/tag/alpha)页面下载对应系统的可执行文件，运行即可。
 
-文件大小约为31 MB，由GitHub Actions自动打包发布，建议使用IDM/NDM等多线程下载器进行下载。
+文件由GitHub Actions自动打包发布，如果下载慢可以用IDM/NDM等多线程下载器进行下载。
 
 ### 从源代码运行（适用于所有操作系统）
 
@@ -40,7 +36,7 @@ python main.py
 
 - [X] IP 测速
 - [X] IP 扫描
-- [ ] 自动写入 Hosts
+- [x] 自动写入 Hosts
 
 ...（若有其他需求欢迎在[issues](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/issues)中提出）
 

@@ -88,6 +88,11 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_2.addWidget(self.btnResult_Copy)
 
+        self.btnResult_WriteHosts = QPushButton(self.centralwidget)
+        self.btnResult_WriteHosts.setObjectName(u"btnResult_WriteHosts")
+
+        self.horizontalLayout_2.addWidget(self.btnResult_WriteHosts)
+
 
         self.verticalLayout_2.addLayout(self.horizontalLayout_2)
 
@@ -127,5 +132,6 @@ class Ui_MainWindow(object):
         self.labTestResult.setText(QCoreApplication.translate("MainWindow", u"\u6d4b\u901f\u7ed3\u679c\uff1a", None))
         self.btnResult_Save.setText(QCoreApplication.translate("MainWindow", u"\u5bfc\u51fa", None))
         self.btnResult_Copy.setText(QCoreApplication.translate("MainWindow", u"\u590d\u5236", None))
+        self.btnResult_WriteHosts.setText(QCoreApplication.translate("MainWindow", u"\u5199\u5165Hosts", None))
     # retranslateUi
 

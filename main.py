@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import sys
+import os, sys
 
 from PySide6.QtWidgets import *
 from PySide6.QtCore import Qt, Slot
@@ -7,7 +7,7 @@ from PySide6.QtCore import Qt, Slot
 from dlgScan import dlgScan
 from threads import ScanThread, SpeedtestThread
 from ui_MainWindow import Ui_MainWindow
-from utils import DEFAULT_IPS, time_repr
+from utils import DEFAULT_IPS, HOST, time_repr
 
 
 app = QApplication(sys.argv)
@@ -71,14 +71,54 @@ class MainWindow(QMainWindow):
         if self.ui.resultTable.rowCount() == 0:
             QMessageBox.critical(self, '错误', '请先测速后再复制。')
             return
+        self.ui.resultTable.sortItems(1, Qt.AscendingOrder)
         fastest_ip = self.ui.resultTable.item(0, 0).text()
-        new_hosts = f'{fastest_ip} translate.googleapis.com'
+        new_hosts = f'{fastest_ip} {HOST}'
         self.clipboard.setText(new_hosts)
-        self.ui.statusbar.showMessage(f'成功复制第一条IP [{new_hosts}]')
+        self.ui.statusbar.showMessage(f'成功复制最佳IP [{new_hosts}]')
+
+    def __writeHosts(self, ip):
+        hosts_path = r'C:\Windows\System32\drivers\etc\hosts' if sys.platform == 'win32' else '/etc/hosts'
+        with open(hosts_path, 'r') as file:
+            lines = file.readlines()
+
+        host_line = -1
+        for idx, line in enumerate(lines):
+            host_pos = line.find(HOST)
+            comment_pos = line.find('#')
+            if host_pos != -1 and (comment_pos == -1 or host_pos < comment_pos):
+                host_line = idx
+
+        changed_line = ip + ' ' + HOST + os.linesep
+        if host_line == -1:
+            with open(hosts_path, 'a') as file:
+                file.write(os.linesep + changed_line)
+        else:
+            lines[host_line] = changed_line
+            with open(hosts_path, 'w') as file:
+                file.writelines(lines)
+
+    @Slot()
+    def on_btnResult_WriteHosts_clicked(self):
+        if self.ui.resultTable.rowCount() == 0:
+            QMessageBox.critical(self, '错误', '请先测速后再写入Hosts。')
+            return
+        self.ui.resultTable.sortItems(1, Qt.AscendingOrder)
+        fastest_ip = self.ui.resultTable.item(0, 0).text()
+        try:
+            self.__writeHosts(fastest_ip)
+        except PermissionError:
+            QMessageBox.critical(self, '错误', '无权限访问Hosts文件。请检查程序权限，然后再试。\n您也可尝试复制IP后手动写入。')
+            return
+        except Exception as e:
+            QMessageBox.critical(self, '错误', f'未知错误：{e}\n若此错误反复出现，请在issues中提出。')
+            return
+        self.ui.statusbar.showMessage(f'成功写入Hosts [{fastest_ip} {HOST}]')
 
     def __set_buttons_enabled(self, enabled):
         self.ui.btnResult_Copy.setEnabled(enabled)
         self.ui.btnResult_Save.setEnabled(enabled)
+        self.ui.btnResult_WriteHosts.setEnabled(enabled)
         self.ui.btnWait_Load.setEnabled(enabled)
         self.ui.btnWait_Scan.setEnabled(enabled)
         self.ui.btnWait_Test.setEnabled(enabled)
@@ -107,7 +147,7 @@ class MainWindow(QMainWindow):
         ips = [self.ui.ipList.item(i).text() for i in range(self.ui.ipList.count())]
         self.__set_buttons_enabled(False)
         self.ui.resultTable.setRowCount(0)
-        thread = SpeedtestThread(self, ips, self.__add_result, self.__found_unavailable)
+        thread = SpeedtestThread(self, ips, self.__add_result, self.__found_unavailable, num_workers=12)
         thread.finished.connect(self.__speedtest_finished)
         thread.start()
 
