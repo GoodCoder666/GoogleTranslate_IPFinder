@@ -54,14 +54,14 @@ class MainWindow(QMainWindow):
 
     @Slot()
     def on_btnWait_Load_clicked(self):
-        filename, _ = QFileDialog.getOpenFileName(self, '打开', filter=self.SUPPORTED_FILTERS)
+        filename, _ = QFileDialog.getOpenFileName(self, '导入', filter=self.SUPPORTED_FILTERS)
         if not filename: return
         self.__load_ips(filename)
         self.ui.statusbar.showMessage(f'成功导入IP列表文件 [{filename}]')
 
     @Slot()
     def on_btnResult_Save_clicked(self):
-        filename, _ = QFileDialog.getSaveFileName(self, '保存', filter=self.SUPPORTED_FILTERS)
+        filename, _ = QFileDialog.getSaveFileName(self, '导出', filter=self.SUPPORTED_FILTERS)
         if not filename: return
         self.__save_ips(filename)
         self.ui.statusbar.showMessage(f'成功导出IP测速结果文件 [{filename}]')
@@ -142,14 +142,17 @@ class MainWindow(QMainWindow):
         self.__set_buttons_enabled(True)
         self.ui.statusbar.showMessage('测速完成')
 
-    @Slot()
-    def on_btnWait_Test_clicked(self):
-        ips = [self.ui.ipList.item(i).text() for i in range(self.ui.ipList.count())]
-        self.__set_buttons_enabled(False)
+    def __test_ips(self):
         self.ui.resultTable.setRowCount(0)
+        ips = [self.ui.ipList.item(i).text() for i in range(self.ui.ipList.count())]
         thread = SpeedtestThread(self, ips, self.__add_result, self.__found_unavailable, num_workers=12)
         thread.finished.connect(self.__speedtest_finished)
         thread.start()
+
+    @Slot()
+    def on_btnWait_Test_clicked(self):
+        self.__set_buttons_enabled(False)
+        self.__test_ips()
 
     def __got_scan_result(self, ip):
         self.ui.ipList.addItem(QListWidgetItem(ip))
@@ -166,13 +169,14 @@ class MainWindow(QMainWindow):
             max_ips = dlg.ui.spinBox_MaxIP.value()
             num_workers = int(dlg.ui.comboBox_threads.currentText())
             enableOptimization = dlg.ui.chkBox_optimize.isChecked()
+            autoTest = dlg.ui.chkBox_autoTest.isChecked()
 
             self.__set_buttons_enabled(False)
             self.ui.ipList.clear()
             self.ui.statusbar.showMessage('开始扫描，请稍候...')
             thread = ScanThread(self, max_ips, num_workers, enableOptimization)
-            thread.finished.connect(self.__scan_finished)
-            thread.foundAvaliable.connect(self.__got_scan_result)
+            thread.finished.connect(self.__test_ips if autoTest else self.__scan_finished)
+            thread.foundAvailable.connect(self.__got_scan_result)
             thread.start()
 
     def dragEnterEvent(self, event):

@@ -23,7 +23,7 @@ class Ui_Dialog(object):
     def setupUi(self, Dialog):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
-        Dialog.resize(236, 125)
+        Dialog.resize(228, 134)
         self.verticalLayout = QVBoxLayout(Dialog)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.maxIPLayout = QHBoxLayout()
@@ -40,8 +40,8 @@ class Ui_Dialog(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.spinBox_MaxIP.sizePolicy().hasHeightForWidth())
         self.spinBox_MaxIP.setSizePolicy(sizePolicy)
-        self.spinBox_MaxIP.setMinimum(3)
-        self.spinBox_MaxIP.setMaximum(100)
+        self.spinBox_MaxIP.setMinimum(5)
+        self.spinBox_MaxIP.setMaximum(200)
         self.spinBox_MaxIP.setValue(15)
 
         self.maxIPLayout.addWidget(self.spinBox_MaxIP)
@@ -80,11 +80,22 @@ class Ui_Dialog(object):
 
         self.verticalLayout.addLayout(self.threadsLayout)
 
+        self.chkBoxLayout = QHBoxLayout()
+        self.chkBoxLayout.setObjectName(u"chkBoxLayout")
         self.chkBox_optimize = QCheckBox(Dialog)
         self.chkBox_optimize.setObjectName(u"chkBox_optimize")
         self.chkBox_optimize.setChecked(True)
 
-        self.verticalLayout.addWidget(self.chkBox_optimize)
+        self.chkBoxLayout.addWidget(self.chkBox_optimize)
+
+        self.chkBox_autoTest = QCheckBox(Dialog)
+        self.chkBox_autoTest.setObjectName(u"chkBox_autoTest")
+        self.chkBox_autoTest.setChecked(True)
+
+        self.chkBoxLayout.addWidget(self.chkBox_autoTest)
+
+
+        self.verticalLayout.addLayout(self.chkBoxLayout)
 
         self.buttonBox = QDialogButtonBox(Dialog)
         self.buttonBox.setObjectName(u"buttonBox")
@@ -120,5 +131,6 @@ class Ui_Dialog(object):
         self.comboBox_threads.setItemText(8, QCoreApplication.translate("Dialog", u"200", None))
 
         self.chkBox_optimize.setText(QCoreApplication.translate("Dialog", u"\u542f\u7528\u626b\u63cf\u4f18\u5316", None))
+        self.chkBox_autoTest.setText(QCoreApplication.translate("Dialog", u"\u5b8c\u6210\u540e\u81ea\u52a8\u6d4b\u901f", None))
     # retranslateUi
 

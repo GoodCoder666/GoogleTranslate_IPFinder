@@ -4,6 +4,12 @@
 
 项目使用Python编写，GUI使用的是 `PySide6`（Qt for Python 6）。
 
+## 屏幕截图
+
+![](screenshots/1.gif)
+
+![](screenshots/2.png)
+
 ## 功能对比
 
 |     功能     |       本项目       | [GoogleTranslateIpCheck](https://github.com/Ponderfly/GoogleTranslateIpCheck) | [google-translate-cn-ip](https://github.com/hcfyapp/google-translate-cn-ip) | [gscan_quic](https://github.com/Kisesy/gscan_quic) |

@@ -64,7 +64,7 @@ class _ScanTask(QRunnable):
 
 
 class ScanThread(QThread):
-    foundAvaliable = Signal(str)
+    foundAvailable = Signal(str)
     available_suffixes = {90, 160, 161, 162, 163, 192}
 
     def __init__(self, parent, max_ips=5, num_workers=80, enableOptimization=True):
@@ -78,7 +78,7 @@ class ScanThread(QThread):
         if self.counter >= self.max_ips:
             return
         self.counter += 1
-        self.foundAvaliable.emit(ip)
+        self.foundAvailable.emit(ip)
         if self.counter >= self.max_ips:
             self.pool.clear()
 
