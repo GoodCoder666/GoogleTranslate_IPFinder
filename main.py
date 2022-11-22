@@ -79,8 +79,16 @@ class MainWindow(QMainWindow):
 
     def __writeHosts(self, ip):
         hosts_path = r'C:\Windows\System32\drivers\etc\hosts' if sys.platform == 'win32' else '/etc/hosts'
-        with open(hosts_path, 'r') as file:
-            lines = file.readlines()
+
+        try:
+            with open(hosts_path, 'r') as file:
+                lines = file.readlines()
+        except UnicodeDecodeError:
+            with open(hosts_path, 'r', encoding='utf-8') as file:
+                lines = file.readlines()
+            encoding = 'utf-8'
+        else:
+            encoding = None
 
         host_line = -1
         for idx, line in enumerate(lines):
@@ -91,11 +99,11 @@ class MainWindow(QMainWindow):
 
         changed_line = ip + ' ' + HOST + os.linesep
         if host_line == -1:
-            with open(hosts_path, 'a') as file:
+            with open(hosts_path, 'a', encoding=encoding) as file:
                 file.write(os.linesep + changed_line)
         else:
             lines[host_line] = changed_line
-            with open(hosts_path, 'w') as file:
+            with open(hosts_path, 'w', encoding=encoding) as file:
                 file.writelines(lines)
 
     @Slot()
