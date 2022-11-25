@@ -86,9 +86,8 @@ class MainWindow(QMainWindow):
         except UnicodeDecodeError:
             with open(hosts_path, 'r', encoding='utf-8') as file:
                 lines = file.readlines()
-            encoding = 'utf-8'
-        else:
-            encoding = None
+
+        encoding = file.encoding
 
         host_line = -1
         for idx, line in enumerate(lines):
@@ -97,12 +96,12 @@ class MainWindow(QMainWindow):
             if host_pos != -1 and (comment_pos == -1 or host_pos < comment_pos):
                 host_line = idx
 
-        changed_line = ip + ' ' + HOST + os.linesep
+        changed_line = ip + ' ' + HOST
         if host_line == -1:
             with open(hosts_path, 'a', encoding=encoding) as file:
-                file.write(os.linesep + changed_line)
+                file.write('\n' + changed_line)
         else:
-            lines[host_line] = changed_line
+            lines[host_line] = changed_line + '\n'
             with open(hosts_path, 'w', encoding=encoding) as file:
                 file.writelines(lines)
 
