@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import os, sys
+import sys
 
 from PySide6.QtWidgets import *
 from PySide6.QtCore import Qt, Slot
@@ -96,7 +96,7 @@ class MainWindow(QMainWindow):
             if host_pos != -1 and (comment_pos == -1 or host_pos < comment_pos):
                 host_line = idx
 
-        changed_line = ip + ' ' + HOST
+        changed_line = f'{ip} {HOST}'
         if host_line == -1:
             with open(hosts_path, 'a', encoding=encoding) as file:
                 file.write('\n' + changed_line)

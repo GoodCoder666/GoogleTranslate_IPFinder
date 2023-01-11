@@ -2,6 +2,8 @@
 from PySide6.QtWidgets import QDialog, QDialogButtonBox
 from ui_dlgScan import Ui_Dialog
 
+__all__ = ['dlgScan']
+
 class dlgScan(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)

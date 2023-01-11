@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 from PySide6.QtCore import QThread, QThreadPool, QRunnable, QObject, Signal
-from utils import test_ip, urlopen, Request, HEADERS
-from ipaddress import IPv4Network, IPv4Address
+from utils import test_ip, check_ip
+from ipaddress import IPv4Network
+
+
+__all__ = ['SpeedtestThread', 'ScanThread']
 
 
 class _SpeedtestTaskSignals(QObject):
@@ -55,12 +58,8 @@ class _ScanTask(QRunnable):
         self.signals = _ScanTaskSignals()
 
     def run(self):
-        url = f'http://{self.ip}/translate_a/single?client=gtx&sl=en&tl=fr&q=a'
-        try:
-            urlopen(Request(url, headers=HEADERS), timeout=3).close()
-        except Exception:
-            return
-        self.signals.foundAvailable.emit(self.ip)
+        if check_ip(self.ip):
+            self.signals.foundAvailable.emit(self.ip)
 
 
 class ScanThread(QThread):

@@ -1,26 +1,30 @@
 # -*- coding: utf-8 -*-
-from urllib.request import Request, urlopen
+from urllib.request import urlopen, Request
 from time import time
 
-HOST = 'translate.googleapis.com'
-HEADERS = {
-    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-    'accept-encoding': 'gzip, deflate, br',
-    'accept-language': 'zh-CN,zh;q=0.9',
-    'sec-ch-ua': '"Chromium";v="106", "Not;A=Brand";v="99", "Google Chrome";v="106.0.5249.119"',
-    'host': HOST,
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36'
-}
+__all__ = ['test_ip', 'check_ip', 'time_repr']
 
-def test_ip(ip):
-    url = f'http://{ip}/translate_a/single?client=gtx&sl=en&tl=fr&q=a'
+HOST = 'translate.googleapis.com'
+HEADERS = {'host': HOST}
+TESTIP_FORMAT = 'http://{}/translate_a/single?client=gtx&sl=en&tl=fr&q=a'
+
+def test_ip(ip, timeout=1.5):
+    url = TESTIP_FORMAT.format(ip)
     try:
         start_time = time()
-        with urlopen(Request(url, headers=HEADERS), timeout=1.5) as response:
+        with urlopen(Request(url, headers=HEADERS), timeout=timeout) as response:
             end_time = time()
     except Exception as e:
         return str(e)
     return end_time - start_time
+
+def check_ip(ip, timeout=2.5):
+    url = TESTIP_FORMAT.format(ip)
+    try:
+        urlopen(Request(url, headers=HEADERS), timeout=timeout).close()
+    except Exception:
+        return False
+    return True
 
 def time_repr(secs):
     return f'{secs*1000:.0f}ms' if secs < 0.9995 else f'{secs:.2f}s'
