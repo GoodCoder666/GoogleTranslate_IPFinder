@@ -15,6 +15,11 @@
 
 ![](screenshots/2.png)
 
+## 注意事项
+
+- 本项目仅在 Windows 11 下测试通过，其他操作系统若有运行问题请开 issue。
+- 由于 Python 的限制，本项目不支持 Windows 7 及以下。
+
 ## 功能对比
 
 |     功能     |       本项目       | [GoogleTranslateIpCheck](https://github.com/Ponderfly/GoogleTranslateIpCheck) | [google-translate-cn-ip](https://github.com/hcfyapp/google-translate-cn-ip) | [gscan_quic](https://github.com/Kisesy/gscan_quic) |

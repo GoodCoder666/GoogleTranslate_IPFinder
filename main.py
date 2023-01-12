@@ -175,13 +175,14 @@ class MainWindow(QMainWindow):
         if dlg.exec() == QDialog.Accepted:
             max_ips = dlg.ui.spinBox_MaxIP.value()
             num_workers = int(dlg.ui.comboBox_threads.currentText())
+            timeout = dlg.ui.spinBox_timeout.value()
             enableOptimization = dlg.ui.chkBox_optimize.isChecked()
             autoTest = dlg.ui.chkBox_autoTest.isChecked()
 
             self.__set_buttons_enabled(False)
             self.ui.ipList.clear()
             self.ui.statusbar.showMessage('开始扫描，请稍候...')
-            thread = ScanThread(self, max_ips, num_workers, enableOptimization)
+            thread = ScanThread(self, max_ips, num_workers, timeout, enableOptimization)
             thread.finished.connect(self.__test_ips if autoTest else self.__scan_finished)
             thread.foundAvailable.connect(self.__got_scan_result)
             thread.start()

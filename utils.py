@@ -5,23 +5,28 @@ from time import time
 __all__ = ['test_ip', 'check_ip', 'time_repr']
 
 HOST = 'translate.googleapis.com'
-HEADERS = {'host': HOST}
-TESTIP_FORMAT = 'http://{}/translate_a/single?client=gtx&sl=en&tl=fr&q=a'
+HEADERS = {'Host': HOST}
+TESTIP_FORMAT = 'https://{}/translate_a/single?client=gtx&sl=en&tl=fr&q=a'
 
-def test_ip(ip, timeout=1.5):
+def _build_request(ip):
     url = TESTIP_FORMAT.format(ip)
+    request = Request(url, headers=HEADERS)
+    request.host = HOST
+    return request
+
+def test_ip(ip, timeout=2.5):
     try:
+        req = _build_request(ip)
         start_time = time()
-        with urlopen(Request(url, headers=HEADERS), timeout=timeout) as response:
+        with urlopen(req, timeout=timeout) as response:
             end_time = time()
     except Exception as e:
         return str(e)
     return end_time - start_time
 
 def check_ip(ip, timeout=2.5):
-    url = TESTIP_FORMAT.format(ip)
     try:
-        urlopen(Request(url, headers=HEADERS), timeout=timeout).close()
+        urlopen(_build_request(ip), timeout=timeout).close()
     except Exception:
         return False
     return True

@@ -16,14 +16,15 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractButton, QApplication, QCheckBox, QComboBox,
-    QDialog, QDialogButtonBox, QHBoxLayout, QLabel,
-    QSizePolicy, QSpinBox, QVBoxLayout, QWidget)
+    QDialog, QDialogButtonBox, QDoubleSpinBox, QHBoxLayout,
+    QLabel, QSizePolicy, QSpinBox, QVBoxLayout,
+    QWidget)
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
-        Dialog.resize(228, 134)
+        Dialog.resize(228, 155)
         self.verticalLayout = QVBoxLayout(Dialog)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.maxIPLayout = QHBoxLayout()
@@ -80,6 +81,32 @@ class Ui_Dialog(object):
 
         self.verticalLayout.addLayout(self.threadsLayout)
 
+        self.horizontalLayout = QHBoxLayout()
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.labTimeout = QLabel(Dialog)
+        self.labTimeout.setObjectName(u"labTimeout")
+
+        self.horizontalLayout.addWidget(self.labTimeout)
+
+        self.spinBox_timeout = QDoubleSpinBox(Dialog)
+        self.spinBox_timeout.setObjectName(u"spinBox_timeout")
+        sizePolicy.setHeightForWidth(self.spinBox_timeout.sizePolicy().hasHeightForWidth())
+        self.spinBox_timeout.setSizePolicy(sizePolicy)
+        self.spinBox_timeout.setMinimum(1.000000000000000)
+        self.spinBox_timeout.setMaximum(10.000000000000000)
+        self.spinBox_timeout.setSingleStep(0.500000000000000)
+        self.spinBox_timeout.setValue(2.500000000000000)
+
+        self.horizontalLayout.addWidget(self.spinBox_timeout)
+
+        self.labTimeout_2 = QLabel(Dialog)
+        self.labTimeout_2.setObjectName(u"labTimeout_2")
+
+        self.horizontalLayout.addWidget(self.labTimeout_2)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout)
+
         self.chkBoxLayout = QHBoxLayout()
         self.chkBoxLayout.setObjectName(u"chkBoxLayout")
         self.chkBox_optimize = QCheckBox(Dialog)
@@ -130,6 +157,8 @@ class Ui_Dialog(object):
         self.comboBox_threads.setItemText(7, QCoreApplication.translate("Dialog", u"128", None))
         self.comboBox_threads.setItemText(8, QCoreApplication.translate("Dialog", u"200", None))
 
+        self.labTimeout.setText(QCoreApplication.translate("Dialog", u"\u54cd\u5e94\u65f6\u95f4\u4e0a\u9650\uff1a", None))
+        self.labTimeout_2.setText(QCoreApplication.translate("Dialog", u"s", None))
         self.chkBox_optimize.setText(QCoreApplication.translate("Dialog", u"\u542f\u7528\u626b\u63cf\u4f18\u5316", None))
         self.chkBox_autoTest.setText(QCoreApplication.translate("Dialog", u"\u5b8c\u6210\u540e\u81ea\u52a8\u6d4b\u901f", None))
     # retranslateUi

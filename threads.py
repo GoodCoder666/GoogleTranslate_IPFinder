@@ -51,14 +51,15 @@ class _ScanTaskSignals(QObject):
 
 
 class _ScanTask(QRunnable):
-    def __init__(self, ip):
+    def __init__(self, ip, timeout):
         super().__init__()
 
         self.ip = ip
+        self.timeout = timeout
         self.signals = _ScanTaskSignals()
 
     def run(self):
-        if check_ip(self.ip):
+        if check_ip(self.ip, self.timeout):
             self.signals.foundAvailable.emit(self.ip)
 
 
@@ -66,11 +67,12 @@ class ScanThread(QThread):
     foundAvailable = Signal(str)
     available_suffixes = {90, 160, 161, 162, 163, 192}
 
-    def __init__(self, parent, max_ips=5, num_workers=80, enableOptimization=True):
+    def __init__(self, parent, max_ips=5, num_workers=80, timeout=2.5, enableOptimization=True):
         super().__init__(parent)
 
         self.max_ips = max_ips
         self.num_workers = num_workers
+        self.timeout = timeout
         self.enableOptimization = enableOptimization
     
     def __found_available(self, ip):
@@ -88,7 +90,7 @@ class ScanThread(QThread):
         for ip in IPv4Network('142.250.0.0/15'):
             if self.enableOptimization and int(ip) & 0xff not in self.available_suffixes:
                 continue
-            task = _ScanTask(str(ip))
+            task = _ScanTask(str(ip), self.timeout)
             task.signals.foundAvailable.connect(self.__found_available)
             self.pool.start(task)
         self.pool.waitForDone()
