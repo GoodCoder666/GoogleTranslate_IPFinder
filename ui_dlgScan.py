@@ -24,7 +24,7 @@ class Ui_Dialog(object):
     def setupUi(self, Dialog):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
-        Dialog.resize(228, 155)
+        Dialog.resize(228, 181)
         self.verticalLayout = QVBoxLayout(Dialog)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.maxIPLayout = QHBoxLayout()
@@ -41,9 +41,9 @@ class Ui_Dialog(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.spinBox_MaxIP.sizePolicy().hasHeightForWidth())
         self.spinBox_MaxIP.setSizePolicy(sizePolicy)
-        self.spinBox_MaxIP.setMinimum(5)
-        self.spinBox_MaxIP.setMaximum(200)
-        self.spinBox_MaxIP.setValue(15)
+        self.spinBox_MaxIP.setMinimum(1)
+        self.spinBox_MaxIP.setMaximum(300)
+        self.spinBox_MaxIP.setValue(50)
 
         self.maxIPLayout.addWidget(self.spinBox_MaxIP)
 
@@ -124,6 +124,11 @@ class Ui_Dialog(object):
 
         self.verticalLayout.addLayout(self.chkBoxLayout)
 
+        self.chkBox_IPv6 = QCheckBox(Dialog)
+        self.chkBox_IPv6.setObjectName(u"chkBox_IPv6")
+
+        self.verticalLayout.addWidget(self.chkBox_IPv6)
+
         self.buttonBox = QDialogButtonBox(Dialog)
         self.buttonBox.setObjectName(u"buttonBox")
         self.buttonBox.setOrientation(Qt.Horizontal)
@@ -161,5 +166,6 @@ class Ui_Dialog(object):
         self.labTimeout_2.setText(QCoreApplication.translate("Dialog", u"s", None))
         self.chkBox_optimize.setText(QCoreApplication.translate("Dialog", u"\u542f\u7528\u626b\u63cf\u4f18\u5316", None))
         self.chkBox_autoTest.setText(QCoreApplication.translate("Dialog", u"\u5b8c\u6210\u540e\u81ea\u52a8\u6d4b\u901f", None))
+        self.chkBox_IPv6.setText(QCoreApplication.translate("Dialog", u"\u5c1d\u8bd5\u89e3\u6790 IPv6\uff08\u5b9e\u9a8c\u6027\u529f\u80fd\uff09", None))
     # retranslateUi
 

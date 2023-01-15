@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from PySide6.QtCore import QThread, QThreadPool, QRunnable, QObject, Signal
-from utils import test_ip, check_ip
+from utils import test_ip, check_ip, dns_query
 from ipaddress import IPv4Network
 
 
@@ -67,13 +67,14 @@ class ScanThread(QThread):
     foundAvailable = Signal(str)
     available_suffixes = {90, 160, 161, 162, 163, 192}
 
-    def __init__(self, parent, max_ips=5, num_workers=80, timeout=2.5, enableOptimization=True):
+    def __init__(self, parent, max_ips=5, num_workers=80, timeout=2.5, enableOptimization=True, query_ipv6=False):
         super().__init__(parent)
 
         self.max_ips = max_ips
         self.num_workers = num_workers
         self.timeout = timeout
         self.enableOptimization = enableOptimization
+        self.query_ipv6 = query_ipv6
     
     def __found_available(self, ip):
         if self.counter >= self.max_ips:
@@ -87,6 +88,11 @@ class ScanThread(QThread):
         self.pool = QThreadPool()
         self.pool.setMaxThreadCount(self.num_workers)
         self.counter = 0
+        if self.query_ipv6:
+            for ip in dns_query(server='1.1.1.1', type='AAAA'):
+                task = _ScanTask(ip, self.timeout)
+                task.signals.foundAvailable.connect(self.__found_available)
+                self.pool.start(task)
         for ip in IPv4Network('142.250.0.0/15'):
             if self.enableOptimization and int(ip) & 0xff not in self.available_suffixes:
                 continue
