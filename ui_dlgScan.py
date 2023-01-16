@@ -42,8 +42,8 @@ class Ui_Dialog(object):
         sizePolicy.setHeightForWidth(self.spinBox_MaxIP.sizePolicy().hasHeightForWidth())
         self.spinBox_MaxIP.setSizePolicy(sizePolicy)
         self.spinBox_MaxIP.setMinimum(1)
-        self.spinBox_MaxIP.setMaximum(300)
-        self.spinBox_MaxIP.setValue(50)
+        self.spinBox_MaxIP.setMaximum(1000)
+        self.spinBox_MaxIP.setValue(35)
 
         self.maxIPLayout.addWidget(self.spinBox_MaxIP)
 
@@ -124,10 +124,10 @@ class Ui_Dialog(object):
 
         self.verticalLayout.addLayout(self.chkBoxLayout)
 
-        self.chkBox_IPv6 = QCheckBox(Dialog)
-        self.chkBox_IPv6.setObjectName(u"chkBox_IPv6")
+        self.chkBox_extendScan = QCheckBox(Dialog)
+        self.chkBox_extendScan.setObjectName(u"chkBox_extendScan")
 
-        self.verticalLayout.addWidget(self.chkBox_IPv6)
+        self.verticalLayout.addWidget(self.chkBox_extendScan)
 
         self.buttonBox = QDialogButtonBox(Dialog)
         self.buttonBox.setObjectName(u"buttonBox")
@@ -166,6 +166,9 @@ class Ui_Dialog(object):
         self.labTimeout_2.setText(QCoreApplication.translate("Dialog", u"s", None))
         self.chkBox_optimize.setText(QCoreApplication.translate("Dialog", u"\u542f\u7528\u626b\u63cf\u4f18\u5316", None))
         self.chkBox_autoTest.setText(QCoreApplication.translate("Dialog", u"\u5b8c\u6210\u540e\u81ea\u52a8\u6d4b\u901f", None))
-        self.chkBox_IPv6.setText(QCoreApplication.translate("Dialog", u"\u5c1d\u8bd5\u89e3\u6790 IPv6\uff08\u5b9e\u9a8c\u6027\u529f\u80fd\uff09", None))
+#if QT_CONFIG(tooltip)
+        self.chkBox_extendScan.setToolTip(QCoreApplication.translate("Dialog", u"\u6269\u5927\u626b\u63cf\u8303\u56f4\uff0c\u4f1a\u626b\u63cfIPv6\u3002\u5efa\u8bae\u5728\u666e\u901a\u626b\u63cf\u7ed3\u679c\u8f83\u5c11\u6216\u65e0\u7ed3\u679c\u65f6\u4f7f\u7528\u3002", None))
+#endif // QT_CONFIG(tooltip)
+        self.chkBox_extendScan.setText(QCoreApplication.translate("Dialog", u"\u6269\u5c55\u626b\u63cf\uff08\u5b9e\u9a8c\u6027\u529f\u80fd\uff09", None))
     # retranslateUi
 

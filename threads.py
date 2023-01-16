@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from PySide6.QtCore import QThread, QThreadPool, QRunnable, QObject, Signal
-from utils import test_ip, check_ip, dns_query
-from ipaddress import IPv4Network
+from utils import test_ip, check_ip
+from ipaddress import IPv4Network, IPv6Network
 
 
 __all__ = ['SpeedtestThread', 'ScanThread']
@@ -43,6 +43,7 @@ class SpeedtestThread(QThread):
             task.signals.foundAvailable.connect(self.available_callback)
             task.signals.foundUnavailable.connect(self.unavailable_callback)
             pool.start(task)
+            self.msleep(100)
         pool.waitForDone()
 
 
@@ -65,16 +66,52 @@ class _ScanTask(QRunnable):
 
 class ScanThread(QThread):
     foundAvailable = Signal(str)
-    available_suffixes = {90, 160, 161, 162, 163, 192}
+    available_suffixes = {90, 121, 218}
 
-    def __init__(self, parent, max_ips=5, num_workers=80, timeout=2.5, enableOptimization=True, query_ipv6=False):
+    # https://repo.or.cz/gscan_quic.git/blob/89e4b91eb3642b12f7665f7a9f4fa33c403fc318:/iprange_gws_b.txt
+    net_default = IPv4Network('142.250.0.0/15')
+    ipv4_extend = [
+        IPv4Network('108.170.192.0/18'),
+        IPv4Network('108.177.0.0/17'),
+        IPv4Network('172.110.32.0/21'),
+        IPv4Network('172.217.0.0/16'),
+        IPv4Network('172.253.0.0/16'),
+        IPv4Network('216.58.192.0/19'),
+        IPv4Network('216.73.80.0/20'),
+        IPv4Network('216.239.32.0/19')
+    ]
+
+    # https://repo.or.cz/gscan_quic.git/blob/89e4b91eb3642b12f7665f7a9f4fa33c403fc318:/iprange_gws_6_a.txt
+    ipv6_extend = [
+        IPv6Network('2a00:1450:4001:802::0/112'),
+        IPv6Network('2a00:1450:4001:803::0/112'),
+        IPv6Network('2a00:1450:4001:809::0/112'),
+        IPv6Network('2a00:1450:4001:811::0/112'),
+        IPv6Network('2a00:1450:4001:827::0/112'),
+        IPv6Network('2a00:1450:4001:828::0/112'),
+        IPv6Network('2a00:1450:4001:829::0/112'),
+        IPv6Network('2a00:1450:4001:830::0/112'),
+        IPv6Network('2a00:1450:4001:831::0/112')
+    ]
+
+    def __init__(self, parent, max_ips=5, num_workers=80, timeout=2.5,
+                 enableOptimization=True, extendScan=False):
         super().__init__(parent)
 
         self.max_ips = max_ips
         self.num_workers = num_workers
         self.timeout = timeout
-        self.enableOptimization = enableOptimization
-        self.query_ipv6 = query_ipv6
+
+        self.networks = [
+            [ip for ip in self.net_default if int(ip) & 0xff in self.available_suffixes]
+            if enableOptimization else list(self.net_default)
+        ]
+        if extendScan:
+            self.networks.extend(self.ipv4_extend)
+            self.networks.extend(self.ipv6_extend)
+
+        self.currentIndex = 0
+        self.block_size = 15 if extendScan else max(15, self.num_workers // 4)
     
     def __found_available(self, ip):
         if self.counter >= self.max_ips:
@@ -84,19 +121,26 @@ class ScanThread(QThread):
         if self.counter >= self.max_ips:
             self.pool.clear()
 
+    def __add_block(self):
+        for _ in range(self.block_size):
+            ok = False
+            for net in self.networks:
+                try:
+                    ip = str(net[self.currentIndex])
+                except IndexError:
+                    continue
+                ok = True
+                task = _ScanTask(ip, self.timeout)
+                task.signals.foundAvailable.connect(self.__found_available)
+                self.pool.start(task)
+            if not ok:
+                return False
+            self.currentIndex += 1
+        return True
+
     def run(self):
         self.pool = QThreadPool()
         self.pool.setMaxThreadCount(self.num_workers)
         self.counter = 0
-        if self.query_ipv6:
-            for ip in dns_query(server='1.1.1.1', type='AAAA'):
-                task = _ScanTask(ip, self.timeout)
-                task.signals.foundAvailable.connect(self.__found_available)
-                self.pool.start(task)
-        for ip in IPv4Network('142.250.0.0/15'):
-            if self.enableOptimization and int(ip) & 0xff not in self.available_suffixes:
-                continue
-            task = _ScanTask(str(ip), self.timeout)
-            task.signals.foundAvailable.connect(self.__found_available)
-            self.pool.start(task)
-        self.pool.waitForDone()
+        while self.counter < self.max_ips and self.__add_block():
+            self.pool.waitForDone()

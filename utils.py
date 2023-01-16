@@ -1,18 +1,20 @@
 # -*- coding: utf-8 -*-
 from json import JSONDecoder
+from ssl import SSLError
 from time import time
+from urllib.error import URLError
 from urllib.request import Request, urlopen
 
 __all__ = ['test_ip', 'check_ip', 'time_repr', 'dns_query', 'HOST', 'DEFAULT_IPS']
 
 HOST = 'translate.googleapis.com'
-HEADERS = {'Host': HOST}
 TESTIP_FORMAT = 'https://{}/translate_a/single?client=gtx&sl=en&tl=fr&q=a'
+ERROR_REASON = 'SSLV3_ALERT_HANDSHAKE_FAILURE'
 
 def _build_request(ip):
-    url = TESTIP_FORMAT.format(ip)
-    request = Request(url, headers=HEADERS)
-    request.host = HOST
+    url = TESTIP_FORMAT.format(f'[{ip}]' if ':' in ip else ip)
+    request = Request(url)
+    request.add_header('Host', HOST)
     return request
 
 def test_ip(ip, timeout=2.5):
@@ -21,6 +23,9 @@ def test_ip(ip, timeout=2.5):
         start_time = time()
         with urlopen(req, timeout=timeout) as response:
             end_time = time()
+    except URLError as e:
+        reason = e.reason
+        return time() - start_time if isinstance(reason, SSLError) and reason.reason == ERROR_REASON else str(e)
     except Exception as e:
         return str(e)
     return end_time - start_time
@@ -28,6 +33,9 @@ def test_ip(ip, timeout=2.5):
 def check_ip(ip, timeout=2.5):
     try:
         urlopen(_build_request(ip), timeout=timeout).close()
+    except URLError as e:
+        reason = e.reason
+        return isinstance(reason, SSLError) and reason.reason == ERROR_REASON
     except Exception:
         return False
     return True
