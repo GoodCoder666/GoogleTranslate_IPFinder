@@ -16,7 +16,7 @@ def _build_request(ip):
     return request
 
 def new_context():
-    ctx = ssl._create_unverified_context()
+    ctx = ssl.create_default_context()
     old_wrap_socket = ctx.wrap_socket
 
     def new_wrap_socket(socket, **kwargs):
