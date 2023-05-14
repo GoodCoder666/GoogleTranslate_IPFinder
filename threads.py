@@ -66,7 +66,7 @@ class _ScanTask(QRunnable):
 
 class ScanThread(QThread):
     foundAvailable = Signal(str)
-    available_suffixes = {90, 121, 218}
+    available_suffixes = {90, 185}
 
     # https://repo.or.cz/gscan_quic.git/blob/89e4b91eb3642b12f7665f7a9f4fa33c403fc318:/iprange_gws_b.txt
     net_default = IPv4Network('142.250.0.0/15')

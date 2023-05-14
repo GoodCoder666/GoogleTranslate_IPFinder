@@ -61,6 +61,6 @@ python main.py
 
 ## 版权说明
 
-本项目使用[GPLv3](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/blob/main/LICENSE)版权许可。IP 扫描逻辑参考[Kisesy/gscan_quic](https://github.com/Kisesy/gscan_quic)。
+本项目使用[GPLv3](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/blob/main/LICENSE)版权许可。IP 扫描逻辑参考 [https://repo.or.cz/gscan_quic](https://repo.or.cz/gscan_quic)。
 
 类似的项目：[hcfyapp/google-translate-cn-ip](https://github.com/hcfyapp/google-translate-cn-ip) [Ponderfly/GoogleTranslateIpCheck](https://github.com/Ponderfly/GoogleTranslateIpCheck)
