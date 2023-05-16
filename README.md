@@ -11,6 +11,8 @@
 
 ## 屏幕截图
 
+请注意：屏幕截图均来自初始版本，新版 UI 稍有改动。
+
 ![](screenshots/1.gif)
 
 ![](screenshots/2.png)
@@ -56,6 +58,7 @@ python main.py
 - [X] IP 测速
 - [X] IP 扫描
 - [x] 自动写入 Hosts
+- [x] 自动获取 IP 列表
 
 ...（若有其他需求欢迎在[issues](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/issues)中提出）
 
@@ -64,3 +67,5 @@ python main.py
 本项目使用[GPLv3](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/blob/main/LICENSE)版权许可。IP 扫描逻辑参考 [https://repo.or.cz/gscan_quic](https://repo.or.cz/gscan_quic)。
 
 类似的项目：[hcfyapp/google-translate-cn-ip](https://github.com/hcfyapp/google-translate-cn-ip) [Ponderfly/GoogleTranslateIpCheck](https://github.com/Ponderfly/GoogleTranslateIpCheck)
+
+特别感谢 [hcfyapp/google-translate-cn-ip](https://github.com/hcfyapp/google-translate-cn-ip) 中提供的 IP 地址列表。自动同步功能的 IP 列表地址：[https://unpkg.com/@hcfy/google-translate-ip/ips.txt](https://unpkg.com/@hcfy/google-translate-ip/ips.txt)。

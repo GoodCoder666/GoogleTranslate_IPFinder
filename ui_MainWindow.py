@@ -53,6 +53,11 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout.addWidget(self.btnWait_Load)
 
+        self.btnWait_Sync = QPushButton(self.centralwidget)
+        self.btnWait_Sync.setObjectName(u"btnWait_Sync")
+
+        self.horizontalLayout.addWidget(self.btnWait_Sync)
+
         self.btnWait_Test = QPushButton(self.centralwidget)
         self.btnWait_Test.setObjectName(u"btnWait_Test")
 
@@ -126,12 +131,34 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"\u8c37\u6b4c\u7ffb\u8bd1IP\u6d4b\u901f\u5de5\u5177", None))
         self.labIP.setText(QCoreApplication.translate("MainWindow", u"\u5f85\u6d4b\u901f\u7684IP\uff1a", None))
+#if QT_CONFIG(tooltip)
+        self.btnWait_Scan.setToolTip(QCoreApplication.translate("MainWindow", u"\u4ece\u8c37\u6b4c\u7684IP\u7f51\u7edc\u4e2d\u627e\u5230\u53ef\u7528\u7684IP\u3002", None))
+#endif // QT_CONFIG(tooltip)
         self.btnWait_Scan.setText(QCoreApplication.translate("MainWindow", u"\u626b\u63cf", None))
+#if QT_CONFIG(tooltip)
+        self.btnWait_Load.setToolTip(QCoreApplication.translate("MainWindow", u"\u4ece\u6587\u4ef6\u5bfc\u5165IP\u5217\u8868\u3002", None))
+#endif // QT_CONFIG(tooltip)
         self.btnWait_Load.setText(QCoreApplication.translate("MainWindow", u"\u5bfc\u5165", None))
+#if QT_CONFIG(tooltip)
+        self.btnWait_Sync.setToolTip(QCoreApplication.translate("MainWindow", u"\u4ece\u8fdc\u7a0b\u670d\u52a1\u5668\u4e0a\u83b7\u53d6IP\u5217\u8868\u3002", None))
+#endif // QT_CONFIG(tooltip)
+        self.btnWait_Sync.setText(QCoreApplication.translate("MainWindow", u"\u540c\u6b65", None))
+#if QT_CONFIG(tooltip)
+        self.btnWait_Test.setToolTip(QCoreApplication.translate("MainWindow", u"\u5bf9\u5217\u8868\u4e2d\u7684IP\u8fdb\u884c\u53ef\u7528\u6027\u6d4b\u8bd5\u5e76\u6309\u54cd\u5e94\u901f\u5ea6\u6392\u5e8f\u3002", None))
+#endif // QT_CONFIG(tooltip)
         self.btnWait_Test.setText(QCoreApplication.translate("MainWindow", u"\u6d4b\u901f", None))
         self.labTestResult.setText(QCoreApplication.translate("MainWindow", u"\u6d4b\u901f\u7ed3\u679c\uff1a", None))
+#if QT_CONFIG(tooltip)
+        self.btnResult_Save.setToolTip(QCoreApplication.translate("MainWindow", u"\u5c06\u6d4b\u901f\u7ed3\u679c\u5bfc\u51fa\u81f3\u6587\u4ef6\u3002", None))
+#endif // QT_CONFIG(tooltip)
         self.btnResult_Save.setText(QCoreApplication.translate("MainWindow", u"\u5bfc\u51fa", None))
+#if QT_CONFIG(tooltip)
+        self.btnResult_Copy.setToolTip(QCoreApplication.translate("MainWindow", u"\u590d\u5236\u6700\u5feb\u901f\u7684IP\u4ee5\u4fbf\u624b\u52a8\u5199\u5165Hosts\u3002", None))
+#endif // QT_CONFIG(tooltip)
         self.btnResult_Copy.setText(QCoreApplication.translate("MainWindow", u"\u590d\u5236", None))
+#if QT_CONFIG(tooltip)
+        self.btnResult_WriteHosts.setToolTip(QCoreApplication.translate("MainWindow", u"\u81ea\u52a8\u5c06\u54cd\u5e94\u6700\u5feb\u7684IP\u5199\u5165Hosts\uff08\u9700\u8981\u7ba1\u7406\u5458\u6743\u9650\uff09\u3002", None))
+#endif // QT_CONFIG(tooltip)
         self.btnResult_WriteHosts.setText(QCoreApplication.translate("MainWindow", u"\u5199\u5165Hosts", None))
     # retranslateUi
 

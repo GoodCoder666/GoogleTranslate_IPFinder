@@ -7,7 +7,7 @@ from PySide6.QtCore import Qt, Slot
 from dlgScan import dlgScan
 from threads import ScanThread, SpeedtestThread
 from ui_MainWindow import Ui_MainWindow
-from utils import DEFAULT_IPS, HOST, time_repr
+from utils import DEFAULT_IPS, HOST, time_repr, read_url, SYNC_URL
 
 
 app = QApplication(sys.argv)
@@ -65,6 +65,18 @@ class MainWindow(QMainWindow):
         if not filename: return
         self.__save_ips(filename)
         self.ui.statusbar.showMessage(f'成功导出IP测速结果文件 [{filename}]')
+
+    @Slot()
+    def on_btnWait_Sync_clicked(self):
+        try:
+            ip_list = read_url(SYNC_URL).split()
+        except:
+            QMessageBox.critical(self, '错误', '同步失败，请稍后再试。')
+            return
+        self.ui.ipList.clear()
+        for ip in ip_list:
+            self.ui.ipList.addItem(QListWidgetItem(ip))
+        self.ui.statusbar.showMessage(f'同步完成，共 {self.ui.ipList.count()} 条 IP。')
 
     @Slot()
     def on_btnResult_Copy_clicked(self):
@@ -128,6 +140,7 @@ class MainWindow(QMainWindow):
         self.ui.btnResult_WriteHosts.setEnabled(enabled)
         self.ui.btnWait_Load.setEnabled(enabled)
         self.ui.btnWait_Scan.setEnabled(enabled)
+        self.ui.btnWait_Sync.setEnabled(enabled)
         self.ui.btnWait_Test.setEnabled(enabled)
 
     def __add_result(self, ip, seconds):
@@ -152,7 +165,7 @@ class MainWindow(QMainWindow):
     def __test_ips(self):
         self.ui.resultTable.setRowCount(0)
         ips = [self.ui.ipList.item(i).text() for i in range(self.ui.ipList.count())]
-        thread = SpeedtestThread(self, ips, self.__add_result, self.__found_unavailable, num_workers=12)
+        thread = SpeedtestThread(self, ips, self.__add_result, self.__found_unavailable, num_workers=16)
         thread.finished.connect(self.__speedtest_finished)
         thread.start()
 

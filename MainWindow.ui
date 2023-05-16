@@ -35,6 +35,9 @@
         </item>
         <item>
          <widget class="QPushButton" name="btnWait_Scan">
+          <property name="toolTip">
+           <string>从谷歌的IP网络中找到可用的IP。</string>
+          </property>
           <property name="text">
            <string>扫描</string>
           </property>
@@ -42,13 +45,29 @@
         </item>
         <item>
          <widget class="QPushButton" name="btnWait_Load">
+          <property name="toolTip">
+           <string>从文件导入IP列表。</string>
+          </property>
           <property name="text">
            <string>导入</string>
           </property>
          </widget>
         </item>
         <item>
+         <widget class="QPushButton" name="btnWait_Sync">
+          <property name="toolTip">
+           <string>从远程服务器上获取IP列表。</string>
+          </property>
+          <property name="text">
+           <string>同步</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QPushButton" name="btnWait_Test">
+          <property name="toolTip">
+           <string>对列表中的IP进行可用性测试并按响应速度排序。</string>
+          </property>
           <property name="text">
            <string>测速</string>
           </property>
@@ -74,6 +93,9 @@
         </item>
         <item>
          <widget class="QPushButton" name="btnResult_Save">
+          <property name="toolTip">
+           <string>将测速结果导出至文件。</string>
+          </property>
           <property name="text">
            <string>导出</string>
           </property>
@@ -81,6 +103,9 @@
         </item>
         <item>
          <widget class="QPushButton" name="btnResult_Copy">
+          <property name="toolTip">
+           <string>复制最快速的IP以便手动写入Hosts。</string>
+          </property>
           <property name="text">
            <string>复制</string>
           </property>
@@ -88,6 +113,9 @@
         </item>
         <item>
          <widget class="QPushButton" name="btnResult_WriteHosts">
+          <property name="toolTip">
+           <string>自动将响应最快的IP写入Hosts（需要管理员权限）。</string>
+          </property>
           <property name="text">
            <string>写入Hosts</string>
           </property>
