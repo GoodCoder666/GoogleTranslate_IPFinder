@@ -87,7 +87,7 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         automatic_release_tag: alpha
-        prerelease: false
+        prerelease: true
         title: GoogleTranslate_IPFinder
         files: |
           checker-win-x64.exe
