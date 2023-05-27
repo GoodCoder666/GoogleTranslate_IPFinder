@@ -62,10 +62,29 @@ python main.py
 
 ...（若有其他需求欢迎在[issues](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/issues)中提出）
 
+## 关于在线同步功能
+
+本项目作者提供的 IP 库在打开软件时会自动导入。程序还提供了在线导入其他 IP 库的功能，地址如下：
+
+- 精简 IPv4：
+  - 官方：https://unpkg.com/@hcfy/google-translate-ip/ips.txt
+  - 备用1（ghproxy 镜像）：https://ghproxy.com/https://raw.githubusercontent.com/hcfyapp/google-translate-cn-ip/master/packages/google-translate-ip/ips.txt
+  - 备用2（jsDelivr CDN）：https://cdn.jsdelivr.net/npm/@hcfy/google-translate-ip/ips.txt
+- 扩展 IPv4：
+  - 官方1：https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/ip.txt
+  - 官方2：https://ghproxy.com/https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/ip.txt
+  - 备用（GitCode 镜像）：https://gitcode.net/mirrors/Ponderfly/GoogleTranslateIpCheck/-/raw/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/ip.txt
+- 标准 IPv6：
+  - 官方1：https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/IPv6.txt
+  - 官方2：https://ghproxy.com/https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/IPv6.txt
+  - 备用（GitCode 镜像）：https://gitcode.net/mirrors/Ponderfly/GoogleTranslateIpCheck/-/raw/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/IPv6.txt
+
+程序会自动找到可用的网址并导入 IP 库（设置备用网址是因为 raw.githubusercontent.com 访问不稳定）。导入一般需要 5-10 秒，请耐心等待。
+
+感谢 @hcfyapp 和 @Ponderfly 提供的 IP 库。
+
 ## 版权说明
 
 本项目使用[GPLv3](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/blob/main/LICENSE)版权许可。IP 扫描逻辑参考 [https://repo.or.cz/gscan_quic](https://repo.or.cz/gscan_quic)。
 
 类似的项目：[hcfyapp/google-translate-cn-ip](https://github.com/hcfyapp/google-translate-cn-ip) [Ponderfly/GoogleTranslateIpCheck](https://github.com/Ponderfly/GoogleTranslateIpCheck)
-
-特别感谢 [hcfyapp/google-translate-cn-ip](https://github.com/hcfyapp/google-translate-cn-ip) 中提供的 IP 地址列表。自动同步功能的 IP 列表地址：[https://unpkg.com/@hcfy/google-translate-ip/ips.txt](https://unpkg.com/@hcfy/google-translate-ip/ips.txt)。

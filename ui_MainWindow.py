@@ -48,15 +48,10 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout.addWidget(self.btnWait_Scan)
 
-        self.btnWait_Load = QPushButton(self.centralwidget)
-        self.btnWait_Load.setObjectName(u"btnWait_Load")
+        self.btnWait_Import = QPushButton(self.centralwidget)
+        self.btnWait_Import.setObjectName(u"btnWait_Import")
 
-        self.horizontalLayout.addWidget(self.btnWait_Load)
-
-        self.btnWait_Sync = QPushButton(self.centralwidget)
-        self.btnWait_Sync.setObjectName(u"btnWait_Sync")
-
-        self.horizontalLayout.addWidget(self.btnWait_Sync)
+        self.horizontalLayout.addWidget(self.btnWait_Import)
 
         self.btnWait_Test = QPushButton(self.centralwidget)
         self.btnWait_Test.setObjectName(u"btnWait_Test")
@@ -136,13 +131,9 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(tooltip)
         self.btnWait_Scan.setText(QCoreApplication.translate("MainWindow", u"\u626b\u63cf", None))
 #if QT_CONFIG(tooltip)
-        self.btnWait_Load.setToolTip(QCoreApplication.translate("MainWindow", u"\u4ece\u6587\u4ef6\u5bfc\u5165IP\u5217\u8868\u3002", None))
+        self.btnWait_Import.setToolTip(QCoreApplication.translate("MainWindow", u"\u4ece\u6307\u5b9a\u6765\u6e90\u5bfc\u5165IP\u5217\u8868\u3002", None))
 #endif // QT_CONFIG(tooltip)
-        self.btnWait_Load.setText(QCoreApplication.translate("MainWindow", u"\u5bfc\u5165", None))
-#if QT_CONFIG(tooltip)
-        self.btnWait_Sync.setToolTip(QCoreApplication.translate("MainWindow", u"\u4ece\u8fdc\u7a0b\u670d\u52a1\u5668\u4e0a\u83b7\u53d6IP\u5217\u8868\u3002", None))
-#endif // QT_CONFIG(tooltip)
-        self.btnWait_Sync.setText(QCoreApplication.translate("MainWindow", u"\u540c\u6b65", None))
+        self.btnWait_Import.setText(QCoreApplication.translate("MainWindow", u"\u5bfc\u5165", None))
 #if QT_CONFIG(tooltip)
         self.btnWait_Test.setToolTip(QCoreApplication.translate("MainWindow", u"\u5bf9\u5217\u8868\u4e2d\u7684IP\u8fdb\u884c\u53ef\u7528\u6027\u6d4b\u8bd5\u5e76\u6309\u54cd\u5e94\u901f\u5ea6\u6392\u5e8f\u3002", None))
 #endif // QT_CONFIG(tooltip)

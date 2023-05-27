@@ -44,22 +44,12 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="btnWait_Load">
+         <widget class="QPushButton" name="btnWait_Import">
           <property name="toolTip">
-           <string>从文件导入IP列表。</string>
+           <string>从指定来源导入IP列表。</string>
           </property>
           <property name="text">
            <string>导入</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="btnWait_Sync">
-          <property name="toolTip">
-           <string>从远程服务器上获取IP列表。</string>
-          </property>
-          <property name="text">
-           <string>同步</string>
           </property>
          </widget>
         </item>

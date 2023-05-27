@@ -5,9 +5,10 @@ from PySide6.QtWidgets import *
 from PySide6.QtCore import Qt, Slot
 
 from dlgScan import dlgScan
+from dlgImport import dlgImport
 from threads import ScanThread, SpeedtestThread
 from ui_MainWindow import Ui_MainWindow
-from utils import DEFAULT_IPS, HOST, time_repr, read_url, SYNC_URL
+from utils import DEFAULT_IPS, HOST, time_repr, read_url
 
 
 app = QApplication(sys.argv)
@@ -40,12 +41,22 @@ class MainWindow(QMainWindow):
         
         self.clipboard = QApplication.clipboard()
 
-    def __load_ips(self, filename):
+    def __replace_ips(self, ips):
         self.ui.ipList.clear()
-        with open(filename, 'r') as file:
-            for line in file:
-                if line := line.rstrip():
-                    self.ui.ipList.addItem(QListWidgetItem(line))
+        for ip in ips:
+            if ip := ip.rstrip():
+                self.ui.ipList.addItem(QListWidgetItem(ip))
+        self.ui.statusbar.showMessage(f'导入成功，共 {len(ips)} 条 IP。')
+
+    def __add_ips(self, ips):
+        original_ips = {self.ui.ipList.item(i).text() for i in range(self.ui.ipList.count())}
+        count = 0
+        for ip in ips:
+            ip = ip.rstrip()
+            if ip and ip not in original_ips:
+                self.ui.ipList.addItem(QListWidgetItem(ip))
+                count += 1
+        self.ui.statusbar.showMessage(f'导入成功，新增 {count} 条 IP。')
 
     def __save_ips(self, filename):
         with open(filename, 'w') as file:
@@ -53,11 +64,72 @@ class MainWindow(QMainWindow):
                 file.write(self.ui.resultTable.item(row, 0).text() + '\n')
 
     @Slot()
-    def on_btnWait_Load_clicked(self):
-        filename, _ = QFileDialog.getOpenFileName(self, '导入', filter=self.SUPPORTED_FILTERS)
-        if not filename: return
-        self.__load_ips(filename)
-        self.ui.statusbar.showMessage(f'成功导入IP列表文件 [{filename}]')
+    def on_btnWait_Import_clicked(self):
+        dlg = dlgImport(self)
+        if dlg.exec() != QDialog.Accepted:
+            return
+        new_ips = None
+        if dlg.ui.radioLocalFile.isChecked():
+            filename, _ = QFileDialog.getOpenFileName(self, '导入', filter=self.SUPPORTED_FILTERS)
+            if not filename: return
+            with open(filename, 'r') as file:
+                new_ips = file.readlines()
+        elif dlg.ui.radioSingleIP.isChecked():
+            new_ips = [dlg.ui.singleIPEdit.text()]
+        elif dlg.ui.radioCustomURL.isChecked():
+            url = dlg.ui.customURLEdit.text()
+            try:
+                new_ips = read_url(url)
+            except Exception:
+                QMessageBox.critical(self, '错误', f'{url} 获取失败。请检查网络状况，然后再试。')
+        else: # radioOnline
+            SERVICES = (
+                # (checkBox, timeout, (url, [alternative_urls]))
+                (
+                    dlg.ui.chkBox_std4,
+                    3.5,
+                    (
+                        'https://unpkg.com/@hcfy/google-translate-ip/ips.txt',
+                        'https://ghproxy.com/https://raw.githubusercontent.com/hcfyapp/google-translate-cn-ip/master/packages/google-translate-ip/ips.txt',
+                        'https://cdn.jsdelivr.net/npm/@hcfy/google-translate-ip/ips.txt'
+                    )
+                ),
+                (
+                    dlg.ui.chkBox_ext4,
+                    3.5,
+                    (
+                        'https://gitcode.net/mirrors/Ponderfly/GoogleTranslateIpCheck/-/raw/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/ip.txt',
+                        'https://ghproxy.com/https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/ip.txt',
+                        'https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/ip.txt'
+                    )
+                ),
+                (
+                    dlg.ui.chkBox_std6,
+                    3.5,
+                    (
+                        'https://gitcode.net/mirrors/Ponderfly/GoogleTranslateIpCheck/-/raw/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/IPv6.txt',
+                        'https://ghproxy.com/https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/IPv6.txt',
+                        'https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/IPv6.txt'
+                    )
+                )
+            )
+            new_ips = set()
+            for checkBox, timeout, urls in SERVICES:
+                if checkBox.isChecked():
+                    for url in urls:
+                        try:
+                            current_ips = read_url(url, timeout)
+                        except Exception:
+                            continue
+                        break
+                    else:
+                        QMessageBox.critical(self, '错误', f'{checkBox.text()} 获取失败。请检查网络状况，然后再试。')
+                        return
+                    new_ips |= current_ips
+        if dlg.ui.radioReplace.isChecked():
+            self.__replace_ips(new_ips)
+        else:
+            self.__add_ips(new_ips)
 
     @Slot()
     def on_btnResult_Save_clicked(self):
@@ -65,18 +137,6 @@ class MainWindow(QMainWindow):
         if not filename: return
         self.__save_ips(filename)
         self.ui.statusbar.showMessage(f'成功导出IP测速结果文件 [{filename}]')
-
-    @Slot()
-    def on_btnWait_Sync_clicked(self):
-        try:
-            ip_list = read_url(SYNC_URL).split()
-        except:
-            QMessageBox.critical(self, '错误', '同步失败，请稍后再试。')
-            return
-        self.ui.ipList.clear()
-        for ip in ip_list:
-            self.ui.ipList.addItem(QListWidgetItem(ip))
-        self.ui.statusbar.showMessage(f'同步完成，共 {self.ui.ipList.count()} 条 IP。')
 
     @Slot()
     def on_btnResult_Copy_clicked(self):
@@ -138,9 +198,8 @@ class MainWindow(QMainWindow):
         self.ui.btnResult_Copy.setEnabled(enabled)
         self.ui.btnResult_Save.setEnabled(enabled)
         self.ui.btnResult_WriteHosts.setEnabled(enabled)
-        self.ui.btnWait_Load.setEnabled(enabled)
+        self.ui.btnWait_Import.setEnabled(enabled)
         self.ui.btnWait_Scan.setEnabled(enabled)
-        self.ui.btnWait_Sync.setEnabled(enabled)
         self.ui.btnWait_Test.setEnabled(enabled)
 
     def __add_result(self, ip, seconds):
@@ -165,7 +224,7 @@ class MainWindow(QMainWindow):
     def __test_ips(self):
         self.ui.resultTable.setRowCount(0)
         ips = [self.ui.ipList.item(i).text() for i in range(self.ui.ipList.count())]
-        thread = SpeedtestThread(self, ips, self.__add_result, self.__found_unavailable, num_workers=16)
+        thread = SpeedtestThread(self, ips, self.__add_result, self.__found_unavailable, num_workers=24)
         thread.finished.connect(self.__speedtest_finished)
         thread.start()
 
@@ -205,7 +264,9 @@ class MainWindow(QMainWindow):
         event.accept()
 
     def dropEvent(self, event):
-        self.__load_ips(event.mimeData().text()[8:]) # [8:] is to get rid of 'file:///'
+        filename = event.mimeData().text()[8:] # [8:] is to get rid of 'file:///'
+        with open(filename, 'r') as file:
+            self.__replace_ips(file.readlines())
 
 
 mainform = MainWindow()

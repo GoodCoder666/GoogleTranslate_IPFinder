@@ -43,7 +43,7 @@ class SpeedtestThread(QThread):
             task.signals.foundAvailable.connect(self.available_callback)
             task.signals.foundUnavailable.connect(self.unavailable_callback)
             pool.start(task)
-            self.msleep(150)
+            self.msleep(120)
         pool.waitForDone()
 
 
