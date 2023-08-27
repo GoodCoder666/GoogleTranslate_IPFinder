@@ -38,7 +38,7 @@
 
 ## 快速上手
 
-### 使用打包好的可执行文件（仅限Windows和MacOS系统）
+### 使用打包好的可执行文件（仅限 Windows 和 Mac OS）
 
 从[Releases](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases/tag/alpha)页面下载对应系统的可执行文件，运行即可。
 
@@ -49,10 +49,25 @@
 
 ### 从源代码运行（适用于所有操作系统）
 
-在命令行中依次执行如下命令（请提前安装好Python>=3.6和Git）：
+先决条件：
+
+- Python >= 3.6
+- Git
+
+对于 Linux 系统：
+
+```bash
+$ git clone https://github.com/GoodCoder666/GoogleTranslate_IPFinder.git
+$ cd GoogleTranslate_IPFinder
+$ pip3 install PySide6
+$ python3 main.py
+```
+
+对于非 Linux 系统：
 
 ```shell
 git clone https://github.com/GoodCoder666/GoogleTranslate_IPFinder.git
+cd GoogleTranslate_IPFinder
 pip install -r requirements.txt
 python main.py
 ```
