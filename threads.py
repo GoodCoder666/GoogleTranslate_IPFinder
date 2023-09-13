@@ -66,36 +66,27 @@ class _ScanTask(QRunnable):
 
 class ScanThread(QThread):
     foundAvailable = Signal(str)
-    available_suffixes = {90, 185}
 
     # https://repo.or.cz/gscan_quic.git/blob/89e4b91eb3642b12f7665f7a9f4fa33c403fc318:/iprange_gws_b.txt
     net_default = IPv4Network('142.250.0.0/15')
     ipv4_extend = [
-        IPv4Network('108.170.192.0/18'),
         IPv4Network('108.177.0.0/17'),
-        IPv4Network('172.110.32.0/21'),
         IPv4Network('172.217.0.0/16'),
         IPv4Network('172.253.0.0/16'),
         IPv4Network('216.58.192.0/19'),
-        IPv4Network('216.73.80.0/20'),
-        IPv4Network('216.239.32.0/19')
+        IPv4Network('72.14.192.0/18'),
+        IPv4Network('74.125.0.0/16')
     ]
 
     # https://repo.or.cz/gscan_quic.git/blob/89e4b91eb3642b12f7665f7a9f4fa33c403fc318:/iprange_gws_6_a.txt
     ipv6_extend = [
+        IPv6Network('2404:6800:4008:c15::0/112'),
         IPv6Network('2a00:1450:4001:802::0/112'),
-        IPv6Network('2a00:1450:4001:803::0/112'),
-        IPv6Network('2a00:1450:4001:809::0/112'),
-        IPv6Network('2a00:1450:4001:811::0/112'),
-        IPv6Network('2a00:1450:4001:827::0/112'),
-        IPv6Network('2a00:1450:4001:828::0/112'),
-        IPv6Network('2a00:1450:4001:829::0/112'),
-        IPv6Network('2a00:1450:4001:830::0/112'),
-        IPv6Network('2a00:1450:4001:831::0/112')
+        IPv6Network('2a00:1450:4001:803::0/112')
     ]
 
     def __init__(self, parent, max_ips=5, num_workers=80, timeout=2.5,
-                 enableOptimization=True, extendScan=False):
+                 enableOptimization=True, extend4=False, extend6=False):
         super().__init__(parent)
 
         self.max_ips = max_ips
@@ -103,15 +94,17 @@ class ScanThread(QThread):
         self.timeout = timeout
 
         self.networks = [
-            [ip for ip in self.net_default if int(ip) & 0xff in self.available_suffixes]
+            [ip for ip in self.net_default if int(ip) & 0xff == 90]
             if enableOptimization else list(self.net_default)
         ]
-        if extendScan:
+
+        if extend4:
             self.networks.extend(self.ipv4_extend)
+        if extend6:
             self.networks.extend(self.ipv6_extend)
 
         self.currentIndex = 0
-        self.block_size = 15 if extendScan else max(15, self.num_workers // 4)
+        self.block_size = max(50, num_workers // 2)
     
     def __found_available(self, ip):
         if self.counter >= self.max_ips:
@@ -144,3 +137,4 @@ class ScanThread(QThread):
         self.counter = 0
         while self.counter < self.max_ips and self.__add_block():
             self.pool.waitForDone()
+        self.pool.waitForDone()

@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'dlgScan.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.4.0
+## Created by: Qt User Interface Compiler version 6.5.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -95,7 +95,7 @@ class Ui_Dialog(object):
         self.spinBox_timeout.setMinimum(1.000000000000000)
         self.spinBox_timeout.setMaximum(10.000000000000000)
         self.spinBox_timeout.setSingleStep(0.500000000000000)
-        self.spinBox_timeout.setValue(2.500000000000000)
+        self.spinBox_timeout.setValue(1.500000000000000)
 
         self.horizontalLayout.addWidget(self.spinBox_timeout)
 
@@ -124,10 +124,21 @@ class Ui_Dialog(object):
 
         self.verticalLayout.addLayout(self.chkBoxLayout)
 
-        self.chkBox_extendScan = QCheckBox(Dialog)
-        self.chkBox_extendScan.setObjectName(u"chkBox_extendScan")
+        self.extendScanLayout = QHBoxLayout()
+        self.extendScanLayout.setObjectName(u"extendScanLayout")
+        self.chkBox_extend4 = QCheckBox(Dialog)
+        self.chkBox_extend4.setObjectName(u"chkBox_extend4")
+        self.chkBox_extend4.setChecked(True)
 
-        self.verticalLayout.addWidget(self.chkBox_extendScan)
+        self.extendScanLayout.addWidget(self.chkBox_extend4)
+
+        self.chkBox_extend6 = QCheckBox(Dialog)
+        self.chkBox_extend6.setObjectName(u"chkBox_extend6")
+
+        self.extendScanLayout.addWidget(self.chkBox_extend6)
+
+
+        self.verticalLayout.addLayout(self.extendScanLayout)
 
         self.buttonBox = QDialogButtonBox(Dialog)
         self.buttonBox.setObjectName(u"buttonBox")
@@ -141,7 +152,7 @@ class Ui_Dialog(object):
         self.buttonBox.accepted.connect(Dialog.accept)
         self.buttonBox.rejected.connect(Dialog.reject)
 
-        self.comboBox_threads.setCurrentIndex(5)
+        self.comboBox_threads.setCurrentIndex(7)
 
 
         QMetaObject.connectSlotsByName(Dialog)
@@ -167,8 +178,12 @@ class Ui_Dialog(object):
         self.chkBox_optimize.setText(QCoreApplication.translate("Dialog", u"\u542f\u7528\u626b\u63cf\u4f18\u5316", None))
         self.chkBox_autoTest.setText(QCoreApplication.translate("Dialog", u"\u5b8c\u6210\u540e\u81ea\u52a8\u6d4b\u901f", None))
 #if QT_CONFIG(tooltip)
-        self.chkBox_extendScan.setToolTip(QCoreApplication.translate("Dialog", u"\u6269\u5927\u626b\u63cf\u8303\u56f4\uff0c\u4f1a\u626b\u63cfIPv6\u3002\u5efa\u8bae\u5728\u666e\u901a\u626b\u63cf\u7ed3\u679c\u8f83\u5c11\u6216\u65e0\u7ed3\u679c\u65f6\u4f7f\u7528\u3002", None))
+        self.chkBox_extend4.setToolTip(QCoreApplication.translate("Dialog", u"\u6269\u5927 IPv4 \u626b\u63cf\u8303\u56f4\u3002", None))
 #endif // QT_CONFIG(tooltip)
-        self.chkBox_extendScan.setText(QCoreApplication.translate("Dialog", u"\u6269\u5c55\u626b\u63cf\uff08\u5b9e\u9a8c\u6027\u529f\u80fd\uff09", None))
+        self.chkBox_extend4.setText(QCoreApplication.translate("Dialog", u"\u6269\u5c55\u626b\u63cf IPv4", None))
+#if QT_CONFIG(tooltip)
+        self.chkBox_extend6.setToolTip(QCoreApplication.translate("Dialog", u"\u6269\u5927\u626b\u63cf\u8303\u56f4\uff0c\u589e\u52a0 IPv6 \u652f\u6301\u3002", None))
+#endif // QT_CONFIG(tooltip)
+        self.chkBox_extend6.setText(QCoreApplication.translate("Dialog", u"\u6269\u5c55\u626b\u63cf IPv6", None))
     # retranslateUi
 
