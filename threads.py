@@ -66,6 +66,7 @@ class _ScanTask(QRunnable):
 
 class ScanThread(QThread):
     foundAvailable = Signal(str)
+    progressUpdate = Signal(int)
 
     # https://repo.or.cz/gscan_quic.git/blob/89e4b91eb3642b12f7665f7a9f4fa33c403fc318:/iprange_gws_b.txt
     net_default = IPv4Network('142.250.0.0/15')
@@ -115,6 +116,7 @@ class ScanThread(QThread):
             self.pool.clear()
 
     def __add_block(self):
+        self.num_added = 0
         for _ in range(self.block_size):
             ok = False
             for net in self.networks:
@@ -126,6 +128,7 @@ class ScanThread(QThread):
                 task = _ScanTask(ip, self.timeout)
                 task.signals.foundAvailable.connect(self.__found_available)
                 self.pool.start(task)
+                self.num_added += 1
             if not ok:
                 return False
             self.currentIndex += 1
@@ -137,4 +140,5 @@ class ScanThread(QThread):
         self.counter = 0
         while self.counter < self.max_ips and self.__add_block():
             self.pool.waitForDone()
+            self.progressUpdate.emit(self.num_added)
         self.pool.waitForDone()

@@ -202,6 +202,24 @@ class MainWindow(QMainWindow):
         self.ui.btnWait_Scan.setEnabled(enabled)
         self.ui.btnWait_Test.setEnabled(enabled)
 
+    def __init_progessBar(self, prog_max):
+        self.progressBar = QProgressBar(self)
+        self.progressBar.setFixedWidth(390)
+        self.progressBar.setRange(0, prog_max)
+        self.progressBar.setValue(0)
+        self.logLabel = QLabel(self)
+        self.logLabel.setMaximumWidth(370)
+        self.ui.statusbar.clearMessage()
+        self.ui.statusbar.addWidget(self.progressBar)
+        self.ui.statusbar.addWidget(self.logLabel)
+
+    def __update_progressBar(self, dt=1):
+        self.progressBar.setValue(self.progressBar.value() + dt)
+
+    def __remove_progessBar(self):
+        self.progressBar.deleteLater()
+        self.logLabel.deleteLater()
+
     def __add_result(self, ip, seconds):
         self.ui.resultTable.setSortingEnabled(False) # TODO: maybe there's a better way to temporarily disable sorting?
 
@@ -210,20 +228,28 @@ class MainWindow(QMainWindow):
         self.ui.resultTable.setItem(row, 0, QTableWidgetItem(ip))
         time_str = time_repr(seconds)
         self.ui.resultTable.setItem(row, 1, QTableWidgetTimeItem(seconds, time_str))
-        self.ui.statusbar.showMessage(f'发现可用IP: {ip} [{time_str}]')
+        self.logLabel.setText(f'发现可用IP: {ip} [{time_str}]')
+        self.__update_progressBar()
 
         self.ui.resultTable.setSortingEnabled(True)
     
     def __found_unavailable(self, ip, reason):
-        self.ui.statusbar.showMessage(f'IP {ip} 不可用 [原因: {reason}]')
+        self.logLabel.setText(f'IP {ip} 不可用 [原因: {reason}]')
+        self.__update_progressBar()
 
     def __speedtest_finished(self):
         self.__set_buttons_enabled(True)
+        self.__remove_progessBar()
         self.ui.statusbar.showMessage('测速完成')
 
-    def __test_ips(self):
+    def __test_ips(self, after_scan=False):
         self.ui.resultTable.setRowCount(0)
         ips = [self.ui.ipList.item(i).text() for i in range(self.ui.ipList.count())]
+        if after_scan:
+            self.progressBar.setValue(0)
+            self.progressBar.setMaximum(len(ips))
+        else:
+            self.__init_progessBar(len(ips))
         thread = SpeedtestThread(self, ips, self.__add_result, self.__found_unavailable, num_workers=24)
         thread.finished.connect(self.__speedtest_finished)
         thread.start()
@@ -235,10 +261,11 @@ class MainWindow(QMainWindow):
 
     def __got_scan_result(self, ip):
         self.ui.ipList.addItem(QListWidgetItem(ip))
-        self.ui.statusbar.showMessage(f'发现可用IP: {ip}')
+        self.logLabel.setText(f'发现可用IP: {ip}')
 
     def __scan_finished(self):
         self.__set_buttons_enabled(True)
+        self.__remove_progessBar()
         self.ui.statusbar.showMessage('扫描完成')
 
     @Slot()
@@ -255,10 +282,14 @@ class MainWindow(QMainWindow):
 
             self.__set_buttons_enabled(False)
             self.ui.ipList.clear()
-            self.ui.statusbar.showMessage('开始扫描，请稍候...')
             thread = ScanThread(self, max_ips, num_workers, timeout, enableOptimization, extend4, extend6)
-            thread.finished.connect(self.__test_ips if autoTest else self.__scan_finished)
+            thread.finished.connect(lambda: self.__test_ips(True) if autoTest else self.__scan_finished)
             thread.foundAvailable.connect(self.__got_scan_result)
+            thread.progressUpdate.connect(self.__update_progressBar)
+            total_addrs = sum(len(net) if isinstance(net, list) else net.num_addresses
+                              for net in thread.networks)
+            self.__init_progessBar(total_addrs)
+            self.logLabel.setText('开始扫描，请稍候...')
             thread.start()
 
     def dragEnterEvent(self, event):
