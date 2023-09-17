@@ -13,37 +13,46 @@ class _SpeedtestTaskSignals(QObject):
 
 
 class _SpeedtestTask(QRunnable):
-    def __init__(self, ip):
+    def __init__(self, ip, timeout=2.5, repeat=3):
         super().__init__()
 
         self.ip = ip
+        self.timeout = timeout
+        self.repeat = repeat
         self.signals = _SpeedtestTaskSignals()
 
     def run(self):
-        result = test_ip(self.ip)
-        if isinstance(result, str):
-            self.signals.foundUnavailable.emit(self.ip, result)
-        else:
-            self.signals.foundAvailable.emit(self.ip, result)
+        total = 0
+        for _ in range(self.repeat):
+            result = test_ip(self.ip, self.timeout)
+            if isinstance(result, str):
+                self.signals.foundUnavailable.emit(self.ip, result)
+                return
+            total += result
+        average = total / self.repeat
+        self.signals.foundAvailable.emit(self.ip, average)
 
 
 class SpeedtestThread(QThread):
-    def __init__(self, parent, ips, available_callback, unavailable_callback, num_workers=8):
+    def __init__(self, parent, ips, available_callback, unavailable_callback,
+                 timeout=2.5, repeat=3, num_workers=8):
         super().__init__(parent)
         self.ips = ips
         self.available_callback = available_callback
         self.unavailable_callback = unavailable_callback
+        self.timeout = timeout
+        self.repeat = repeat
         self.num_workers = num_workers
 
     def run(self):
         pool = QThreadPool()
         pool.setMaxThreadCount(self.num_workers)
         for ip in self.ips:
-            task = _SpeedtestTask(ip)
+            task = _SpeedtestTask(ip, self.timeout, self.repeat)
             task.signals.foundAvailable.connect(self.available_callback)
             task.signals.foundUnavailable.connect(self.unavailable_callback)
             pool.start(task)
-            self.msleep(120)
+            self.msleep(30)
         pool.waitForDone()
 
 

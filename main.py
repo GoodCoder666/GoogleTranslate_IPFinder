@@ -250,7 +250,8 @@ class MainWindow(QMainWindow):
             self.progressBar.setMaximum(len(ips))
         else:
             self.__init_progessBar(len(ips))
-        thread = SpeedtestThread(self, ips, self.__add_result, self.__found_unavailable, num_workers=24)
+        thread = SpeedtestThread(self, ips, self.__add_result, self.__found_unavailable,
+                                 timeout=2.0, repeat=1, num_workers=64)
         thread.finished.connect(self.__speedtest_finished)
         thread.start()
 
