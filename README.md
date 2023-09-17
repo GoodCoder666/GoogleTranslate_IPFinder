@@ -17,8 +17,6 @@
 
 ## 屏幕截图
 
-请注意：屏幕截图均来自初始版本，新版 UI 稍有改动。
-
 ![](screenshots/1.gif)
 
 ![](screenshots/2.png)
