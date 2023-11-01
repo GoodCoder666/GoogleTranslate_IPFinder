@@ -92,11 +92,9 @@ python main.py
 - 扩展 IPv4：
   - 官方1：https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/ip.txt
   - 官方2：https://ghproxy.com/https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/ip.txt
-  - 备用（GitCode 镜像）：https://gitcode.net/mirrors/Ponderfly/GoogleTranslateIpCheck/-/raw/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/ip.txt
 - 标准 IPv6：
   - 官方1：https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/IPv6.txt
   - 官方2：https://ghproxy.com/https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/IPv6.txt
-  - 备用（GitCode 镜像）：https://gitcode.net/mirrors/Ponderfly/GoogleTranslateIpCheck/-/raw/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/IPv6.txt
 
 程序会自动找到可用的网址并导入 IP 库（设置备用网址是因为 raw.githubusercontent.com 访问不稳定）。导入一般需要 5-10 秒，请耐心等待。
 

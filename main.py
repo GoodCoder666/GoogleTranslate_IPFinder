@@ -98,7 +98,6 @@ class MainWindow(QMainWindow):
                     dlg.ui.chkBox_ext4,
                     3.5,
                     (
-                        'https://gitcode.net/mirrors/Ponderfly/GoogleTranslateIpCheck/-/raw/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/ip.txt',
                         'https://ghproxy.com/https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/ip.txt',
                         'https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/ip.txt'
                     )
@@ -107,7 +106,6 @@ class MainWindow(QMainWindow):
                     dlg.ui.chkBox_std6,
                     3.5,
                     (
-                        'https://gitcode.net/mirrors/Ponderfly/GoogleTranslateIpCheck/-/raw/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/IPv6.txt',
                         'https://ghproxy.com/https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/IPv6.txt',
                         'https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/IPv6.txt'
                     )
