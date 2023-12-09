@@ -26,7 +26,8 @@ class QTableWidgetTimeItem(QTableWidgetItem):
 
 
 class MainWindow(QMainWindow):
-    SUPPORTED_FILTERS = '文本文件(*.txt);;所有文件(*.*)'
+    SUPPORTED_INPUT_FILTERS = '文本文件(*.txt);;所有文件(*.*)'
+    SUPPORTED_OUTPUT_FILTERS = '文本文件(*.txt);;CSV 表格(*.csv);;所有文件(*.*)'
 
     def __init__(self, parent=None):
         # Initialize window
@@ -89,9 +90,15 @@ class MainWindow(QMainWindow):
         self.ui.statusbar.showMessage(f'导入成功，新增 {count} 条 IP。')
 
     def __save_ips(self, filename):
-        with open(filename, 'w') as file:
-            for row in range(self.ui.resultTable.rowCount()):
-                file.write(self.ui.resultTable.item(row, 0).text() + '\n')
+        if filename.endswith('.csv'):
+            with open(filename, 'w', encoding='utf-8') as file:
+                file.write('IP,响应时间(ms)\n')
+                for row in range(self.ui.resultTable.rowCount()):
+                    file.write(f'{self.ui.resultTable.item(row, 0).text()},{self.ui.resultTable.item(row, 1).secs:.0f)}\n')
+        else:
+            with open(filename, 'w') as file:
+                for row in range(self.ui.resultTable.rowCount()):
+                    file.write(self.ui.resultTable.item(row, 0).text() + '\n')
 
     @Slot()
     def on_btnWait_Import_clicked(self):
@@ -100,10 +107,18 @@ class MainWindow(QMainWindow):
             return
         new_ips = None
         if dlg.ui.radioLocalFile.isChecked():
-            filename, _ = QFileDialog.getOpenFileName(self, '导入', filter=self.SUPPORTED_FILTERS)
+            filename, _ = QFileDialog.getOpenFileName(self, '导入', filter=self.SUPPORTED_INPUT_FILTERS)
             if not filename: return
-            with open(filename, 'r') as file:
-                new_ips = file.readlines()
+            try:
+                with open(filename, 'r') as file:
+                    new_ips = file.readlines()
+            except UnicodeDecodeError:
+                try:
+                    with open(filename, 'r', encoding='utf-8-sig') as file:
+                        new_ips = file.readlines()
+                except UnicodeDecodeError:
+                    QMessageBox.critical(self, '错误', '文件编码错误。请检查文件内容，然后再试。')
+                    return
         elif dlg.ui.radioSingleIP.isChecked():
             new_ips = [dlg.ui.singleIPEdit.text()]
         elif dlg.ui.radioCustomURL.isChecked():
@@ -161,10 +176,10 @@ class MainWindow(QMainWindow):
 
     @Slot()
     def on_btnResult_Save_clicked(self):
-        filename, _ = QFileDialog.getSaveFileName(self, '导出', filter=self.SUPPORTED_FILTERS)
+        filename, _ = QFileDialog.getSaveFileName(self, '导出', filter=self.SUPPORTED_OUTPUT_FILTERS)
         if not filename: return
         self.__save_ips(filename)
-        self.ui.statusbar.showMessage(f'成功导出IP测速结果文件 [{filename}]')
+        self.ui.statusbar.showMessage(f'成功导出 IP 测速结果文件 [{filename}]')
 
     @Slot()
     def on_btnResult_Copy_clicked(self):
@@ -175,7 +190,7 @@ class MainWindow(QMainWindow):
         fastest_ip = self.ui.resultTable.item(0, 0).text()
         new_hosts = f'{fastest_ip} {HOST}'
         self.clipboard.setText(new_hosts)
-        self.ui.statusbar.showMessage(f'成功复制最佳IP [{new_hosts}]')
+        self.ui.statusbar.showMessage(f'成功复制最佳 IP [{new_hosts}]')
 
     def __writeHosts(self, ip):
         hosts_path = r'C:\Windows\System32\drivers\etc\hosts' if sys.platform == 'win32' else '/etc/hosts'
