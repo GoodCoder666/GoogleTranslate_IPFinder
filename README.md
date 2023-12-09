@@ -87,14 +87,14 @@ python main.py
 
 - 精简 IPv4：
   - 官方：https://unpkg.com/@hcfy/google-translate-ip/ips.txt
-  - 备用1（ghproxy 镜像）：https://ghproxy.com/https://raw.githubusercontent.com/hcfyapp/google-translate-cn-ip/master/packages/google-translate-ip/ips.txt
+  - 备用1（ghproxy 镜像）：https://mirror.ghproxy.com/https://raw.githubusercontent.com/hcfyapp/google-translate-cn-ip/master/packages/google-translate-ip/ips.txt
   - 备用2（jsDelivr CDN）：https://cdn.jsdelivr.net/npm/@hcfy/google-translate-ip/ips.txt
 - 扩展 IPv4：
   - 官方1：https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/ip.txt
-  - 官方2：https://ghproxy.com/https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/ip.txt
+  - 官方2：https://mirror.ghproxy.com/https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/ip.txt
 - 标准 IPv6：
   - 官方1：https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/IPv6.txt
-  - 官方2：https://ghproxy.com/https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/IPv6.txt
+  - 官方2：https://mirror.ghproxy.com/https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/IPv6.txt
 
 程序会自动找到可用的网址并导入 IP 库（设置备用网址是因为 raw.githubusercontent.com 访问不稳定）。导入一般需要 5-10 秒，请耐心等待。
 
