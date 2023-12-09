@@ -270,7 +270,7 @@ class MainWindow(QMainWindow):
         self.__remove_progessBar()
         self.ui.statusbar.showMessage('测速完成')
 
-    def __test_ips(self, after_scan=False):
+    def __test_ips(self, after_scan=True):
         self.ui.resultTable.setRowCount(0)
         ips = [self.ui.ipList.item(i).text() for i in range(self.ui.ipList.count())]
         if after_scan:
@@ -286,7 +286,7 @@ class MainWindow(QMainWindow):
     @Slot()
     def on_btnWait_Test_clicked(self):
         self.__set_buttons_enabled(False)
-        self.__test_ips()
+        self.__test_ips(False)
 
     def __got_scan_result(self, ip):
         self.ui.ipList.addItem(QListWidgetItem(ip))
@@ -312,13 +312,13 @@ class MainWindow(QMainWindow):
             self.__set_buttons_enabled(False)
             self.ui.ipList.clear()
             thread = ScanThread(self, max_ips, num_workers, timeout, enableOptimization, extend4, extend6)
-            thread.finished.connect(lambda: self.__test_ips(True) if autoTest else self.__scan_finished)
+            thread.finished.connect(self.__test_ips if autoTest else self.__scan_finished)
             thread.foundAvailable.connect(self.__got_scan_result)
             thread.progressUpdate.connect(self.__update_progressBar)
             total_addrs = sum(len(net) if isinstance(net, list) else net.num_addresses
                               for net in thread.networks)
             self.__init_progessBar(total_addrs)
-            self.logLabel.setText('开始扫描，请稍候...')
+            self.logLabel.setText(f'开始扫描，共 {total_addrs} 个 IP...')
             thread.start()
 
     def dragEnterEvent(self, event):

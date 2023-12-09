@@ -10,7 +10,7 @@ __all__ = ['read_url', 'test_ip', 'check_ip', 'time_repr', 'dns_query', 'HOST', 
 HOST = 'translate.googleapis.com'
 TESTIP_FORMAT = 'https://{}/translate_a/single?client=gtx&sl=en&tl=fr&q=a'
 
-def _build_request(ip, host, testip_format):
+def _build_request(ip, host=HOST, testip_format=TESTIP_FORMAT):
     url = testip_format.format(f'[{ip}]' if ':' in ip else ip)
     request = Request(url)
     request.add_header('Host', host)
