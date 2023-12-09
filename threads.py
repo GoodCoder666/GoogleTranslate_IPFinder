@@ -151,3 +151,23 @@ class ScanThread(QThread):
             self.pool.waitForDone()
             self.progressUpdate.emit(self.num_added)
         self.pool.waitForDone()
+
+
+class DebugThread(QThread):
+    success = Signal(float) # success(seconds)
+    fail = Signal(str) # fail(reason)
+
+    def __init__(self, parent, ip, host, testip_format, timeout, repeat):
+        super().__init__(parent)
+
+        self.ip = ip
+        self.host = host
+        self.testip_format = testip_format
+        self.timeout = timeout
+        self.repeat = repeat
+
+    def run(self):
+        for _ in range(self.repeat):
+            result = test_ip(self.ip, self.timeout, self.host, self.testip_format)
+            signal = self.fail if isinstance(result, str) else self.success
+            signal.emit(result)

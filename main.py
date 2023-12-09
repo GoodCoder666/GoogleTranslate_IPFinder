@@ -3,12 +3,14 @@ import sys
 
 from PySide6.QtWidgets import *
 from PySide6.QtCore import Qt, Slot
+from PySide6.QtGui import QAction
 
-from dlgScan import dlgScan
+from dlgDebug import dlgDebug
 from dlgImport import dlgImport
+from dlgScan import dlgScan
 from threads import ScanThread, SpeedtestThread
 from ui_MainWindow import Ui_MainWindow
-from utils import DEFAULT_IPS, HOST, time_repr, read_url
+from utils import DEFAULT_IPS, HOST, read_url, time_repr
 
 
 app = QApplication(sys.argv)
@@ -32,14 +34,42 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
+        # Initialize table
         self.ui.resultTable.setHorizontalHeaderLabels(['IP', '响应时间'])
         self.ui.resultTable.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.ui.resultTable.sortItems(1, Qt.AscendingOrder)
 
         for ip in DEFAULT_IPS:
             self.ui.ipList.addItem(QListWidgetItem(ip))
-        
+
+        # Add right-click menu
+        self.ui.ipList.setContextMenuPolicy(Qt.CustomContextMenu)
+        menu = QMenu(self)
+        actDelete = QAction('删除', self, triggered=self.__delete_ip)
+        font = actDelete.font()
+        font.setBold(True)
+        actDelete.setFont(font)
+        menu.addAction(actDelete)
+        menu.addAction(QAction('复制', self, triggered=self.__copy_ip))
+        menu.addAction(QAction('清空', self, triggered=self.ui.ipList.clear))
+        menu.addAction(QAction('调试', self, triggered=self.__debug_ip))
+        self.ui.ipList.customContextMenuRequested.connect(lambda pos: menu.exec(self.ui.ipList.mapToGlobal(pos)))
+
+        # clipboard
         self.clipboard = QApplication.clipboard()
+
+    def __copy_ip(self):
+        ip = self.ui.ipList.currentItem().text()
+        self.clipboard.setText(ip)
+        self.ui.statusbar.showMessage(f'已复制 {ip} 到剪切板。')
+        
+    def __delete_ip(self):
+        ip = self.ui.ipList.currentItem().text()
+        self.ui.ipList.takeItem(self.ui.ipList.currentRow())
+        self.ui.statusbar.showMessage(f'已删除 {ip}。')
+
+    def __debug_ip(self):
+        dlgDebug(self, self.ui.ipList.currentItem().text()).exec()
 
     def __replace_ips(self, ips):
         self.ui.ipList.clear()
@@ -98,7 +128,7 @@ class MainWindow(QMainWindow):
                     dlg.ui.chkBox_ext4,
                     3.5,
                     (
-                        'https://ghproxy.com/https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/ip.txt',
+                        'https://mirror.ghproxy.com/https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/ip.txt',
                         'https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/ip.txt'
                     )
                 ),
@@ -106,7 +136,7 @@ class MainWindow(QMainWindow):
                     dlg.ui.chkBox_std6,
                     3.5,
                     (
-                        'https://ghproxy.com/https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/IPv6.txt',
+                        'https://mirror.ghproxy.com/https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/IPv6.txt',
                         'https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/IPv6.txt'
                     )
                 )
