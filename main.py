@@ -94,7 +94,7 @@ class MainWindow(QMainWindow):
             with open(filename, 'w', encoding='utf-8') as file:
                 file.write('IP,响应时间(ms)\n')
                 for row in range(self.ui.resultTable.rowCount()):
-                    file.write(f'{self.ui.resultTable.item(row, 0).text()},{self.ui.resultTable.item(row, 1).secs:.0f)}\n')
+                    file.write(f'{self.ui.resultTable.item(row, 0).text()},{self.ui.resultTable.item(row, 1).secs*1000:.0f}\n')
         else:
             with open(filename, 'w') as file:
                 for row in range(self.ui.resultTable.rowCount()):
