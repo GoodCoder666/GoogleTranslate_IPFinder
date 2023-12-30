@@ -225,17 +225,22 @@ class MainWindow(QMainWindow):
         if self.ui.resultTable.rowCount() == 0:
             QMessageBox.critical(self, '错误', '请先测速后再写入Hosts。')
             return
-        self.ui.resultTable.sortItems(1, Qt.AscendingOrder)
-        fastest_ip = self.ui.resultTable.item(0, 0).text()
+        selectedIndexes = self.ui.resultTable.selectedIndexes()
+        if selectedIndexes:
+            row = selectedIndexes[0].row()
+        else:
+            self.ui.resultTable.sortItems(1, Qt.AscendingOrder)
+            row = 0
+        selected_ip = self.ui.resultTable.item(row, 0).text()
         try:
-            self.__writeHosts(fastest_ip)
+            self.__writeHosts(selected_ip)
         except PermissionError:
             QMessageBox.critical(self, '错误', '无权限访问Hosts文件。请检查程序权限，然后再试。\n您也可尝试复制IP后手动写入。')
             return
         except Exception as e:
             QMessageBox.critical(self, '错误', f'未知错误：{e}\n若此错误反复出现，请在issues中提出。')
             return
-        self.ui.statusbar.showMessage(f'成功写入Hosts [{fastest_ip} {HOST}]')
+        self.ui.statusbar.showMessage(f'成功写入 Hosts [{selected_ip} {HOST}]')
 
     def __set_buttons_enabled(self, enabled):
         self.ui.btnResult_Copy.setEnabled(enabled)
