@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import ssl
+import sys
 from gzip import GzipFile
 from json import JSONDecoder
 from time import time
@@ -17,7 +18,7 @@ def _build_request(ip, host=HOST, testip_format=TESTIP_FORMAT):
     return request
 
 def new_context():
-    ctx = ssl.create_default_context()
+    ctx = ssl._create_unverified_context() if sys.platform.startswith('darwin') else ssl.create_default_context()
     old_wrap_socket = ctx.wrap_socket
 
     def new_wrap_socket(socket, **kwargs):
