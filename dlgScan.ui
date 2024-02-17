@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>228</width>
-    <height>181</height>
+    <height>209</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -210,6 +210,16 @@
       </widget>
      </item>
     </layout>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="chkBox_randomizeScan">
+     <property name="toolTip">
+      <string>以随机的顺序执行扫描。</string>
+     </property>
+     <property name="text">
+      <string>随机化扫描</string>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QDialogButtonBox" name="buttonBox">

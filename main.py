@@ -264,6 +264,10 @@ class MainWindow(QMainWindow):
     def __update_progressBar(self, dt=1):
         self.progressBar.setValue(self.progressBar.value() + dt)
 
+    def __scan_update(self, dt):
+        self.__update_progressBar(dt)
+        self.logLabel.setText(f'已扫描: {self.progressBar.value()} / {self.progressBar.maximum()}')
+
     def __remove_progessBar(self):
         self.progressBar.deleteLater()
         self.logLabel.deleteLater()
@@ -328,15 +332,15 @@ class MainWindow(QMainWindow):
             autoTest = dlg.ui.chkBox_autoTest.isChecked()
             extend4 = dlg.ui.chkBox_extend4.isChecked()
             extend6 = dlg.ui.chkBox_extend6.isChecked()
+            randomized = dlg.ui.chkBox_randomizeScan.isChecked()
 
             self.__set_buttons_enabled(False)
             self.ui.ipList.clear()
-            thread = ScanThread(self, max_ips, num_workers, timeout, enableOptimization, extend4, extend6)
+            thread = ScanThread(self, max_ips, num_workers, timeout, enableOptimization, extend4, extend6, randomized)
             thread.finished.connect(self.__test_ips if autoTest else self.__scan_finished)
             thread.foundAvailable.connect(self.__got_scan_result)
-            thread.progressUpdate.connect(self.__update_progressBar)
-            total_addrs = sum(len(net) if isinstance(net, list) else net.num_addresses
-                              for net in thread.networks)
+            thread.progressUpdate.connect(self.__scan_update)
+            total_addrs = sum(map(len, thread.networks))
             self.__init_progessBar(total_addrs)
             self.logLabel.setText(f'开始扫描，共 {total_addrs} 个 IP...')
             thread.start()

@@ -2,6 +2,7 @@
 from PySide6.QtCore import QThread, QThreadPool, QRunnable, QObject, Signal
 from utils import test_ip, check_ip
 from ipaddress import IPv4Network, IPv6Network
+import random
 
 
 __all__ = ['SpeedtestThread', 'ScanThread']
@@ -96,7 +97,7 @@ class ScanThread(QThread):
     ]
 
     def __init__(self, parent, max_ips=5, num_workers=80, timeout=2.5,
-                 enableOptimization=True, extend4=False, extend6=False):
+                 enableOptimization=True, extend4=False, extend6=False, randomized=False):
         super().__init__(parent)
 
         self.max_ips = max_ips
@@ -109,12 +110,16 @@ class ScanThread(QThread):
         ]
 
         if extend4:
-            self.networks.extend(self.ipv4_extend)
+            self.networks.extend(map(list, self.ipv4_extend))
         if extend6:
-            self.networks.extend(self.ipv6_extend)
+            self.networks.extend(map(list, self.ipv6_extend))
 
         self.currentIndex = 0
-        self.block_size = max(50, num_workers // 2)
+        self.block_size = max(64, num_workers)
+
+        if randomized:
+            for network in self.networks:
+                random.shuffle(network)
     
     def __found_available(self, ip):
         if self.counter >= self.max_ips:

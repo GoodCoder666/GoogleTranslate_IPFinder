@@ -24,7 +24,7 @@ class Ui_Dialog(object):
     def setupUi(self, Dialog):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
-        Dialog.resize(228, 181)
+        Dialog.resize(228, 209)
         self.verticalLayout = QVBoxLayout(Dialog)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.maxIPLayout = QHBoxLayout()
@@ -140,6 +140,11 @@ class Ui_Dialog(object):
 
         self.verticalLayout.addLayout(self.extendScanLayout)
 
+        self.chkBox_randomizeScan = QCheckBox(Dialog)
+        self.chkBox_randomizeScan.setObjectName(u"chkBox_randomizeScan")
+
+        self.verticalLayout.addWidget(self.chkBox_randomizeScan)
+
         self.buttonBox = QDialogButtonBox(Dialog)
         self.buttonBox.setObjectName(u"buttonBox")
         self.buttonBox.setOrientation(Qt.Horizontal)
@@ -185,5 +190,9 @@ class Ui_Dialog(object):
         self.chkBox_extend6.setToolTip(QCoreApplication.translate("Dialog", u"\u6269\u5927\u626b\u63cf\u8303\u56f4\uff0c\u589e\u52a0 IPv6 \u652f\u6301\u3002", None))
 #endif // QT_CONFIG(tooltip)
         self.chkBox_extend6.setText(QCoreApplication.translate("Dialog", u"\u6269\u5c55\u626b\u63cf IPv6", None))
+#if QT_CONFIG(tooltip)
+        self.chkBox_randomizeScan.setToolTip(QCoreApplication.translate("Dialog", u"\u4ee5\u968f\u673a\u7684\u987a\u5e8f\u6267\u884c\u626b\u63cf\u3002", None))
+#endif // QT_CONFIG(tooltip)
+        self.chkBox_randomizeScan.setText(QCoreApplication.translate("Dialog", u"\u968f\u673a\u5316\u626b\u63cf", None))
     # retranslateUi
 
