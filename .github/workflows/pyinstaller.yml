@@ -27,6 +27,11 @@ jobs:
         pip install pyinstaller
         pip install -r requirements.txt
 
+    - name: Install UPX
+      uses: crazy-max/ghaction-upx@v3
+      with:
+        install-only: true
+
     - name: Package application
       run: |
         pyinstaller -i icons/icon.ico -F -w --clean --log-level WARN main.py
