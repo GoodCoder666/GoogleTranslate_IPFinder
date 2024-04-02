@@ -300,6 +300,7 @@ class MainWindow(QMainWindow):
         if after_scan:
             self.progressBar.setValue(0)
             self.progressBar.setMaximum(len(ips))
+            self.ui.btnWait_Scan.setText('扫描')
         else:
             self.__init_progessBar(len(ips))
         thread = SpeedtestThread(self, ips, self.__add_result, self.__found_unavailable,
@@ -318,11 +319,16 @@ class MainWindow(QMainWindow):
 
     def __scan_finished(self):
         self.__set_buttons_enabled(True)
+        self.ui.btnWait_Scan.setText('扫描')
         self.__remove_progessBar()
         self.ui.statusbar.showMessage('扫描完成')
 
     @Slot()
     def on_btnWait_Scan_clicked(self):
+        if self.ui.btnWait_Scan.text() == '取消':
+            self.ui.btnWait_Scan.setEnabled(False)
+            self.sthread.cancel()
+            return
         dlg = dlgScan(self)
         if dlg.exec() == QDialog.Accepted:
             max_ips = dlg.ui.spinBox_MaxIP.value()
@@ -344,6 +350,10 @@ class MainWindow(QMainWindow):
             self.__init_progessBar(total_addrs)
             self.logLabel.setText(f'开始扫描，共 {total_addrs} 个 IP...')
             thread.start()
+
+            self.sthread = thread
+            self.ui.btnWait_Scan.setEnabled(True)
+            self.ui.btnWait_Scan.setText('取消')
 
     def dragEnterEvent(self, event):
         event.accept()

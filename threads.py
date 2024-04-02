@@ -148,11 +148,15 @@ class ScanThread(QThread):
             self.currentIndex += 1
         return True
 
+    def cancel(self):
+        self.running = False
+
     def run(self):
+        self.running = True
         self.pool = QThreadPool()
         self.pool.setMaxThreadCount(self.num_workers)
         self.counter = 0
-        while self.counter < self.max_ips and self.__add_block():
+        while self.running and self.counter < self.max_ips and self.__add_block():
             self.pool.waitForDone()
             self.progressUpdate.emit(self.num_added)
         self.pool.waitForDone()
