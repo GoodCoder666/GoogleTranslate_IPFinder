@@ -10,7 +10,7 @@ from dlgImport import dlgImport
 from dlgScan import dlgScan
 from threads import ScanThread, SpeedtestThread
 from ui_MainWindow import Ui_MainWindow
-from utils import DEFAULT_IPS, HOST, read_url, time_repr
+from utils import DEFAULT_IPS, HOST, HOST2, read_url, time_repr
 
 
 app = QApplication(sys.argv)
@@ -192,7 +192,7 @@ class MainWindow(QMainWindow):
         self.clipboard.setText(new_hosts)
         self.ui.statusbar.showMessage(f'成功复制最佳 IP [{new_hosts}]')
 
-    def __writeHosts(self, ip):
+    def __writeHosts(self, ip, host):
         hosts_path = r'C:\Windows\System32\drivers\etc\hosts' if sys.platform == 'win32' else '/etc/hosts'
 
         try:
@@ -206,12 +206,12 @@ class MainWindow(QMainWindow):
 
         host_line = -1
         for idx, line in enumerate(lines):
-            host_pos = line.find(HOST)
+            host_pos = line.find(host)
             comment_pos = line.find('#')
             if host_pos != -1 and (comment_pos == -1 or host_pos < comment_pos):
                 host_line = idx
 
-        changed_line = f'{ip} {HOST}'
+        changed_line = f'{ip} {host}'
         if host_line == -1:
             with open(hosts_path, 'a', encoding=encoding) as file:
                 file.write('\n' + changed_line)
@@ -233,14 +233,15 @@ class MainWindow(QMainWindow):
             row = 0
         selected_ip = self.ui.resultTable.item(row, 0).text()
         try:
-            self.__writeHosts(selected_ip)
+            self.__writeHosts(selected_ip, HOST)
+            self.__writeHosts(selected_ip, HOST2)
         except PermissionError:
             QMessageBox.critical(self, '错误', '无权限访问Hosts文件。请检查程序权限，然后再试。\n您也可尝试复制IP后手动写入。')
             return
         except Exception as e:
             QMessageBox.critical(self, '错误', f'未知错误：{e}\n若此错误反复出现，请在issues中提出。')
             return
-        self.ui.statusbar.showMessage(f'成功写入 Hosts [{selected_ip} {HOST}]')
+        self.ui.statusbar.showMessage(f'成功写入 Hosts [{selected_ip} {HOST}/{HOST2}]')
 
     def __set_buttons_enabled(self, enabled):
         self.ui.btnResult_Copy.setEnabled(enabled)

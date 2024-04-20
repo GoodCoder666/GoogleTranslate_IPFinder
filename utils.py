@@ -6,9 +6,10 @@ from json import JSONDecoder
 from time import time
 from urllib.request import Request, urlopen
 
-__all__ = ['read_url', 'test_ip', 'check_ip', 'time_repr', 'dns_query', 'HOST', 'DEFAULT_IPS']
+__all__ = ['read_url', 'test_ip', 'check_ip', 'time_repr', 'dns_query', 'HOST', 'HOST2', 'DEFAULT_IPS']
 
 HOST = 'translate.googleapis.com'
+HOST2 = 'translate-pa.googleapis.com'
 TESTIP_FORMAT = 'https://{}/translate_a/single?client=gtx&sl=en&tl=fr&q=a'
 
 def _build_request(ip, host=HOST, testip_format=TESTIP_FORMAT):
