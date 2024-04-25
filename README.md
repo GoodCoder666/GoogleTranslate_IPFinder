@@ -13,31 +13,39 @@
 - Windows: [https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases/download/alpha/checker-win-x64.exe](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases/download/alpha/checker-win-x64.exe)
 - Mac OS: [https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases/download/alpha/checker-mac.zip](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases/download/alpha/checker-mac.zip)
 
-关于 IP 可用性问题的讨论请移步 [Discussion #19](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/discussions/19)。
+> [!NOTE]
+>
+> **本项目仅在 Windows 11 下测试通过。**若程序在其他操作系统下无法正常工作，请[提出 issue](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/issues/new)。
+>
+> *由于 Python 的限制，本项目不支持 Windows 7 及以下。*
 
 ## 快速上手
 
 无特殊需求的使用步骤（测速+写入Hosts）：
 
 1. 下载对应系统的可执行文件（链接见上方）。
-2. 使用管理员/sudo权限打开。
+2. 使用管理员/sudo权限打开。**只有这样才能使用 Hosts 写入功能。**
 3. 选择“测速”，等待操作完成。
 4. 点击“写入Hosts”，谷歌翻译 API 即可正常使用。
+
+> [!TIP]
+>
+> 区分“测速”和“扫描”：
+>
+> - **测速**：从待测速的 IP（即 IP 库）中找出可用 IP，并按照响应时间排序。此操作完成后可以写入 Hosts。
+> - **扫描**：从 GWS 的 IP 段中找到可用的 IP，并置于 IP 库中。*由于 GWS 网络极为庞大，即使是扫描预设的一小部分通常也需要很长时间。*
+>
+> 一般来说，启动程序后直接选择“测速”（使用默认 IP 库）再写入 Hosts 即可恢复谷歌翻译网络服务。
 
 Windows 11 系统演示如下：
 
 ![](screenshots/1.gif)
 
-## 屏幕截图
-
-![](screenshots/2.png)
-
-## 注意事项
-
-- 本项目仅在 Windows 11 下测试通过，其他操作系统若有运行问题请开 issue。
-- 由于 Python 的限制，本项目不支持 Windows 7 及以下。
-- 若要使用 Hosts 写入功能，请使用管理员权限（Windows）或 sudo（其他系统）打开。
-- IPv6 地址的稳定性普遍不好，不到万不得已尽量不要使用。考虑到 IP 稳定性的问题，所有 IP 都必须至少通过 3 次测试才会显示在测速结果中。如果想验证单个 IP 的稳定性，请使用「调试」功能。
+> [!WARNING]
+>
+> **IPv6 地址的稳定性普遍不好，不到万不得已尽量不要使用。**考虑到 IP 稳定性的问题，所有 IP 都必须至少通过 3 次测试才会显示在测速结果中。如果想验证单个 IP 的稳定性，请使用「调试」功能。
+>
+> 关于 IP 可用性问题的讨论请移步 [Discussion #19](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/discussions/19)。
 
 ## 功能对比
 
@@ -49,23 +57,9 @@ Windows 11 系统演示如下：
 |  HOSTS 写入  | :heavy_check_mark: |                      :heavy_check_mark:                      |                             :x:                              |                          :x:                          |                          :x:                          |
 | GUI 图形界面 | :heavy_check_mark: |                             :x:                              |                             :x:                              |                          :x:                          |                          :x:                          |
 
-## 快速上手
+## 从源代码运行
 
-### 使用打包好的可执行文件（仅限 Windows 和 Mac OS）
-
-从[Releases](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases/tag/alpha)页面下载对应系统的可执行文件，运行即可。
-
-- Windows: [https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases/download/alpha/checker-win-x64.exe](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases/download/alpha/checker-win-x64.exe)
-- Mac OS: [https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases/download/alpha/checker-mac.zip](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases/download/alpha/checker-mac.zip)
-
-文件由GitHub Actions自动打包发布，如果下载慢可以用IDM/NDM等多线程下载器进行下载。
-
-### 从源代码运行（适用于所有操作系统）
-
-先决条件：
-
-- Python >= 3.6
-- Git
+从源代码运行的方法适用于所有支持图形界面的操作系统，只需 Python >= 3.6（额外安装 `PySide6` 包）。
 
 对于 Linux 系统：
 
