@@ -15,7 +15,7 @@
 
 > [!NOTE]
 >
-> **本项目仅在 Windows 11 下测试通过。**若程序在其他操作系统下无法正常工作，请[提出 issue](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/issues/new)。
+> **本项目仅在 Windows 11 下测试通过。** 若程序在其他操作系统下无法正常工作，请[提出 issue](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/issues/new)。
 >
 > *由于 Python 的限制，本项目不支持 Windows 7 及以下。*
 
@@ -43,7 +43,9 @@ Windows 11 系统演示如下：
 
 > [!WARNING]
 >
-> **IPv6 地址的稳定性普遍不好，不到万不得已尽量不要使用。**考虑到 IP 稳定性的问题，所有 IP 都必须至少通过 3 次测试才会显示在测速结果中。如果想验证单个 IP 的稳定性，请使用「调试」功能。
+> **IPv6 地址的稳定性普遍不好，不到万不得已尽量不要使用。**
+>
+> 考虑到 IP 稳定性的问题，所有 IP 都必须至少通过 3 次测试才会显示在测速结果中。如果想验证单个 IP 的稳定性，请使用「调试」功能。
 >
 > 关于 IP 可用性问题的讨论请移步 [Discussion #19](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/discussions/19)。
 
