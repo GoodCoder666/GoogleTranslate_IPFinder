@@ -188,9 +188,8 @@ class MainWindow(QMainWindow):
             return
         self.ui.resultTable.sortItems(1, Qt.AscendingOrder)
         fastest_ip = self.ui.resultTable.item(0, 0).text()
-        new_hosts = f'{fastest_ip} {HOST}'
-        self.clipboard.setText(new_hosts)
-        self.ui.statusbar.showMessage(f'成功复制最佳 IP [{new_hosts}]')
+        self.clipboard.setText(f'{fastest_ip} {HOST}\n{fastest_ip} {HOST2}\n')
+        self.ui.statusbar.showMessage(f'成功复制最佳 IP [{fastest_ip} {HOST}/{HOST2}]')
 
     def __writeHosts(self, ip, host):
         hosts_path = r'C:\Windows\System32\drivers\etc\hosts' if sys.platform == 'win32' else '/etc/hosts'
