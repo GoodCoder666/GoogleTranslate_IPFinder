@@ -93,9 +93,9 @@
          <number>30</number>
         </property>
         <item>
-         <widget class="QCheckBox" name="chkBox_std4">
+         <widget class="QCheckBox" name="chkBox_off4">
           <property name="text">
-           <string>精简 IPv4</string>
+           <string>官方 IPv4</string>
           </property>
           <property name="checked">
            <bool>true</bool>
@@ -110,9 +110,9 @@
          </widget>
         </item>
         <item>
-         <widget class="QCheckBox" name="chkBox_std6">
+         <widget class="QCheckBox" name="chkBox_ext6">
           <property name="text">
-           <string>标准 IPv6</string>
+           <string>扩展 IPv6（不推荐）</string>
           </property>
          </widget>
         </item>
@@ -188,7 +188,7 @@
   <connection>
    <sender>radioOnline</sender>
    <signal>toggled(bool)</signal>
-   <receiver>chkBox_std4</receiver>
+   <receiver>chkBox_off4</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -220,7 +220,7 @@
   <connection>
    <sender>radioOnline</sender>
    <signal>toggled(bool)</signal>
-   <receiver>chkBox_std6</receiver>
+   <receiver>chkBox_ext6</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">

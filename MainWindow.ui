@@ -141,8 +141,58 @@
      <height>22</height>
     </rect>
    </property>
+   <widget class="QMenu" name="optionsMenu">
+    <property name="title">
+     <string>选项</string>
+    </property>
+    <addaction name="actSettings"/>
+    <addaction name="separator"/>
+    <addaction name="actResetSettings"/>
+   </widget>
+   <widget class="QMenu" name="helpMenu">
+    <property name="title">
+     <string>帮助</string>
+    </property>
+    <addaction name="actProjectHomepage"/>
+    <addaction name="actCheckUpdates"/>
+    <addaction name="separator"/>
+    <addaction name="actAbout"/>
+   </widget>
+   <addaction name="optionsMenu"/>
+   <addaction name="helpMenu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actSettings">
+   <property name="text">
+    <string>设置…</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+,</string>
+   </property>
+  </action>
+  <action name="actResetSettings">
+   <property name="text">
+    <string>重置设置</string>
+   </property>
+  </action>
+  <action name="actProjectHomepage">
+   <property name="text">
+    <string>项目主页</string>
+   </property>
+  </action>
+  <action name="actCheckUpdates">
+   <property name="text">
+    <string>检查更新</string>
+   </property>
+  </action>
+  <action name="actAbout">
+   <property name="text">
+    <string>关于…</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+H</string>
+   </property>
+  </action>
  </widget>
  <resources>
   <include location="res.qrc"/>

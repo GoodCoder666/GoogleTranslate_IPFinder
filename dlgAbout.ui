@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>501</width>
+    <height>353</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>关于</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0" colspan="2">
+    <widget class="QGroupBox" name="groupBox_repo">
+     <property name="title">
+      <string>代码仓库</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="1">
+       <widget class="QCommandLinkButton" name="githubLink">
+        <property name="text">
+         <string>GitHub 项目地址</string>
+        </property>
+        <property name="description">
+         <string>https://github.com/GoodCoder666/GoogleTranslate_IPFinder</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QCommandLinkButton" name="gtdbLink">
+        <property name="text">
+         <string>官方 IP 库</string>
+        </property>
+        <property name="description">
+         <string>https://github.com/GoodCoder666/gtdb</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QCommandLinkButton" name="licenseLink">
+        <property name="text">
+         <string>版权条款（GPLv3）</string>
+        </property>
+        <property name="description">
+         <string>https://github.com/GoodCoder666/GoogleTranslate_IPFinder/blob/main/LICENSE</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QCommandLinkButton" name="readmeLink">
+        <property name="text">
+         <string>README 帮助文件</string>
+        </property>
+        <property name="description">
+         <string>https://github.com/GoodCoder666/GoogleTranslate_IPFinder/blob/main/README.md</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QPushButton" name="btnUpdate">
+     <property name="text">
+      <string>检查更新</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="labCopyright">
+     <property name="text">
+      <string>Copyright © GoodCoder666 2024</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="2">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;感谢使用&lt;span style=&quot; font-weight:700;&quot;&gt; GoogleTranslate_IPFinder&lt;/span&gt;！欢迎在 &lt;a href=&quot;https://github.com/GoodCoder666/GoogleTranslate_IPFinder/issues&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;issues&lt;/span&gt;&lt;/a&gt; 指出 bug 或提出修改意见。 &lt;/p&gt;&lt;p&gt;在 &lt;a href=&quot;https://github.com/GoodCoder666/GoogleTranslate_IPFinder&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;GitHub&lt;/span&gt;&lt;/a&gt; 上 Star 此项目：&lt;a href=&quot;https://github.com/GoodCoder666/GoogleTranslate_IPFinder&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;GoodCoder666/GoogleTranslate_IPFinder&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="textFormat">
+      <enum>Qt::RichText</enum>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="openExternalLinks">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

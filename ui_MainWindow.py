@@ -11,14 +11,16 @@
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
     QSize, QTime, QUrl, Qt)
-from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
-    QFont, QFontDatabase, QGradient, QIcon,
-    QImage, QKeySequence, QLinearGradient, QPainter,
-    QPalette, QPixmap, QRadialGradient, QTransform)
+from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
+    QCursor, QFont, QFontDatabase, QGradient,
+    QIcon, QImage, QKeySequence, QLinearGradient,
+    QPainter, QPalette, QPixmap, QRadialGradient,
+    QTransform)
 from PySide6.QtWidgets import (QAbstractItemView, QApplication, QHBoxLayout, QHeaderView,
     QLabel, QListWidget, QListWidgetItem, QMainWindow,
-    QMenuBar, QPushButton, QSizePolicy, QStatusBar,
-    QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget)
+    QMenu, QMenuBar, QPushButton, QSizePolicy,
+    QStatusBar, QTableWidget, QTableWidgetItem, QVBoxLayout,
+    QWidget)
 import res_rc
 
 class Ui_MainWindow(object):
@@ -30,6 +32,16 @@ class Ui_MainWindow(object):
         icon = QIcon()
         icon.addFile(u":/images/icons/icon.png", QSize(), QIcon.Normal, QIcon.Off)
         MainWindow.setWindowIcon(icon)
+        self.actSettings = QAction(MainWindow)
+        self.actSettings.setObjectName(u"actSettings")
+        self.actResetSettings = QAction(MainWindow)
+        self.actResetSettings.setObjectName(u"actResetSettings")
+        self.actProjectHomepage = QAction(MainWindow)
+        self.actProjectHomepage.setObjectName(u"actProjectHomepage")
+        self.actCheckUpdates = QAction(MainWindow)
+        self.actCheckUpdates.setObjectName(u"actCheckUpdates")
+        self.actAbout = QAction(MainWindow)
+        self.actAbout.setObjectName(u"actAbout")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.horizontalLayout_3 = QHBoxLayout(self.centralwidget)
@@ -113,10 +125,24 @@ class Ui_MainWindow(object):
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
         self.menubar.setGeometry(QRect(0, 0, 800, 22))
+        self.optionsMenu = QMenu(self.menubar)
+        self.optionsMenu.setObjectName(u"optionsMenu")
+        self.helpMenu = QMenu(self.menubar)
+        self.helpMenu.setObjectName(u"helpMenu")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
         MainWindow.setStatusBar(self.statusbar)
+
+        self.menubar.addAction(self.optionsMenu.menuAction())
+        self.menubar.addAction(self.helpMenu.menuAction())
+        self.optionsMenu.addAction(self.actSettings)
+        self.optionsMenu.addSeparator()
+        self.optionsMenu.addAction(self.actResetSettings)
+        self.helpMenu.addAction(self.actProjectHomepage)
+        self.helpMenu.addAction(self.actCheckUpdates)
+        self.helpMenu.addSeparator()
+        self.helpMenu.addAction(self.actAbout)
 
         self.retranslateUi(MainWindow)
 
@@ -125,6 +151,17 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"\u8c37\u6b4c\u7ffb\u8bd1IP\u6d4b\u901f\u5de5\u5177", None))
+        self.actSettings.setText(QCoreApplication.translate("MainWindow", u"\u8bbe\u7f6e\u2026", None))
+#if QT_CONFIG(shortcut)
+        self.actSettings.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+,", None))
+#endif // QT_CONFIG(shortcut)
+        self.actResetSettings.setText(QCoreApplication.translate("MainWindow", u"\u91cd\u7f6e\u8bbe\u7f6e", None))
+        self.actProjectHomepage.setText(QCoreApplication.translate("MainWindow", u"\u9879\u76ee\u4e3b\u9875", None))
+        self.actCheckUpdates.setText(QCoreApplication.translate("MainWindow", u"\u68c0\u67e5\u66f4\u65b0", None))
+        self.actAbout.setText(QCoreApplication.translate("MainWindow", u"\u5173\u4e8e\u2026", None))
+#if QT_CONFIG(shortcut)
+        self.actAbout.setShortcut(QCoreApplication.translate("MainWindow", u"Ctrl+H", None))
+#endif // QT_CONFIG(shortcut)
         self.labIP.setText(QCoreApplication.translate("MainWindow", u"\u5f85\u6d4b\u901f\u7684IP\uff1a", None))
 #if QT_CONFIG(tooltip)
         self.btnWait_Scan.setToolTip(QCoreApplication.translate("MainWindow", u"\u4ece\u8c37\u6b4c\u7684IP\u7f51\u7edc\u4e2d\u627e\u5230\u53ef\u7528\u7684IP\u3002", None))
@@ -151,5 +188,7 @@ class Ui_MainWindow(object):
         self.btnResult_WriteHosts.setToolTip(QCoreApplication.translate("MainWindow", u"\u81ea\u52a8\u5c06\u54cd\u5e94\u6700\u5feb\u7684IP\u5199\u5165Hosts\uff08\u9700\u8981\u7ba1\u7406\u5458\u6743\u9650\uff09\u3002", None))
 #endif // QT_CONFIG(tooltip)
         self.btnResult_WriteHosts.setText(QCoreApplication.translate("MainWindow", u"\u5199\u5165Hosts", None))
+        self.optionsMenu.setTitle(QCoreApplication.translate("MainWindow", u"\u9009\u9879", None))
+        self.helpMenu.setTitle(QCoreApplication.translate("MainWindow", u"\u5e2e\u52a9", None))
     # retranslateUi
 

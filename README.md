@@ -94,22 +94,13 @@ python main.py
 
 ## 关于在线同步功能
 
-本项目作者提供的 IP 库在打开软件时会自动导入。程序还提供了在线导入其他 IP 库的功能，地址如下：
+[官方 IPv4 地址库](https://github.com/GoodCoder666/gtdb) 内置在程序中，不定期随功能更新。您可以通过 `导入->在线服务` 同步最新的 IP 库。同时提供 GoogleTranslateIpCheck 中的两个 IP 库供选择（感谢 @Ponderfly）。三个库的网址如下：
 
-- 精简 IPv4：
-  - 官方：https://unpkg.com/@hcfy/google-translate-ip/ips.txt
-  - 备用1（ghproxy 镜像）：https://mirror.ghproxy.com/https://raw.githubusercontent.com/hcfyapp/google-translate-cn-ip/master/packages/google-translate-ip/ips.txt
-  - 备用2（jsDelivr CDN）：https://cdn.jsdelivr.net/npm/@hcfy/google-translate-ip/ips.txt
-- 扩展 IPv4：
-  - 官方1：https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/ip.txt
-  - 官方2：https://mirror.ghproxy.com/https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/ip.txt
-- 标准 IPv6：
-  - 官方1：https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/IPv6.txt
-  - 官方2：https://mirror.ghproxy.com/https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/IPv6.txt
+- 官方 IPv4：https://raw.githubusercontent.com/GoodCoder666/gtdb/main/src/ip.txt
+- 扩展 IPv4：https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/ip.txt
+- 扩展 IPv6：https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/IPv6.txt
 
-程序会自动选择可用的地址并导入 IP 库（设置备用网址是因为 raw.githubusercontent.com 访问不稳定）。导入一般需要 5-10 秒，请耐心等待。
-
-感谢 @hcfyapp 和 @Ponderfly 提供的 IP 库。
+同时，若 GitHub Raw 无法连接，程序将尝试使用 [ghproxy](https://mirror.ghproxy.com/) 镜像，请耐心等待。
 
 ## 版权说明
 

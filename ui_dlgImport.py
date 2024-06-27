@@ -83,21 +83,21 @@ class Ui_Dialog(object):
         self.verticalLayout_2 = QVBoxLayout()
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout_2.setContentsMargins(30, -1, -1, -1)
-        self.chkBox_std4 = QCheckBox(self.groupBox_Source)
-        self.chkBox_std4.setObjectName(u"chkBox_std4")
-        self.chkBox_std4.setChecked(True)
+        self.chkBox_off4 = QCheckBox(self.groupBox_Source)
+        self.chkBox_off4.setObjectName(u"chkBox_off4")
+        self.chkBox_off4.setChecked(True)
 
-        self.verticalLayout_2.addWidget(self.chkBox_std4)
+        self.verticalLayout_2.addWidget(self.chkBox_off4)
 
         self.chkBox_ext4 = QCheckBox(self.groupBox_Source)
         self.chkBox_ext4.setObjectName(u"chkBox_ext4")
 
         self.verticalLayout_2.addWidget(self.chkBox_ext4)
 
-        self.chkBox_std6 = QCheckBox(self.groupBox_Source)
-        self.chkBox_std6.setObjectName(u"chkBox_std6")
+        self.chkBox_ext6 = QCheckBox(self.groupBox_Source)
+        self.chkBox_ext6.setObjectName(u"chkBox_ext6")
 
-        self.verticalLayout_2.addWidget(self.chkBox_std6)
+        self.verticalLayout_2.addWidget(self.chkBox_ext6)
 
 
         self.verticalLayout_3.addLayout(self.verticalLayout_2)
@@ -132,9 +132,9 @@ class Ui_Dialog(object):
         self.retranslateUi(Dialog)
         self.buttonBox.accepted.connect(Dialog.accept)
         self.buttonBox.rejected.connect(Dialog.reject)
-        self.radioOnline.toggled.connect(self.chkBox_std4.setEnabled)
+        self.radioOnline.toggled.connect(self.chkBox_off4.setEnabled)
         self.radioOnline.toggled.connect(self.chkBox_ext4.setEnabled)
-        self.radioOnline.toggled.connect(self.chkBox_std6.setEnabled)
+        self.radioOnline.toggled.connect(self.chkBox_ext6.setEnabled)
         self.radioSingleIP.toggled.connect(self.singleIPEdit.setEnabled)
         self.radioCustomURL.toggled.connect(self.customURLEdit.setEnabled)
 
@@ -150,9 +150,9 @@ class Ui_Dialog(object):
         self.radioLocalFile.setText(QCoreApplication.translate("Dialog", u"\u672c\u5730\u6587\u4ef6", None))
         self.radioSingleIP.setText(QCoreApplication.translate("Dialog", u"\u5355\u4e2a IP\uff1a", None))
         self.radioOnline.setText(QCoreApplication.translate("Dialog", u"\u5728\u7ebf\u670d\u52a1\uff1a", None))
-        self.chkBox_std4.setText(QCoreApplication.translate("Dialog", u"\u7cbe\u7b80 IPv4", None))
+        self.chkBox_off4.setText(QCoreApplication.translate("Dialog", u"\u5b98\u65b9 IPv4", None))
         self.chkBox_ext4.setText(QCoreApplication.translate("Dialog", u"\u6269\u5c55 IPv4", None))
-        self.chkBox_std6.setText(QCoreApplication.translate("Dialog", u"\u6807\u51c6 IPv6", None))
+        self.chkBox_ext6.setText(QCoreApplication.translate("Dialog", u"\u6269\u5c55 IPv6\uff08\u4e0d\u63a8\u8350\uff09", None))
         self.radioCustomURL.setText(QCoreApplication.translate("Dialog", u"\u81ea\u5b9a\u4e49 URL\uff1a", None))
     # retranslateUi
 

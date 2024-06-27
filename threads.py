@@ -2,6 +2,7 @@
 from PySide6.QtCore import QThread, QThreadPool, QRunnable, QObject, Signal
 from utils import test_ip, check_ip
 from ipaddress import IPv4Network, IPv6Network
+from constants import DefaultConfig
 import random
 
 
@@ -14,10 +15,12 @@ class _SpeedtestTaskSignals(QObject):
 
 
 class _SpeedtestTask(QRunnable):
-    def __init__(self, ip, timeout=2.5, repeat=3):
+    def __init__(self, ip, host, request_format, timeout=2.5, repeat=3):
         super().__init__()
 
         self.ip = ip
+        self.host = host
+        self.request_format = request_format
         self.timeout = timeout
         self.repeat = repeat
         self.signals = _SpeedtestTaskSignals()
@@ -25,7 +28,7 @@ class _SpeedtestTask(QRunnable):
     def run(self):
         total = 0
         for _ in range(self.repeat):
-            result = test_ip(self.ip, self.timeout)
+            result = test_ip(self.ip, self.timeout, self.host, self.request_format)
             if isinstance(result, str):
                 self.signals.foundUnavailable.emit(self.ip, result)
                 return
@@ -35,10 +38,13 @@ class _SpeedtestTask(QRunnable):
 
 
 class SpeedtestThread(QThread):
-    def __init__(self, parent, ips, available_callback, unavailable_callback,
+    def __init__(self, parent, ips, host, request_format,
+                 available_callback, unavailable_callback,
                  timeout=2.5, repeat=3, num_workers=8):
         super().__init__(parent)
         self.ips = ips
+        self.host = host
+        self.request_format = request_format
         self.available_callback = available_callback
         self.unavailable_callback = unavailable_callback
         self.timeout = timeout
@@ -49,7 +55,7 @@ class SpeedtestThread(QThread):
         pool = QThreadPool()
         pool.setMaxThreadCount(self.num_workers)
         for ip in self.ips:
-            task = _SpeedtestTask(ip, self.timeout, self.repeat)
+            task = _SpeedtestTask(ip, self.host, self.request_format, self.timeout, self.repeat)
             task.signals.foundAvailable.connect(self.available_callback)
             task.signals.foundUnavailable.connect(self.unavailable_callback)
             pool.start(task)
@@ -70,7 +76,7 @@ class _ScanTask(QRunnable):
         self.signals = _ScanTaskSignals()
 
     def run(self):
-        if check_ip(self.ip, self.timeout):
+        if check_ip(self.ip, self.timeout, DefaultConfig.test_host, DefaultConfig.template):
             self.signals.foundAvailable.emit(self.ip)
 
 
@@ -115,13 +121,13 @@ class ScanThread(QThread):
             self.networks.extend(map(list, self.ipv6_extend))
 
         self.currentIndex = 0
-        self.block_size = max(64, num_workers)
+        self.block_size = max(64, num_workers * 2)
 
         if randomized:
             for network in self.networks:
                 random.shuffle(network)
     
-    def __found_available(self, ip):
+    def _found_available(self, ip):
         if self.counter >= self.max_ips:
             return
         self.counter += 1
@@ -129,7 +135,7 @@ class ScanThread(QThread):
         if self.counter >= self.max_ips:
             self.pool.clear()
 
-    def __add_block(self):
+    def _add_block(self):
         self.num_added = 0
         for _ in range(self.block_size):
             ok = False
@@ -140,7 +146,7 @@ class ScanThread(QThread):
                     continue
                 ok = True
                 task = _ScanTask(ip, self.timeout)
-                task.signals.foundAvailable.connect(self.__found_available)
+                task.signals.foundAvailable.connect(self._found_available)
                 self.pool.start(task)
                 self.num_added += 1
             if not ok:
@@ -156,7 +162,7 @@ class ScanThread(QThread):
         self.pool = QThreadPool()
         self.pool.setMaxThreadCount(self.num_workers)
         self.counter = 0
-        while self.running and self.counter < self.max_ips and self.__add_block():
+        while self.running and self.counter < self.max_ips and self._add_block():
             self.pool.waitForDone()
             self.progressUpdate.emit(self.num_added)
         self.pool.waitForDone()
@@ -166,17 +172,17 @@ class DebugThread(QThread):
     success = Signal(float) # success(seconds)
     fail = Signal(str) # fail(reason)
 
-    def __init__(self, parent, ip, host, testip_format, timeout, repeat):
+    def __init__(self, parent, ip, host, request_format, timeout, repeat):
         super().__init__(parent)
 
         self.ip = ip
         self.host = host
-        self.testip_format = testip_format
+        self.request_format = request_format
         self.timeout = timeout
         self.repeat = repeat
 
     def run(self):
         for _ in range(self.repeat):
-            result = test_ip(self.ip, self.timeout, self.host, self.testip_format)
+            result = test_ip(self.ip, self.timeout, self.host, self.request_format)
             signal = self.fail if isinstance(result, str) else self.success
             signal.emit(result)
