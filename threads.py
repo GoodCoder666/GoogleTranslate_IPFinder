@@ -126,7 +126,7 @@ class ScanThread(QThread):
         if randomized:
             for network in self.networks:
                 random.shuffle(network)
-    
+
     def _found_available(self, ip):
         if self.counter >= self.max_ips:
             return

@@ -20,7 +20,10 @@ class dlgSettings(QDialog):
         self.default_font = default_font
 
         # initialize settings
-        self.ui.comboBox_style.setCurrentIndex(style_names.index(settings.value('appearance/style')))
+        style_name = settings.value('appearance/style')
+        if style_name not in style_names:
+            style_name = style_name.capitalize()
+        self.ui.comboBox_style.setCurrentIndex(style_names.index(style_name))
         font = settings.value('appearance/font')
         self.ui.fontComboBox.setCurrentFont(font.family())
         self.ui.spinBox_fontSize.setValue(font.pointSize())

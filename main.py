@@ -78,7 +78,7 @@ class MainWindow(QMainWindow):
         ip = self.ui.ipList.currentItem().text()
         self.clipboard.setText(ip)
         self.ui.statusbar.showMessage(f'已复制 {ip} 到剪切板。')
-        
+
     def _delete_ip(self):
         ip = self.ui.ipList.currentItem().text()
         self.ui.ipList.takeItem(self.ui.ipList.currentRow())
@@ -235,8 +235,7 @@ class MainWindow(QMainWindow):
         if self.ui.resultTable.rowCount() == 0:
             QMessageBox.critical(self, '错误', '请先测速后再写入Hosts。')
             return
-        selectedIndexes = self.ui.resultTable.selectedIndexes()
-        if selectedIndexes:
+        if selectedIndexes := self.ui.resultTable.selectedIndexes():
             row = selectedIndexes[0].row()
         else:
             self.ui.resultTable.sortItems(1, Qt.AscendingOrder)
@@ -295,7 +294,7 @@ class MainWindow(QMainWindow):
         self._update_progressBar()
 
         self.ui.resultTable.setSortingEnabled(True)
-    
+
     def _found_unavailable(self, ip, reason):
         self.logLabel.setText(f'IP {ip} 不可用 [原因: {reason}]')
         self._update_progressBar()
