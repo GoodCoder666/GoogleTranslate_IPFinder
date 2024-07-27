@@ -2,8 +2,15 @@
 
 谷歌翻译 API 服务器（`translate.googleapis.com`）在中国大陆的 IP 地址扫描、测速工具。
 
-项目使用 Python 编写，GUI 使用的是 `PySide6`（Qt for Python 6）。
+<details>
+    <summary>项目背景</summary>
+    Google 于 2022 年 9 月屏蔽了中国大陆对其翻译服务器的访问。本项目旨在帮助用户找到能够访问的 GWS IP 并覆盖本地域名解析结果来实现对谷歌翻译服务器的访问。
+</details>
 
+<details>
+    <summary>免责声明</summary>
+    使用此开源软件时，请您遵守当地法律法规以及 Google 的相关规定。<strong>一切违法/违规用途后果自负。</strong>
+</details>
 稳定版下载地址：
 
 - [https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases)
