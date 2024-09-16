@@ -108,7 +108,7 @@ python main.py
 - 扩展 IPv4：https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/ip.txt
 - 扩展 IPv6：https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/IPv6.txt
 
-同时，若 GitHub Raw 无法连接，程序将尝试使用 [ghproxy](https://mirror.ghproxy.com/) 镜像，请耐心等待。
+同时，若 GitHub Raw 无法连接，程序将尝试使用 [ghproxy](https://ghp.ci/) 镜像，请耐心等待。
 
 ## 版权说明
 

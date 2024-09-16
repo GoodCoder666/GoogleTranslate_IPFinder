@@ -12,15 +12,15 @@ class DefaultConfig:
 
 ONLINE_SERVICES = (
     (
-        'https://mirror.ghproxy.com/https://raw.githubusercontent.com/GoodCoder666/gtdb/main/src/ip.txt',
+        'https://ghp.ci/https://raw.githubusercontent.com/GoodCoder666/gtdb/main/src/ip.txt',
         'https://raw.githubusercontent.com/GoodCoder666/gtdb/main/src/ip.txt'
     ),
     (
-        'https://mirror.ghproxy.com/https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/ip.txt',
+        'https://ghp.ci/https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/ip.txt',
         'https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/ip.txt'
     ),
     (
-        'https://mirror.ghproxy.com/https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/IPv6.txt',
+        'https://ghp.ci/https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/IPv6.txt',
         'https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/IPv6.txt'
     )
 )
