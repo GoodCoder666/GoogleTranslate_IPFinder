@@ -1,4 +1,17 @@
-# GoogleTranslate_IPFinder
+<div align="center">
+
+<h1>GoogleTranslate_IPFinder</h1>
+
+<a href="http://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases"><img alt="GitHub release" src="https://img.shields.io/github/release/GoodCoder666/GoogleTranslate_IPFinder.svg" /></a>
+<a href="http://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases"><img alt="GitHub Release Date" src="https://img.shields.io/github/release-date/GoodCoder666/GoogleTranslate_IPFinder.svg" /></a>
+<a href="http://github.com/GoodCoder666/GoogleTranslate_IPFinder/LICENSE.md"><img alt="License" src="https://img.shields.io/github/license/GoodCoder666/GoogleTranslate_IPFinder.svg" /></a>
+<a href="http://github.com/GoodCoder666/GoogleTranslate_IPFinder/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/GoodCoder666/GoogleTranslate_IPFinder.svg?style=social" /></a>
+
+<a href="./README.md">简体中文</a> | English
+
+</div>
+
+## Project summary
 
 Google Translate API server (`translate.googleapis.com`) IP address scanning and speed test tool.
 
