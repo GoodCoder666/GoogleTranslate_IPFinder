@@ -32,39 +32,32 @@ class Ui_Dialog(object):
         self.groupBox_appearance.setObjectName(u"groupBox_appearance")
         self.gridLayout = QGridLayout(self.groupBox_appearance)
         self.gridLayout.setObjectName(u"gridLayout")
-        self.fontComboBox = QFontComboBox(self.groupBox_appearance)
-        self.fontComboBox.setObjectName(u"fontComboBox")
-        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+        self.labStyle = QLabel(self.groupBox_appearance)
+        self.labStyle.setObjectName(u"labStyle")
+        sizePolicy = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.fontComboBox.sizePolicy().hasHeightForWidth())
-        self.fontComboBox.setSizePolicy(sizePolicy)
+        sizePolicy.setHeightForWidth(self.labStyle.sizePolicy().hasHeightForWidth())
+        self.labStyle.setSizePolicy(sizePolicy)
 
-        self.gridLayout.addWidget(self.fontComboBox, 1, 1, 1, 2)
+        self.gridLayout.addWidget(self.labStyle, 1, 0, 1, 2)
+
+        self.fontComboBox = QFontComboBox(self.groupBox_appearance)
+        self.fontComboBox.setObjectName(u"fontComboBox")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.fontComboBox.sizePolicy().hasHeightForWidth())
+        self.fontComboBox.setSizePolicy(sizePolicy1)
+
+        self.gridLayout.addWidget(self.fontComboBox, 3, 1, 1, 2)
 
         self.comboBox_style = QComboBox(self.groupBox_appearance)
         self.comboBox_style.setObjectName(u"comboBox_style")
-        sizePolicy.setHeightForWidth(self.comboBox_style.sizePolicy().hasHeightForWidth())
-        self.comboBox_style.setSizePolicy(sizePolicy)
+        sizePolicy1.setHeightForWidth(self.comboBox_style.sizePolicy().hasHeightForWidth())
+        self.comboBox_style.setSizePolicy(sizePolicy1)
 
-        self.gridLayout.addWidget(self.comboBox_style, 0, 2, 1, 1)
-
-        self.labGlobalFont = QLabel(self.groupBox_appearance)
-        self.labGlobalFont.setObjectName(u"labGlobalFont")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Preferred)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.labGlobalFont.sizePolicy().hasHeightForWidth())
-        self.labGlobalFont.setSizePolicy(sizePolicy1)
-
-        self.gridLayout.addWidget(self.labGlobalFont, 1, 0, 1, 1)
-
-        self.labStyle = QLabel(self.groupBox_appearance)
-        self.labStyle.setObjectName(u"labStyle")
-        sizePolicy1.setHeightForWidth(self.labStyle.sizePolicy().hasHeightForWidth())
-        self.labStyle.setSizePolicy(sizePolicy1)
-
-        self.gridLayout.addWidget(self.labStyle, 0, 0, 1, 2)
+        self.gridLayout.addWidget(self.comboBox_style, 1, 2, 1, 1)
 
         self.spinBox_fontSize = QSpinBox(self.groupBox_appearance)
         self.spinBox_fontSize.setObjectName(u"spinBox_fontSize")
@@ -72,7 +65,26 @@ class Ui_Dialog(object):
         self.spinBox_fontSize.setMaximum(20)
         self.spinBox_fontSize.setValue(9)
 
-        self.gridLayout.addWidget(self.spinBox_fontSize, 1, 3, 1, 1)
+        self.gridLayout.addWidget(self.spinBox_fontSize, 3, 3, 1, 1)
+
+        self.labGlobalFont = QLabel(self.groupBox_appearance)
+        self.labGlobalFont.setObjectName(u"labGlobalFont")
+        sizePolicy.setHeightForWidth(self.labGlobalFont.sizePolicy().hasHeightForWidth())
+        self.labGlobalFont.setSizePolicy(sizePolicy)
+
+        self.gridLayout.addWidget(self.labGlobalFont, 3, 0, 1, 1)
+
+        self.labLanguage = QLabel(self.groupBox_appearance)
+        self.labLanguage.setObjectName(u"labLanguage")
+
+        self.gridLayout.addWidget(self.labLanguage, 0, 0, 1, 1)
+
+        self.comboBox_language = QComboBox(self.groupBox_appearance)
+        self.comboBox_language.addItem("")
+        self.comboBox_language.addItem("")
+        self.comboBox_language.setObjectName(u"comboBox_language")
+
+        self.gridLayout.addWidget(self.comboBox_language, 0, 2, 1, 1)
 
 
         self.verticalLayout.addWidget(self.groupBox_appearance)
@@ -83,8 +95,8 @@ class Ui_Dialog(object):
         self.gridLayout_2.setObjectName(u"gridLayout_2")
         self.labRepeat = QLabel(self.groupBox_speedTest)
         self.labRepeat.setObjectName(u"labRepeat")
-        sizePolicy1.setHeightForWidth(self.labRepeat.sizePolicy().hasHeightForWidth())
-        self.labRepeat.setSizePolicy(sizePolicy1)
+        sizePolicy.setHeightForWidth(self.labRepeat.sizePolicy().hasHeightForWidth())
+        self.labRepeat.setSizePolicy(sizePolicy)
 
         self.gridLayout_2.addWidget(self.labRepeat, 7, 0, 1, 1)
 
@@ -105,8 +117,8 @@ class Ui_Dialog(object):
 
         self.labHost = QLabel(self.groupBox_speedTest)
         self.labHost.setObjectName(u"labHost")
-        sizePolicy1.setHeightForWidth(self.labHost.sizePolicy().hasHeightForWidth())
-        self.labHost.setSizePolicy(sizePolicy1)
+        sizePolicy.setHeightForWidth(self.labHost.sizePolicy().hasHeightForWidth())
+        self.labHost.setSizePolicy(sizePolicy)
 
         self.gridLayout_2.addWidget(self.labHost, 0, 0, 1, 1)
 
@@ -127,8 +139,8 @@ class Ui_Dialog(object):
 
         self.labThreads = QLabel(self.groupBox_speedTest)
         self.labThreads.setObjectName(u"labThreads")
-        sizePolicy1.setHeightForWidth(self.labThreads.sizePolicy().hasHeightForWidth())
-        self.labThreads.setSizePolicy(sizePolicy1)
+        sizePolicy.setHeightForWidth(self.labThreads.sizePolicy().hasHeightForWidth())
+        self.labThreads.setSizePolicy(sizePolicy)
 
         self.gridLayout_2.addWidget(self.labThreads, 3, 0, 1, 1)
 
@@ -149,15 +161,15 @@ class Ui_Dialog(object):
 
         self.labTimeout = QLabel(self.groupBox_speedTest)
         self.labTimeout.setObjectName(u"labTimeout")
-        sizePolicy1.setHeightForWidth(self.labTimeout.sizePolicy().hasHeightForWidth())
-        self.labTimeout.setSizePolicy(sizePolicy1)
+        sizePolicy.setHeightForWidth(self.labTimeout.sizePolicy().hasHeightForWidth())
+        self.labTimeout.setSizePolicy(sizePolicy)
 
         self.gridLayout_2.addWidget(self.labTimeout, 5, 0, 1, 1)
 
         self.labTemplate = QLabel(self.groupBox_speedTest)
         self.labTemplate.setObjectName(u"labTemplate")
-        sizePolicy1.setHeightForWidth(self.labTemplate.sizePolicy().hasHeightForWidth())
-        self.labTemplate.setSizePolicy(sizePolicy1)
+        sizePolicy.setHeightForWidth(self.labTemplate.sizePolicy().hasHeightForWidth())
+        self.labTemplate.setSizePolicy(sizePolicy)
 
         self.gridLayout_2.addWidget(self.labTemplate, 2, 0, 1, 1)
 
@@ -227,8 +239,12 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"\u8bbe\u7f6e", None))
         self.groupBox_appearance.setTitle(QCoreApplication.translate("Dialog", u"\u5916\u89c2", None))
-        self.labGlobalFont.setText(QCoreApplication.translate("Dialog", u"\u5168\u5c40\u5b57\u4f53", None))
         self.labStyle.setText(QCoreApplication.translate("Dialog", u"\u4e3b\u9898", None))
+        self.labGlobalFont.setText(QCoreApplication.translate("Dialog", u"\u5168\u5c40\u5b57\u4f53", None))
+        self.labLanguage.setText(QCoreApplication.translate("Dialog", u"\u8bed\u8a00", None))
+        self.comboBox_language.setItemText(0, QCoreApplication.translate("Dialog", u"\u4e2d\u6587", None))
+        self.comboBox_language.setItemText(1, QCoreApplication.translate("Dialog", u"English", None))
+
         self.groupBox_speedTest.setTitle(QCoreApplication.translate("Dialog", u"\u6d4b\u901f", None))
         self.labRepeat.setText(QCoreApplication.translate("Dialog", u"\u6d4b\u8bd5\u6b21\u6570", None))
         self.labHost.setText(QCoreApplication.translate("Dialog", u"\u57df\u540d", None))

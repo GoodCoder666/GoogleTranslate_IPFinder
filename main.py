@@ -2,7 +2,7 @@
 import sys
 
 from PySide6.QtWidgets import *
-from PySide6.QtCore import Qt, Slot, QSettings
+from PySide6.QtCore import Qt, Slot, QSettings, QTranslator
 from PySide6.QtGui import QAction
 
 from constants import GTDB_IPS, ONLINE_SERVICES, DefaultConfig
@@ -29,8 +29,12 @@ class QTableWidgetTimeItem(QTableWidgetItem):
 
 
 class MainWindow(QMainWindow):
-    SUPPORTED_INPUT_FILTERS = '文本文件(*.txt);;所有文件(*.*)'
-    SUPPORTED_OUTPUT_FILTERS = '文本文件(*.txt);;CSV 表格(*.csv);;所有文件(*.*)'
+    SUPPORTED_INPUT_FILTERS = QMainWindow.tr('文本文件(*.txt);;所有文件(*.*)')
+    SUPPORTED_OUTPUT_FILTERS = QMainWindow.tr('文本文件(*.txt);;CSV 表格(*.csv);;所有文件(*.*)')
+
+    # English translator
+    translator = QTranslator()
+    assert translator.load('en_US.qm', ':/translations/translations')
 
     def __init__(self, parent=None):
         # Initialize window
@@ -40,7 +44,7 @@ class MainWindow(QMainWindow):
         self.default_font = QApplication.font()
 
         # Initialize table
-        self.ui.resultTable.setHorizontalHeaderLabels(['IP', '响应时间'])
+        self.ui.resultTable.setHorizontalHeaderLabels(['IP', self.tr('响应时间')])
         self.ui.resultTable.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.ui.resultTable.sortItems(1, Qt.AscendingOrder)
 
@@ -50,14 +54,14 @@ class MainWindow(QMainWindow):
         # Add right-click menu
         self.ui.ipList.setContextMenuPolicy(Qt.CustomContextMenu)
         menu = QMenu(self)
-        actDelete = QAction('删除', self, triggered=self._delete_ip)
+        actDelete = QAction(self.tr('删除'), self, triggered=self._delete_ip)
         font = actDelete.font()
         font.setBold(True)
         actDelete.setFont(font)
         menu.addAction(actDelete)
-        menu.addAction(QAction('复制', self, triggered=self._copy_ip))
-        menu.addAction(QAction('清空', self, triggered=self.ui.ipList.clear))
-        menu.addAction(QAction('调试', self, triggered=self._debug_ip))
+        menu.addAction(QAction(self.tr('复制'), self, triggered=self._copy_ip))
+        menu.addAction(QAction(self.tr('清空'), self, triggered=self.ui.ipList.clear))
+        menu.addAction(QAction(self.tr('调试'), self, triggered=self._debug_ip))
         self.ui.ipList.customContextMenuRequested.connect(lambda pos: menu.exec(self.ui.ipList.mapToGlobal(pos)))
 
         # clipboard
@@ -67,22 +71,22 @@ class MainWindow(QMainWindow):
         self.ui.actResetSettings.triggered.connect(self._reset_settings)
         self.settings = QSettings('GoodCoder666', 'IPFinder')
         if set(self.settings.allKeys()) == {
-                'appearance/style', 'appearance/font', 'test/host',
+                'appearance/style', 'appearance/font', 'appearance/language', 'test/host',
                 'test/template', 'test/num_threads', 'test/timeout', 'test/repeat', 'saveHosts'}:
             self._update_ui()
         else:
             self._reset_settings()
-            self.ui.statusbar.showMessage('设置初始化完成')
+            self.ui.statusbar.showMessage(self.tr('设置初始化完成'))
 
     def _copy_ip(self):
         ip = self.ui.ipList.currentItem().text()
         self.clipboard.setText(ip)
-        self.ui.statusbar.showMessage(f'已复制 {ip} 到剪切板。')
+        self.ui.statusbar.showMessage(self.tr('已复制 %s 到剪切板。') % ip)
 
     def _delete_ip(self):
         ip = self.ui.ipList.currentItem().text()
         self.ui.ipList.takeItem(self.ui.ipList.currentRow())
-        self.ui.statusbar.showMessage(f'已删除 {ip}。')
+        self.ui.statusbar.showMessage(self.tr('已删除 %s。') % ip)
 
     def _debug_ip(self):
         dlgDebug(self, self.ui.ipList.currentItem().text(),
@@ -93,7 +97,7 @@ class MainWindow(QMainWindow):
         for ip in ips:
             if ip := ip.rstrip():
                 self.ui.ipList.addItem(QListWidgetItem(ip))
-        self.ui.statusbar.showMessage(f'导入成功，共 {len(ips)} 条 IP。')
+        self.ui.statusbar.showMessage(self.tr('导入成功，共 %n 条 IP。', '', len(ips)))
 
     def _add_ips(self, ips):
         original_ips = {self.ui.ipList.item(i).text() for i in range(self.ui.ipList.count())}
@@ -103,14 +107,16 @@ class MainWindow(QMainWindow):
             if ip and ip not in original_ips:
                 self.ui.ipList.addItem(QListWidgetItem(ip))
                 count += 1
-        self.ui.statusbar.showMessage(f'导入成功，新增 {count} 条 IP。')
+        self.ui.statusbar.showMessage(self.tr('导入成功，新增 %n 条 IP。', '', count))
 
     def _save_ips(self, filename):
         if filename.endswith('.csv'):
             with open(filename, 'w', encoding='utf-8') as file:
-                file.write('IP,响应时间(ms)\n')
+                file.write(f'IP,{self.tr("响应时间")}(ms)\n')
                 for row in range(self.ui.resultTable.rowCount()):
-                    file.write(f'{self.ui.resultTable.item(row, 0).text()},{self.ui.resultTable.item(row, 1).secs*1000:.0f}\n')
+                    ip = self.ui.resultTable.item(row, 0).text()
+                    ms = self.ui.resultTable.item(row, 1).secs * 1000
+                    file.write(f'{ip},{ms}\n')
         else:
             with open(filename, 'w') as file:
                 for row in range(self.ui.resultTable.rowCount()):
@@ -123,6 +129,7 @@ class MainWindow(QMainWindow):
         self.settings.clear()
         self.settings.setValue('appearance/style', QApplication.style().objectName())
         self.settings.setValue('appearance/font', self.default_font)
+        self.settings.setValue('appearance/language', DefaultConfig.language)
         self.settings.setValue('test/host', DefaultConfig.test_host)
         self.settings.setValue('test/template', DefaultConfig.template)
         self.settings.setValue('test/num_threads', DefaultConfig.num_threads)
@@ -131,11 +138,17 @@ class MainWindow(QMainWindow):
         self.settings.setValue('saveHosts', DefaultConfig.save_hosts)
         self.settings.sync()
         self._update_ui()
-        self.ui.statusbar.showMessage('设置已重置。')
+        self.ui.statusbar.showMessage(self.tr('设置已重置。'))
 
     def _update_ui(self):
         app.setFont(self.settings.value('appearance/font'))
         app.setStyle(QStyleFactory.create(self.settings.value('appearance/style')))
+        if self.settings.value('appearance/language') == 'en_US':
+            app.installTranslator(self.translator)
+        else:
+            app.removeTranslator(self.translator)
+        self.ui.retranslateUi(self)
+        self.ui.resultTable.setHorizontalHeaderLabels(['IP', self.tr('响应时间')])
 
     @Slot()
     def on_btnWait_Import_clicked(self):
@@ -144,7 +157,7 @@ class MainWindow(QMainWindow):
             return
         new_ips = None
         if dlg.ui.radioLocalFile.isChecked():
-            filename, _ = QFileDialog.getOpenFileName(self, '导入', filter=self.SUPPORTED_INPUT_FILTERS)
+            filename, _ = QFileDialog.getOpenFileName(self, self.tr('导入'), filter=self.SUPPORTED_INPUT_FILTERS)
             if not filename: return
             try:
                 with open(filename, 'r') as file:
@@ -154,7 +167,7 @@ class MainWindow(QMainWindow):
                     with open(filename, 'r', encoding='utf-8-sig') as file:
                         new_ips = file.readlines()
                 except UnicodeDecodeError:
-                    QMessageBox.critical(self, '错误', '文件编码错误。请检查文件内容，然后再试。')
+                    QMessageBox.critical(self, self.tr('错误'), self.tr('文件编码错误。请检查文件内容，然后再试。'))
                     return
         elif dlg.ui.radioSingleIP.isChecked():
             new_ips = [dlg.ui.singleIPEdit.text()]
@@ -163,7 +176,7 @@ class MainWindow(QMainWindow):
             try:
                 new_ips = read_url(url)
             except Exception:
-                QMessageBox.critical(self, '错误', f'{url} 获取失败。请检查网络状况，然后再试。')
+                QMessageBox.critical(self, self.tr('错误'), self.tr('%s 获取失败。请检查网络状况，然后再试。') % url)
         else: # radioOnline
             new_ips = set()
             timeout = 3.5
@@ -177,7 +190,7 @@ class MainWindow(QMainWindow):
                             continue
                         break
                     else:
-                        QMessageBox.critical(self, '错误', f'{checkBox.text()} 获取失败。请检查网络状况，然后再试。')
+                        QMessageBox.critical(self, self.tr('错误'), self.tr('%s 获取失败。请检查网络状况，然后再试。') % checkBox.text())
                         return
                     new_ips |= current_ips
         if dlg.ui.radioReplace.isChecked():
@@ -187,20 +200,21 @@ class MainWindow(QMainWindow):
 
     @Slot()
     def on_btnResult_Save_clicked(self):
-        filename, _ = QFileDialog.getSaveFileName(self, '导出', filter=self.SUPPORTED_OUTPUT_FILTERS)
+        filename, _ = QFileDialog.getSaveFileName(self, self.tr('导出'), filter=self.SUPPORTED_OUTPUT_FILTERS)
         if not filename: return
         self._save_ips(filename)
-        self.ui.statusbar.showMessage(f'成功导出 IP 测速结果文件 [{filename}]')
+        self.ui.statusbar.showMessage(self.tr('成功导出 IP 测速结果文件 [%s]') % filename)
 
     @Slot()
     def on_btnResult_Copy_clicked(self):
         if self.ui.resultTable.rowCount() == 0:
-            QMessageBox.critical(self, '错误', '请先测速后再复制。')
+            QMessageBox.critical(self, self.tr('错误'), self.tr('请先测速后再复制。'))
             return
         self.ui.resultTable.sortItems(1, Qt.AscendingOrder)
         fastest_ip = self.ui.resultTable.item(0, 0).text()
         self.clipboard.setText('\n'.join(f'{fastest_ip} {host}' for host in self.settings.value('saveHosts')))
-        self.ui.statusbar.showMessage(f'成功复制最佳 IP [{fastest_ip} {self._save_hosts_repr()}]')
+        message = self.tr('成功复制最佳 IP [%s %s]') % (fastest_ip, self._save_hosts_repr())
+        self.ui.statusbar.showMessage(message)
 
     def _update_hosts(self, ip, host):
         hosts_path = r'C:\Windows\System32\drivers\etc\hosts' if sys.platform == 'win32' else '/etc/hosts'
@@ -233,7 +247,7 @@ class MainWindow(QMainWindow):
     @Slot()
     def on_btnResult_WriteHosts_clicked(self):
         if self.ui.resultTable.rowCount() == 0:
-            QMessageBox.critical(self, '错误', '请先测速后再写入Hosts。')
+            QMessageBox.critical(self, self.tr('错误'), self.tr('请先测速后再写入Hosts。'))
             return
         if selectedIndexes := self.ui.resultTable.selectedIndexes():
             row = selectedIndexes[0].row()
@@ -245,12 +259,13 @@ class MainWindow(QMainWindow):
             for host in self.settings.value('saveHosts'):
                 self._update_hosts(selected_ip, host)
         except PermissionError:
-            QMessageBox.critical(self, '错误', '无权限访问Hosts文件。请检查程序权限，然后再试。\n您也可尝试复制IP后手动写入。')
+            QMessageBox.critical(self, self.tr('错误'), self.tr('无权限访问Hosts文件。请检查程序权限，然后再试。\n您也可尝试复制IP后手动写入。'))
             return
         except Exception as e:
-            QMessageBox.critical(self, '错误', f'未知错误：{e}\n若此错误反复出现，请在issues中提出。')
+            QMessageBox.critical(self, self.tr('错误'), self.tr('未知错误：%s\n若此错误反复出现，请在issues中提出。') % e)
             return
-        self.ui.statusbar.showMessage(f'成功写入 Hosts [{selected_ip} {self._save_hosts_repr()}]')
+        message = self.tr('成功写入 Hosts [%s %s]') % (selected_ip, self._save_hosts_repr())
+        self.ui.statusbar.showMessage(message)
 
     def _set_buttons_enabled(self, enabled):
         self.ui.btnResult_Copy.setEnabled(enabled)
@@ -276,7 +291,7 @@ class MainWindow(QMainWindow):
 
     def _scan_update(self, dt):
         self._update_progressBar(dt)
-        self.logLabel.setText(f'已扫描: {self.progressBar.value()} / {self.progressBar.maximum()}')
+        self.logLabel.setText(self.tr('已扫描: %s / %s') % (self.progressBar.value(), self.progressBar.maximum()))
 
     def _remove_progessBar(self):
         self.progressBar.deleteLater()
@@ -290,19 +305,19 @@ class MainWindow(QMainWindow):
         self.ui.resultTable.setItem(row, 0, QTableWidgetItem(ip))
         time_str = time_repr(seconds)
         self.ui.resultTable.setItem(row, 1, QTableWidgetTimeItem(seconds, time_str))
-        self.logLabel.setText(f'发现可用IP: {ip} [{time_str}]')
+        self.logLabel.setText(self.tr('发现可用IP: %s [%s]') % (ip, time_str))
         self._update_progressBar()
 
         self.ui.resultTable.setSortingEnabled(True)
 
     def _found_unavailable(self, ip, reason):
-        self.logLabel.setText(f'IP {ip} 不可用 [原因: {reason}]')
+        self.logLabel.setText(self.tr('IP %s 不可用 [原因: %s]') % (ip, reason))
         self._update_progressBar()
 
     def _speedtest_finished(self):
         self._set_buttons_enabled(True)
         self._remove_progessBar()
-        self.ui.statusbar.showMessage('测速完成')
+        self.ui.statusbar.showMessage(self.tr('测速完成'))
 
     def _test_ips(self, after_scan=True):
         self.ui.resultTable.setRowCount(0)
@@ -310,7 +325,7 @@ class MainWindow(QMainWindow):
         if after_scan:
             self.progressBar.setValue(0)
             self.progressBar.setMaximum(len(ips))
-            self.ui.btnWait_Scan.setText('扫描')
+            self.ui.btnWait_Scan.setText(self.tr('扫描'))
             self.ui.btnWait_Scan.setEnabled(False)
         else:
             self._init_progessBar(len(ips))
@@ -332,17 +347,17 @@ class MainWindow(QMainWindow):
 
     def _report_single_scan_result(self, ip):
         self.ui.ipList.addItem(QListWidgetItem(ip))
-        self.logLabel.setText(f'发现可用IP: {ip}')
+        self.logLabel.setText(self.tr('发现可用IP: %s') % ip)
 
     def _after_scan(self):
         self._set_buttons_enabled(True)
-        self.ui.btnWait_Scan.setText('扫描')
+        self.ui.btnWait_Scan.setText(self.tr('扫描'))
         self._remove_progessBar()
-        self.ui.statusbar.showMessage('扫描完成')
+        self.ui.statusbar.showMessage(self.tr('扫描完成'))
 
     @Slot()
     def on_btnWait_Scan_clicked(self):
-        if self.ui.btnWait_Scan.text() == '取消':
+        if self.ui.btnWait_Scan.text() == self.tr('取消'):
             self.ui.btnWait_Scan.setEnabled(False)
             self.sthread.cancel()
             return
@@ -366,20 +381,20 @@ class MainWindow(QMainWindow):
             thread.progressUpdate.connect(self._scan_update)
             total_addrs = sum(map(len, thread.networks))
             self._init_progessBar(total_addrs)
-            self.logLabel.setText(f'开始扫描，共 {total_addrs} 个 IP...')
+            self.logLabel.setText(self.tr('开始扫描，共 %n 个 IP...', '', total_addrs))
             thread.start()
 
             self.sthread = thread
             self.ui.btnWait_Scan.setEnabled(True)
-            self.ui.btnWait_Scan.setText('取消')
+            self.ui.btnWait_Scan.setText(self.tr('取消'))
 
     @Slot()
     def on_actSettings_triggered(self):
         dlg = dlgSettings(self, self.settings, self.default_font)
         if dlg.exec() == QDialog.Accepted:
-            dlg.update_settings(self.settings)
+            dlg.apply(self.settings)
             self._update_ui()
-            self.ui.statusbar.showMessage('设置已更新。')
+            self.ui.statusbar.showMessage(self.tr('设置已更新。'))
 
     @Slot()
     def on_actProjectHomepage_triggered(self):

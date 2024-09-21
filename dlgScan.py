@@ -11,5 +11,5 @@ class dlgScan(QDialog):
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
 
-        self.ui.buttonBox.button(QDialogButtonBox.Ok).setText('扫描')
-        self.ui.buttonBox.button(QDialogButtonBox.Cancel).setText('取消')
+        self.ui.buttonBox.button(QDialogButtonBox.Ok).setText(self.tr('扫描'))
+        self.ui.buttonBox.button(QDialogButtonBox.Cancel).setText(self.tr('取消'))

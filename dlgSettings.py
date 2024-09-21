@@ -8,18 +8,22 @@ from constants import DefaultConfig
 __all__ = ['dlgSettings']
 
 class dlgSettings(QDialog):
+    idx_to_lang = ['zh_CN', 'en_US']
+    lang_to_idx = {lang: idx for idx, lang in enumerate(idx_to_lang)}
+
     def __init__(self, parent, settings, default_font):
         super().__init__(parent)
 
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
-        self.ui.buttonBox.button(QDialogButtonBox.Ok).setText('确定')
-        self.ui.buttonBox.button(QDialogButtonBox.Cancel).setText('取消')
+        self.ui.buttonBox.button(QDialogButtonBox.Ok).setText(self.tr('确定'))
+        self.ui.buttonBox.button(QDialogButtonBox.Cancel).setText(self.tr('取消'))
         style_names = QStyleFactory.keys()
         self.ui.comboBox_style.addItems(style_names)
         self.default_font = default_font
 
         # initialize settings
+        self.ui.comboBox_language.setCurrentIndex(self.lang_to_idx[settings.value('appearance/language')])
         style_name = settings.value('appearance/style')
         if style_name not in style_names:
             style_name = style_name.capitalize()
@@ -47,7 +51,8 @@ class dlgSettings(QDialog):
             for i in range(self.ui.saveHostsList.count())
         )))
 
-    def update_settings(self, settings):
+    def apply(self, settings):
+        settings.setValue('appearance/language', self.idx_to_lang[self.ui.comboBox_language.currentIndex()])
         settings.setValue('appearance/style', self.ui.comboBox_style.currentText())
         font = QApplication.font()
         font.setFamily(self.ui.fontComboBox.currentFont().family())
@@ -63,6 +68,7 @@ class dlgSettings(QDialog):
 
     @Slot()
     def on_btnRestoreDefaults_clicked(self):
+        self.ui.comboBox_language.setCurrentIndex(self.lang_to_idx[DefaultConfig.language])
         self.ui.comboBox_style.setCurrentIndex(0)
         self.ui.fontComboBox.setCurrentFont(self.default_font)
         self.ui.spinBox_fontSize.setValue(self.default_font.pointSize())

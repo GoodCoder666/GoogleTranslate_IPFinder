@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
+from PySide6.QtCore import QLocale
 
 __all__ = ['DefaultConfig', 'GTDB_IPS', 'ONLINE_SERVICES']
 
 class DefaultConfig:
+    language = 'zh_CN' if 'zh' in QLocale.system().name() else 'en_US'
     test_host = 'translate.googleapis.com'
     save_hosts = ['translate.googleapis.com', 'translate-pa.googleapis.com']
     template = 'https://{}/translate_a/single?client=gtx&sl=en&tl=fr&q=a'
