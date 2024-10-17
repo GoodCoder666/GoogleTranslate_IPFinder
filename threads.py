@@ -84,7 +84,9 @@ class ScanThread(QThread):
     foundAvailable = Signal(str)
     progressUpdate = Signal(int)
 
-    # https://repo.or.cz/gscan_quic.git/blob/89e4b91eb3642b12f7665f7a9f4fa33c403fc318:/iprange_gws_b.txt
+    # Credits:
+    # https://codeberg.org/antigng/gscan_quic/src/branch/master/iprange
+
     net_default = IPv4Network('142.250.0.0/15')
     ipv4_extend = [
         IPv4Network('108.177.0.0/17'),
@@ -95,7 +97,6 @@ class ScanThread(QThread):
         IPv4Network('74.125.0.0/16')
     ]
 
-    # https://repo.or.cz/gscan_quic.git/blob/89e4b91eb3642b12f7665f7a9f4fa33c403fc318:/iprange_gws_6_a.txt
     ipv6_extend = [
         IPv6Network('2404:6800:4008:c15::0/112'),
         IPv6Network('2a00:1450:4001:802::0/112'),
