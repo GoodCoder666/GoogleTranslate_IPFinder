@@ -124,6 +124,10 @@ python main.py
 
 ## About Online Syncing
 
+> [!WARNING]
+>
+> The following mentioned libraries are designed for use in Mainland China. Consider running a full scan to get available IPs.
+
 The [official IPv4 address library](https://github.com/GoodCoder666/gtdb) is built into the program and is periodically updated with new features. You can sync the latest IP library via `Import -> Online service`. Two IP libraries from GoogleTranslateIpCheck are also available (thanks to @Ponderfly). The URLs of the three libraries are as follows:
 
 - Official IPv4: https://raw.githubusercontent.com/GoodCoder666/gtdb/main/src/ip.txt
@@ -134,6 +138,6 @@ Additionally, if GitHub Raw cannot be connected, the program will attempt to use
 
 ## License Information
 
-This project is licensed under the [GPLv3](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/blob/main/LICENSE). The IP scanning logic references [https://codeberg.org/antigng/gscan_quic](https://codeberg.org/antigng/gscan_quic).
+This project is licensed under the [GPLv3](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/blob/main/LICENSE). The IP scanning logic references [gscan_quic](https://codeberg.org/antigng/gscan_quic).
 
 Similar projects: [hcfyapp/google-translate-cn-ip](https://github.com/hcfyapp/google-translate-cn-ip) [Ponderfly/GoogleTranslateIpCheck](https://github.com/Ponderfly/GoogleTranslateIpCheck) [csyezheng/ip-scanner](https://github.com/csyezheng/ip-scanner).

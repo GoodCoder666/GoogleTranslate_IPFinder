@@ -106,6 +106,8 @@ python main.py
 
 ## 开发计划
 
+> 目前收到大佬建议，正在研发新的扫描优化，敬请期待 :handshake:
+
 - [x] IP 测速
 - [x] IP 扫描
 - [x] 自动写入 Hosts
@@ -127,7 +129,7 @@ python main.py
 
 ## 版权说明
 
-本项目使用 [GPLv3](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/blob/main/LICENSE) 版权许可。IP 扫描逻辑参考 [https://codeberg.org/antigng/gscan_quic](https://codeberg.org/antigng/gscan_quic)。
+本项目使用 [GPLv3](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/blob/main/LICENSE) 版权许可。IP 扫描逻辑参考 [gscan_quic](https://codeberg.org/antigng/gscan_quic)。
 
 类似的项目：[hcfyapp/google-translate-cn-ip](https://github.com/hcfyapp/google-translate-cn-ip) [Ponderfly/GoogleTranslateIpCheck](https://github.com/Ponderfly/GoogleTranslateIpCheck) [csyezheng/ip-scanner](https://github.com/csyezheng/ip-scanner)
 
