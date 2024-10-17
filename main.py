@@ -174,9 +174,10 @@ class MainWindow(QMainWindow):
         elif dlg.ui.radioCustomURL.isChecked():
             url = dlg.ui.customURLEdit.text()
             try:
-                new_ips = read_url(url)
+                new_ips = read_url(url, timeout=5)
             except Exception:
                 QMessageBox.critical(self, self.tr('错误'), self.tr('%s 获取失败。请检查网络状况，然后再试。') % url)
+                return
         else: # radioOnline
             new_ips = set()
             timeout = 3.5
