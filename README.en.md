@@ -127,6 +127,8 @@ python main.py
 > [!WARNING]
 >
 > The following mentioned libraries are designed for use in Mainland China. Consider running a full scan to get available IPs.
+>
+> This part may be outdated. Please refer to the Chinese README for accurate information.
 
 The [official IPv4 address library](https://github.com/GoodCoder666/gtdb) is built into the program and is periodically updated with new features. You can sync the latest IP library via `Import -> Online service`. Two IP libraries from GoogleTranslateIpCheck are also available (thanks to @Ponderfly). The URLs of the three libraries are as follows:
 

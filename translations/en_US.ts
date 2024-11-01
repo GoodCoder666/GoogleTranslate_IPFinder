@@ -365,21 +365,56 @@
     </message>
     <message>
         <location filename="../dlgImport.ui" line="98"/>
-        <source>官方 IPv4</source>
-        <translation>Official IPv4 base</translation>
+        <source>官方 IPv4 地址库，约 1000 条 IP。</source>
+        <translation>Official IPv4 base, approximately 1,000 IPs.</translation>
     </message>
     <message>
-        <location filename="../dlgImport.ui" line="108"/>
-        <source>扩展 IPv4</source>
+        <location filename="../dlgImport.ui" line="101"/>
+        <source>官方 IPv4</source>
+        <translation>Official IPv4</translation>
+    </message>
+    <message>
+        <location filename="../dlgImport.ui" line="111"/>
+        <source>扩展 IPv4 地址库</source>
         <translation>Extended IPv4 base (unofficial)</translation>
     </message>
     <message>
-        <location filename="../dlgImport.ui" line="115"/>
-        <source>扩展 IPv6（不推荐）</source>
-        <translation>Extended IPv6 base (unofficial)</translation>
+        <location filename="../dlgImport.ui" line="114"/>
+        <source>扩展 IPv4</source>
+        <translation>Extended IPv4</translation>
     </message>
     <message>
-        <location filename="../dlgImport.ui" line="126"/>
+        <location filename="../dlgImport.ui" line="121"/>
+        <source>(不推荐) 扩展 IPv6 地址库</source>
+        <translation>(Not recommended) Extended IPv6 base</translation>
+    </message>
+    <message>
+        <location filename="../dlgImport.ui" line="124"/>
+        <source>扩展 IPv6</source>
+        <translation>Extended IPv6</translation>
+    </message>
+    <message>
+        <location filename="../dlgImport.ui" line="131"/>
+        <source>超级 IPv4 地址库，约 23000 条 IP。</source>
+        <translation>Full IPv4 base, approximately 23,000 IPs.</translation>
+    </message>
+    <message>
+        <location filename="../dlgImport.ui" line="134"/>
+        <source>超级 IPv4</source>
+        <translation>Full IPv4</translation>
+    </message>
+    <message>
+        <location filename="../dlgImport.ui" line="141"/>
+        <source>(不推荐) 超级 IPv6 地址库，约 22000 条 IP。</source>
+        <translation>(Not recommended) Full IPv6 base, approximately 22,000 IPs.</translation>
+    </message>
+    <message>
+        <location filename="../dlgImport.ui" line="144"/>
+        <source>超级 IPv6</source>
+        <translation>Full IPv6</translation>
+    </message>
+    <message>
+        <location filename="../dlgImport.ui" line="155"/>
         <source>自定义 URL：</source>
         <translation>Custom URL:</translation>
     </message>
@@ -403,8 +438,8 @@
     </message>
     <message>
         <location filename="../MainWindow.ui" line="42"/>
-        <location filename="../main.py" line="327"/>
-        <location filename="../main.py" line="353"/>
+        <location filename="../main.py" line="330"/>
+        <location filename="../main.py" line="356"/>
         <source>扫描</source>
         <translation>Scan</translation>
     </message>
@@ -415,7 +450,7 @@
     </message>
     <message>
         <location filename="../MainWindow.ui" line="52"/>
-        <location filename="../main.py" line="159"/>
+        <location filename="../main.py" line="160"/>
         <source>导入</source>
         <translation>Import</translation>
     </message>
@@ -441,7 +476,7 @@
     </message>
     <message>
         <location filename="../MainWindow.ui" line="90"/>
-        <location filename="../main.py" line="202"/>
+        <location filename="../main.py" line="205"/>
         <source>导出</source>
         <translation>Export</translation>
     </message>
@@ -513,6 +548,7 @@
     </message>
     <message>
         <location filename="../main.py" line="47"/>
+        <location filename="../main.py" line="151"/>
         <source>响应时间</source>
         <translation>Response time</translation>
     </message>
@@ -568,104 +604,104 @@
         <translation>Settings reset.</translation>
     </message>
     <message>
-        <location filename="../main.py" line="169"/>
-        <location filename="../main.py" line="178"/>
-        <location filename="../main.py" line="192"/>
-        <location filename="../main.py" line="210"/>
-        <location filename="../main.py" line="249"/>
-        <location filename="../main.py" line="261"/>
+        <location filename="../main.py" line="170"/>
+        <location filename="../main.py" line="179"/>
+        <location filename="../main.py" line="195"/>
+        <location filename="../main.py" line="213"/>
+        <location filename="../main.py" line="252"/>
         <location filename="../main.py" line="264"/>
+        <location filename="../main.py" line="267"/>
         <source>错误</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location filename="../main.py" line="169"/>
+        <location filename="../main.py" line="170"/>
         <source>文件编码错误。请检查文件内容，然后再试。</source>
         <translation>File encoding error. Please check through the contents of the file, and try again.</translation>
     </message>
     <message>
-        <location filename="../main.py" line="178"/>
-        <location filename="../main.py" line="192"/>
+        <location filename="../main.py" line="179"/>
+        <location filename="../main.py" line="195"/>
         <source>%s 获取失败。请检查网络状况，然后再试。</source>
         <translation>Failed to fetch %s. Ensure you are connected, and try again.</translation>
     </message>
     <message>
-        <location filename="../main.py" line="205"/>
+        <location filename="../main.py" line="208"/>
         <source>成功导出 IP 测速结果文件 [%s]</source>
         <translation>Speedtest results saved to %s</translation>
     </message>
     <message>
-        <location filename="../main.py" line="210"/>
+        <location filename="../main.py" line="213"/>
         <source>请先测速后再复制。</source>
         <translation>Please copy only after running a speedtest.</translation>
     </message>
     <message>
-        <location filename="../main.py" line="215"/>
+        <location filename="../main.py" line="218"/>
         <source>成功复制最佳 IP [%s %s]</source>
         <translation>Best IP copied [%s %s]</translation>
     </message>
     <message>
-        <location filename="../main.py" line="249"/>
+        <location filename="../main.py" line="252"/>
         <source>请先测速后再写入Hosts。</source>
         <translation>Please update hosts only after running a speedtest.</translation>
     </message>
     <message>
-        <location filename="../main.py" line="261"/>
+        <location filename="../main.py" line="264"/>
         <source>无权限访问Hosts文件。请检查程序权限，然后再试。
 您也可尝试复制IP后手动写入。</source>
         <translation>Access to the HOSTS file is denied.
 Please check the program&apos;s permissions, and try again.</translation>
     </message>
     <message>
-        <location filename="../main.py" line="264"/>
+        <location filename="../main.py" line="267"/>
         <source>未知错误：%s
 若此错误反复出现，请在issues中提出。</source>
         <translation>Unknown error: %s
 If the issue persists, please open an issue.</translation>
     </message>
     <message>
-        <location filename="../main.py" line="266"/>
+        <location filename="../main.py" line="269"/>
         <source>成功写入 Hosts [%s %s]</source>
         <translation>Hosts file updated [%s %s]</translation>
     </message>
     <message>
-        <location filename="../main.py" line="293"/>
+        <location filename="../main.py" line="296"/>
         <source>已扫描: %s / %s</source>
         <translation>Scanned: %s / %s</translation>
     </message>
     <message>
-        <location filename="../main.py" line="307"/>
+        <location filename="../main.py" line="310"/>
         <source>发现可用IP: %s [%s]</source>
         <translation>Found available IP: %s [%s]</translation>
     </message>
     <message>
-        <location filename="../main.py" line="313"/>
+        <location filename="../main.py" line="316"/>
         <source>IP %s 不可用 [原因: %s]</source>
         <translation>%s is unavailable [reason: %s]</translation>
     </message>
     <message>
-        <location filename="../main.py" line="319"/>
+        <location filename="../main.py" line="322"/>
         <source>测速完成</source>
         <translation>Speedtest finished</translation>
     </message>
     <message>
-        <location filename="../main.py" line="349"/>
+        <location filename="../main.py" line="352"/>
         <source>发现可用IP: %s</source>
         <translation>Found available IP: %s</translation>
     </message>
     <message>
-        <location filename="../main.py" line="355"/>
+        <location filename="../main.py" line="358"/>
         <source>扫描完成</source>
         <translation>Scan finished</translation>
     </message>
     <message>
-        <location filename="../main.py" line="360"/>
-        <location filename="../main.py" line="388"/>
+        <location filename="../main.py" line="363"/>
+        <location filename="../main.py" line="391"/>
         <source>取消</source>
         <translation>Cancel</translation>
     </message>
     <message numerus="yes">
-        <location filename="../main.py" line="383"/>
+        <location filename="../main.py" line="386"/>
         <source>开始扫描，共 %n 个 IP...</source>
         <translation>
             <numerusform>Scan started. %n IP in total...</numerusform>
@@ -673,7 +709,7 @@ If the issue persists, please open an issue.</translation>
         </translation>
     </message>
     <message>
-        <location filename="../main.py" line="396"/>
+        <location filename="../main.py" line="399"/>
         <source>设置已更新。</source>
         <translation>Settings updated.</translation>
     </message>

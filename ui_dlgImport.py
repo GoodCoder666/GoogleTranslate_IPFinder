@@ -16,8 +16,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractButton, QApplication, QCheckBox, QDialog,
-    QDialogButtonBox, QGroupBox, QHBoxLayout, QLineEdit,
-    QRadioButton, QSizePolicy, QVBoxLayout, QWidget)
+    QDialogButtonBox, QGridLayout, QGroupBox, QHBoxLayout,
+    QLineEdit, QRadioButton, QSizePolicy, QVBoxLayout,
+    QWidget)
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -51,12 +52,12 @@ class Ui_Dialog(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.groupBox_Source.sizePolicy().hasHeightForWidth())
         self.groupBox_Source.setSizePolicy(sizePolicy)
-        self.verticalLayout_3 = QVBoxLayout(self.groupBox_Source)
-        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.verticalLayout_2 = QVBoxLayout(self.groupBox_Source)
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.radioLocalFile = QRadioButton(self.groupBox_Source)
         self.radioLocalFile.setObjectName(u"radioLocalFile")
 
-        self.verticalLayout_3.addWidget(self.radioLocalFile)
+        self.verticalLayout_2.addWidget(self.radioLocalFile)
 
         self.horizontalLayout_2 = QHBoxLayout()
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
@@ -72,35 +73,45 @@ class Ui_Dialog(object):
         self.horizontalLayout_2.addWidget(self.singleIPEdit)
 
 
-        self.verticalLayout_3.addLayout(self.horizontalLayout_2)
+        self.verticalLayout_2.addLayout(self.horizontalLayout_2)
 
         self.radioOnline = QRadioButton(self.groupBox_Source)
         self.radioOnline.setObjectName(u"radioOnline")
         self.radioOnline.setChecked(True)
 
-        self.verticalLayout_3.addWidget(self.radioOnline)
+        self.verticalLayout_2.addWidget(self.radioOnline)
 
-        self.verticalLayout_2 = QVBoxLayout()
-        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.verticalLayout_2.setContentsMargins(30, -1, -1, -1)
+        self.gridLayout = QGridLayout()
+        self.gridLayout.setObjectName(u"gridLayout")
+        self.gridLayout.setContentsMargins(30, -1, -1, -1)
         self.chkBox_off4 = QCheckBox(self.groupBox_Source)
         self.chkBox_off4.setObjectName(u"chkBox_off4")
         self.chkBox_off4.setChecked(True)
 
-        self.verticalLayout_2.addWidget(self.chkBox_off4)
+        self.gridLayout.addWidget(self.chkBox_off4, 0, 0, 1, 1)
 
         self.chkBox_ext4 = QCheckBox(self.groupBox_Source)
         self.chkBox_ext4.setObjectName(u"chkBox_ext4")
 
-        self.verticalLayout_2.addWidget(self.chkBox_ext4)
+        self.gridLayout.addWidget(self.chkBox_ext4, 1, 0, 1, 1)
 
         self.chkBox_ext6 = QCheckBox(self.groupBox_Source)
         self.chkBox_ext6.setObjectName(u"chkBox_ext6")
 
-        self.verticalLayout_2.addWidget(self.chkBox_ext6)
+        self.gridLayout.addWidget(self.chkBox_ext6, 1, 1, 1, 1)
+
+        self.chkBox_full4 = QCheckBox(self.groupBox_Source)
+        self.chkBox_full4.setObjectName(u"chkBox_full4")
+
+        self.gridLayout.addWidget(self.chkBox_full4, 2, 0, 1, 1)
+
+        self.chkBox_full6 = QCheckBox(self.groupBox_Source)
+        self.chkBox_full6.setObjectName(u"chkBox_full6")
+
+        self.gridLayout.addWidget(self.chkBox_full6, 2, 1, 1, 1)
 
 
-        self.verticalLayout_3.addLayout(self.verticalLayout_2)
+        self.verticalLayout_2.addLayout(self.gridLayout)
 
         self.horizontalLayout_3 = QHBoxLayout()
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
@@ -116,7 +127,7 @@ class Ui_Dialog(object):
         self.horizontalLayout_3.addWidget(self.customURLEdit)
 
 
-        self.verticalLayout_3.addLayout(self.horizontalLayout_3)
+        self.verticalLayout_2.addLayout(self.horizontalLayout_3)
 
 
         self.verticalLayout.addWidget(self.groupBox_Source)
@@ -150,9 +161,26 @@ class Ui_Dialog(object):
         self.radioLocalFile.setText(QCoreApplication.translate("Dialog", u"\u672c\u5730\u6587\u4ef6", None))
         self.radioSingleIP.setText(QCoreApplication.translate("Dialog", u"\u5355\u4e2a IP\uff1a", None))
         self.radioOnline.setText(QCoreApplication.translate("Dialog", u"\u5728\u7ebf\u670d\u52a1\uff1a", None))
+#if QT_CONFIG(tooltip)
+        self.chkBox_off4.setToolTip(QCoreApplication.translate("Dialog", u"\u5b98\u65b9 IPv4 \u5730\u5740\u5e93\uff0c\u7ea6 1000 \u6761 IP\u3002", None))
+#endif // QT_CONFIG(tooltip)
         self.chkBox_off4.setText(QCoreApplication.translate("Dialog", u"\u5b98\u65b9 IPv4", None))
+#if QT_CONFIG(tooltip)
+        self.chkBox_ext4.setToolTip(QCoreApplication.translate("Dialog", u"\u6269\u5c55 IPv4 \u5730\u5740\u5e93", None))
+#endif // QT_CONFIG(tooltip)
         self.chkBox_ext4.setText(QCoreApplication.translate("Dialog", u"\u6269\u5c55 IPv4", None))
-        self.chkBox_ext6.setText(QCoreApplication.translate("Dialog", u"\u6269\u5c55 IPv6\uff08\u4e0d\u63a8\u8350\uff09", None))
+#if QT_CONFIG(tooltip)
+        self.chkBox_ext6.setToolTip(QCoreApplication.translate("Dialog", u"(\u4e0d\u63a8\u8350) \u6269\u5c55 IPv6 \u5730\u5740\u5e93", None))
+#endif // QT_CONFIG(tooltip)
+        self.chkBox_ext6.setText(QCoreApplication.translate("Dialog", u"\u6269\u5c55 IPv6", None))
+#if QT_CONFIG(tooltip)
+        self.chkBox_full4.setToolTip(QCoreApplication.translate("Dialog", u"\u8d85\u7ea7 IPv4 \u5730\u5740\u5e93\uff0c\u7ea6 23000 \u6761 IP\u3002", None))
+#endif // QT_CONFIG(tooltip)
+        self.chkBox_full4.setText(QCoreApplication.translate("Dialog", u"\u8d85\u7ea7 IPv4", None))
+#if QT_CONFIG(tooltip)
+        self.chkBox_full6.setToolTip(QCoreApplication.translate("Dialog", u"(\u4e0d\u63a8\u8350) \u8d85\u7ea7 IPv6 \u5730\u5740\u5e93\uff0c\u7ea6 22000 \u6761 IP\u3002", None))
+#endif // QT_CONFIG(tooltip)
+        self.chkBox_full6.setText(QCoreApplication.translate("Dialog", u"\u8d85\u7ea7 IPv6", None))
         self.radioCustomURL.setText(QCoreApplication.translate("Dialog", u"\u81ea\u5b9a\u4e49 URL\uff1a", None))
     # retranslateUi
 

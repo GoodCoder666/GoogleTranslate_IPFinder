@@ -106,8 +106,6 @@ python main.py
 
 ## 开发计划
 
-> 目前收到大佬建议，正在研发新的扫描优化，敬请期待 :handshake:
-
 - [x] IP 测速
 - [x] IP 扫描
 - [x] 自动写入 Hosts
@@ -124,6 +122,8 @@ python main.py
 - 官方 IPv4：https://raw.githubusercontent.com/GoodCoder666/gtdb/main/src/ip.txt
 - 扩展 IPv4：https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/ip.txt
 - 扩展 IPv6：https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/IPv6.txt
+
+另有新收录的[超级地址库](https://github.com/GoodCoder666/gtdb/tree/main/full)，建议在上面的所有 IP 全部失效时尝试。
 
 同时，若 GitHub Raw 无法连接，程序将尝试使用 [ghproxy](https://ghp.ci/) 镜像，请耐心等待。
 

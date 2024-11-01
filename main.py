@@ -181,7 +181,8 @@ class MainWindow(QMainWindow):
         else: # radioOnline
             new_ips = set()
             timeout = 3.5
-            for checkBox, urls in zip((dlg.ui.chkBox_off4, dlg.ui.chkBox_ext4, dlg.ui.chkBox_ext6),
+            for checkBox, urls in zip((dlg.ui.chkBox_off4, dlg.ui.chkBox_ext4, dlg.ui.chkBox_ext6,
+                                       dlg.ui.chkBox_full4, dlg.ui.chkBox_full6),
                                       ONLINE_SERVICES):
                 if checkBox.isChecked():
                     for url in urls:

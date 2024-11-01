@@ -51,7 +51,7 @@
      <property name="title">
       <string>导入来源</string>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_3">
+     <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
        <widget class="QRadioButton" name="radioLocalFile">
         <property name="text">
@@ -88,12 +88,15 @@
        </widget>
       </item>
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout_2">
+       <layout class="QGridLayout" name="gridLayout">
         <property name="leftMargin">
          <number>30</number>
         </property>
-        <item>
+        <item row="0" column="0">
          <widget class="QCheckBox" name="chkBox_off4">
+          <property name="toolTip">
+           <string>官方 IPv4 地址库，约 1000 条 IP。</string>
+          </property>
           <property name="text">
            <string>官方 IPv4</string>
           </property>
@@ -102,17 +105,43 @@
           </property>
          </widget>
         </item>
-        <item>
+        <item row="1" column="0">
          <widget class="QCheckBox" name="chkBox_ext4">
+          <property name="toolTip">
+           <string>扩展 IPv4 地址库</string>
+          </property>
           <property name="text">
            <string>扩展 IPv4</string>
           </property>
          </widget>
         </item>
-        <item>
+        <item row="1" column="1">
          <widget class="QCheckBox" name="chkBox_ext6">
+          <property name="toolTip">
+           <string>(不推荐) 扩展 IPv6 地址库</string>
+          </property>
           <property name="text">
-           <string>扩展 IPv6（不推荐）</string>
+           <string>扩展 IPv6</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QCheckBox" name="chkBox_full4">
+          <property name="toolTip">
+           <string>超级 IPv4 地址库，约 23000 条 IP。</string>
+          </property>
+          <property name="text">
+           <string>超级 IPv4</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QCheckBox" name="chkBox_full6">
+          <property name="toolTip">
+           <string>(不推荐) 超级 IPv6 地址库，约 22000 条 IP。</string>
+          </property>
+          <property name="text">
+           <string>超级 IPv6</string>
           </property>
          </widget>
         </item>
