@@ -98,9 +98,9 @@ class ScanThread(QThread):
     ]
 
     ipv6_extend = [
-        IPv6Network('2404:6800:4008:c15::0/112'),
-        IPv6Network('2a00:1450:4001:802::0/112'),
-        IPv6Network('2a00:1450:4001:803::0/112')
+        IPv6Network('2607:f8b0:4000:80a::/112'),
+        IPv6Network('2607:f8b0:4005:801::/112'),
+        IPv6Network('2a00:1450:4010:c0d::/112')
     ]
 
     def __init__(self, parent, max_ips=5, num_workers=80, timeout=2.5,
