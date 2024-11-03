@@ -70,7 +70,7 @@ Windows 11 系统演示如下：
 >
 > 若必须使用 IPv6，建议在「设置 > 测速」中将测速次数调整至最大值 10。
 >
-> 关于 IP 可用性问题的讨论请移步 [Discussion #19](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/discussions/19)。
+> 关于 IP 可用性问题的讨论请移步 [#42](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/issues/42)。
 
 ## 功能对比
 

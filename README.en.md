@@ -76,7 +76,7 @@ A demonstration for Windows 11:
 >
 > If you must use IPv6, it's recommended to set the number of speed tests to the maximum (10) in "Settings > Speed Test."
 >
-> For discussions on IP availability, see [Discussion #19](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/discussions/19).
+> For discussions on IP availability, see [#42](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/issues/42).
 
 ## Feature Comparison
 
