@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from PySide6.QtCore import QThread, QThreadPool, QRunnable, QObject, Signal
 from utils import test_ip, check_ip
-from ipaddress import IPv4Network, IPv6Network
 from constants import DefaultConfig
 import random
 
@@ -84,44 +83,16 @@ class ScanThread(QThread):
     foundAvailable = Signal(str)
     progressUpdate = Signal(int)
 
-    # Credits:
-    # https://codeberg.org/antigng/gscan_quic/src/branch/master/iprange
-
-    net_default = IPv4Network('142.250.0.0/15')
-    ipv4_extend = [
-        IPv4Network('108.177.0.0/17'),
-        IPv4Network('172.217.0.0/16'),
-        IPv4Network('172.253.0.0/16'),
-        IPv4Network('216.58.192.0/19'),
-        IPv4Network('72.14.192.0/18'),
-        IPv4Network('74.125.0.0/16')
-    ]
-
-    ipv6_extend = [
-        IPv6Network('2607:f8b0:4000:80a::/112'),
-        IPv6Network('2607:f8b0:4005:801::/112'),
-        IPv6Network('2a00:1450:4010:c0d::/112')
-    ]
-
-    def __init__(self, parent, max_ips=5, num_workers=80, timeout=2.5,
-                 enableOptimization=True, extend4=False, extend6=False, randomized=False):
+    def __init__(self, parent, ip_networks, max_ips=5, num_workers=80, timeout=2.5, randomized=False):
         super().__init__(parent)
 
         self.max_ips = max_ips
         self.num_workers = num_workers
         self.timeout = timeout
 
-        self.networks = [
-            [ip for ip in self.net_default if int(ip) & 0xff == 90]
-            if enableOptimization else list(self.net_default)
-        ]
+        self.networks = [list(net) for net in ip_networks]
 
-        if extend4:
-            self.networks.extend(map(list, self.ipv4_extend))
-        if extend6:
-            self.networks.extend(map(list, self.ipv6_extend))
-
-        self.currentIndex = 0
+        self.current_index = 0
         self.block_size = max(64, num_workers * 2)
 
         if randomized:
@@ -141,10 +112,9 @@ class ScanThread(QThread):
         for _ in range(self.block_size):
             ok = False
             for net in self.networks:
-                try:
-                    ip = str(net[self.currentIndex])
-                except IndexError:
+                if self.current_index >= len(net):
                     continue
+                ip = str(net[self.current_index])
                 ok = True
                 task = _ScanTask(ip, self.timeout)
                 task.signals.foundAvailable.connect(self._found_available)
@@ -152,7 +122,7 @@ class ScanThread(QThread):
                 self.num_added += 1
             if not ok:
                 return False
-            self.currentIndex += 1
+            self.current_index += 1
         return True
 
     def cancel(self):

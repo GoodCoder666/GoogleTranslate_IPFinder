@@ -17,14 +17,14 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractButton, QApplication, QCheckBox, QComboBox,
     QDialog, QDialogButtonBox, QDoubleSpinBox, QHBoxLayout,
-    QLabel, QSizePolicy, QSpinBox, QVBoxLayout,
-    QWidget)
+    QLabel, QPushButton, QSizePolicy, QSpinBox,
+    QVBoxLayout, QWidget)
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
-        Dialog.resize(228, 209)
+        Dialog.resize(228, 187)
         self.verticalLayout = QVBoxLayout(Dialog)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.maxIPLayout = QHBoxLayout()
@@ -107,13 +107,27 @@ class Ui_Dialog(object):
 
         self.verticalLayout.addLayout(self.horizontalLayout)
 
+        self.horizontalLayout_2 = QHBoxLayout()
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.labScanRanges = QLabel(Dialog)
+        self.labScanRanges.setObjectName(u"labScanRanges")
+
+        self.horizontalLayout_2.addWidget(self.labScanRanges)
+
+        self.btnEditRanges = QPushButton(Dialog)
+        self.btnEditRanges.setObjectName(u"btnEditRanges")
+
+        self.horizontalLayout_2.addWidget(self.btnEditRanges)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout_2)
+
         self.chkBoxLayout = QHBoxLayout()
         self.chkBoxLayout.setObjectName(u"chkBoxLayout")
-        self.chkBox_optimize = QCheckBox(Dialog)
-        self.chkBox_optimize.setObjectName(u"chkBox_optimize")
-        self.chkBox_optimize.setChecked(True)
+        self.chkBox_randomizeScan = QCheckBox(Dialog)
+        self.chkBox_randomizeScan.setObjectName(u"chkBox_randomizeScan")
 
-        self.chkBoxLayout.addWidget(self.chkBox_optimize)
+        self.chkBoxLayout.addWidget(self.chkBox_randomizeScan)
 
         self.chkBox_autoTest = QCheckBox(Dialog)
         self.chkBox_autoTest.setObjectName(u"chkBox_autoTest")
@@ -123,27 +137,6 @@ class Ui_Dialog(object):
 
 
         self.verticalLayout.addLayout(self.chkBoxLayout)
-
-        self.extendScanLayout = QHBoxLayout()
-        self.extendScanLayout.setObjectName(u"extendScanLayout")
-        self.chkBox_extend4 = QCheckBox(Dialog)
-        self.chkBox_extend4.setObjectName(u"chkBox_extend4")
-        self.chkBox_extend4.setChecked(True)
-
-        self.extendScanLayout.addWidget(self.chkBox_extend4)
-
-        self.chkBox_extend6 = QCheckBox(Dialog)
-        self.chkBox_extend6.setObjectName(u"chkBox_extend6")
-
-        self.extendScanLayout.addWidget(self.chkBox_extend6)
-
-
-        self.verticalLayout.addLayout(self.extendScanLayout)
-
-        self.chkBox_randomizeScan = QCheckBox(Dialog)
-        self.chkBox_randomizeScan.setObjectName(u"chkBox_randomizeScan")
-
-        self.verticalLayout.addWidget(self.chkBox_randomizeScan)
 
         self.buttonBox = QDialogButtonBox(Dialog)
         self.buttonBox.setObjectName(u"buttonBox")
@@ -180,19 +173,12 @@ class Ui_Dialog(object):
 
         self.labTimeout.setText(QCoreApplication.translate("Dialog", u"\u54cd\u5e94\u65f6\u95f4\u4e0a\u9650\uff1a", None))
         self.labTimeout_2.setText(QCoreApplication.translate("Dialog", u"s", None))
-        self.chkBox_optimize.setText(QCoreApplication.translate("Dialog", u"\u542f\u7528\u626b\u63cf\u4f18\u5316", None))
-        self.chkBox_autoTest.setText(QCoreApplication.translate("Dialog", u"\u5b8c\u6210\u540e\u81ea\u52a8\u6d4b\u901f", None))
-#if QT_CONFIG(tooltip)
-        self.chkBox_extend4.setToolTip(QCoreApplication.translate("Dialog", u"\u6269\u5927 IPv4 \u626b\u63cf\u8303\u56f4\u3002", None))
-#endif // QT_CONFIG(tooltip)
-        self.chkBox_extend4.setText(QCoreApplication.translate("Dialog", u"\u6269\u5c55\u626b\u63cf IPv4", None))
-#if QT_CONFIG(tooltip)
-        self.chkBox_extend6.setToolTip(QCoreApplication.translate("Dialog", u"\u6269\u5927\u626b\u63cf\u8303\u56f4\uff0c\u589e\u52a0 IPv6 \u652f\u6301\u3002", None))
-#endif // QT_CONFIG(tooltip)
-        self.chkBox_extend6.setText(QCoreApplication.translate("Dialog", u"\u6269\u5c55\u626b\u63cf IPv6", None))
+        self.labScanRanges.setText(QCoreApplication.translate("Dialog", u"\u626b\u63cf IP \u6bb5\uff1a", None))
+        self.btnEditRanges.setText(QCoreApplication.translate("Dialog", u"\u7f16\u8f91...", None))
 #if QT_CONFIG(tooltip)
         self.chkBox_randomizeScan.setToolTip(QCoreApplication.translate("Dialog", u"\u4ee5\u968f\u673a\u7684\u987a\u5e8f\u6267\u884c\u626b\u63cf\u3002", None))
 #endif // QT_CONFIG(tooltip)
         self.chkBox_randomizeScan.setText(QCoreApplication.translate("Dialog", u"\u968f\u673a\u5316\u626b\u63cf", None))
+        self.chkBox_autoTest.setText(QCoreApplication.translate("Dialog", u"\u5b8c\u6210\u540e\u81ea\u52a8\u6d4b\u901f", None))
     # retranslateUi
 

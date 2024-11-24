@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 import sys
+from ipaddress import ip_network
 
 from PySide6.QtWidgets import *
-from PySide6.QtCore import Qt, Slot, QSettings, QTranslator
+from PySide6.QtCore import QSettings, Qt, QTranslator, Slot
 from PySide6.QtGui import QAction
 
 from constants import GTDB_IPS, ONLINE_SERVICES, DefaultConfig
@@ -71,7 +72,7 @@ class MainWindow(QMainWindow):
         self.ui.actResetSettings.triggered.connect(self._reset_settings)
         self.settings = QSettings('GoodCoder666', 'IPFinder')
         if set(self.settings.allKeys()) == {
-                'appearance/style', 'appearance/font', 'appearance/language', 'test/host',
+                'appearance/style', 'appearance/font', 'appearance/language', 'scan/ranges', 'test/host',
                 'test/template', 'test/num_threads', 'test/timeout', 'test/repeat', 'saveHosts'}:
             self._update_ui()
         else:
@@ -130,6 +131,7 @@ class MainWindow(QMainWindow):
         self.settings.setValue('appearance/style', QApplication.style().objectName())
         self.settings.setValue('appearance/font', self.default_font)
         self.settings.setValue('appearance/language', DefaultConfig.language)
+        self.settings.setValue('scan/ranges', DefaultConfig.scan_ranges)
         self.settings.setValue('test/host', DefaultConfig.test_host)
         self.settings.setValue('test/template', DefaultConfig.template)
         self.settings.setValue('test/num_threads', DefaultConfig.num_threads)
@@ -363,21 +365,36 @@ class MainWindow(QMainWindow):
             self.ui.btnWait_Scan.setEnabled(False)
             self.sthread.cancel()
             return
-        dlg = dlgScan(self)
+
+        dlg = dlgScan(self, self.settings.value('scan/ranges'))
         if dlg.exec() == QDialog.Accepted:
             max_ips = dlg.ui.spinBox_MaxIP.value()
             num_workers = int(dlg.ui.comboBox_threads.currentText())
             timeout = dlg.ui.spinBox_timeout.value()
-            enableOptimization = dlg.ui.chkBox_optimize.isChecked()
             autoTest = dlg.ui.chkBox_autoTest.isChecked()
-            extend4 = dlg.ui.chkBox_extend4.isChecked()
-            extend6 = dlg.ui.chkBox_extend6.isChecked()
             randomized = dlg.ui.chkBox_randomizeScan.isChecked()
+
+            # process IP ranges
+            ip_ranges = dlg.ip_ranges
+            try:
+                ip_networks = [ip_network(ip_range) for enabled, ip_range, _ in ip_ranges if enabled]
+            except ValueError:
+                for enabled, ip_range, _ in ip_ranges:
+                    if not enabled: continue
+                    try:
+                        ip_network(ip_range)
+                    except ValueError:
+                        QMessageBox.critical(self, self.tr('错误'), self.tr('%s 不是一个合法的 IP 段。') % ip_range)
+                        return
+            if not ip_networks:
+                QMessageBox.critical(self, self.tr('错误'), self.tr('请至少选择一个 IP 段。'))
+                return
+            self.settings.setValue('scan/ranges', ip_ranges)
 
             self._set_buttons_enabled(False)
             self.ui.ipList.clear()
-            thread = ScanThread(self, max_ips, num_workers, timeout,
-                                enableOptimization, extend4, extend6, randomized)
+
+            thread = ScanThread(self, ip_networks, max_ips, num_workers, timeout, randomized)
             thread.finished.connect(self._test_ips if autoTest else self._after_scan)
             thread.foundAvailable.connect(self._report_single_scan_result)
             thread.progressUpdate.connect(self._scan_update)

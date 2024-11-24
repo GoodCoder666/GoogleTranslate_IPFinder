@@ -12,6 +12,22 @@ class DefaultConfig:
     timeout = 1.5
     repeat = 3
 
+    # Credits:
+    # https://codeberg.org/antigng/gscan_quic/src/branch/master/iprange
+    scan_ranges = [
+        (True, '142.250.0.0/15', 'GWS'),
+        (False, '108.177.0.0/17', 'GWS'),
+        (False, '172.217.0.0/16', 'GWS'),
+        (False, '172.253.0.0/16', 'GWS'),
+        (False, '216.58.192.0/19', 'GWS'),
+        (False, '72.14.192.0/18', 'GWS'),
+        (False, '74.125.0.0/16', 'GWS'),
+        (True, '2001:4860:4802:32::/112', 'GWS v6'),
+        (False, '2607:f8b0:4000:80a::/112', 'GWS v6'),
+        (False, '2607:f8b0:4005:801::/112', 'GWS v6'),
+        (False, '2a00:1450:4010:c0d::/112', 'GWS v6')
+    ]
+
 ONLINE_SERVICES = (
     (
         'https://ghp.ci/https://raw.githubusercontent.com/GoodCoder666/gtdb/main/src/ip.txt',

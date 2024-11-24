@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>228</width>
-    <height>209</height>
+    <height>187</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -161,14 +161,32 @@
     </layout>
    </item>
    <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="labScanRanges">
+       <property name="text">
+        <string>扫描 IP 段：</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnEditRanges">
+       <property name="text">
+        <string>编辑...</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
     <layout class="QHBoxLayout" name="chkBoxLayout">
      <item>
-      <widget class="QCheckBox" name="chkBox_optimize">
-       <property name="text">
-        <string>启用扫描优化</string>
+      <widget class="QCheckBox" name="chkBox_randomizeScan">
+       <property name="toolTip">
+        <string>以随机的顺序执行扫描。</string>
        </property>
-       <property name="checked">
-        <bool>true</bool>
+       <property name="text">
+        <string>随机化扫描</string>
        </property>
       </widget>
      </item>
@@ -183,43 +201,6 @@
       </widget>
      </item>
     </layout>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="extendScanLayout">
-     <item>
-      <widget class="QCheckBox" name="chkBox_extend4">
-       <property name="toolTip">
-        <string>扩大 IPv4 扫描范围。</string>
-       </property>
-       <property name="text">
-        <string>扩展扫描 IPv4</string>
-       </property>
-       <property name="checked">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QCheckBox" name="chkBox_extend6">
-       <property name="toolTip">
-        <string>扩大扫描范围，增加 IPv6 支持。</string>
-       </property>
-       <property name="text">
-        <string>扩展扫描 IPv6</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <widget class="QCheckBox" name="chkBox_randomizeScan">
-     <property name="toolTip">
-      <string>以随机的顺序执行扫描。</string>
-     </property>
-     <property name="text">
-      <string>随机化扫描</string>
-     </property>
-    </widget>
    </item>
    <item>
     <widget class="QDialogButtonBox" name="buttonBox">
