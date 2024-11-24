@@ -14,12 +14,12 @@ jobs:
 
     steps:
     - name: Checkout source code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Set up Python 3.11
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v5
       with:
-        python-version: "3.11"
+        python-version: '3.11'
 
     - name: Install dependencies
       run: |
@@ -36,7 +36,7 @@ jobs:
         pyinstaller -i icons/icon.ico -F -w --clean --log-level WARN main.py
 
     - name: Upload package
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: win
         path: dist/main.exe
@@ -47,12 +47,12 @@ jobs:
 
     steps:
     - name: Checkout source code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Set up Python 3.11
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v5
       with:
-        python-version: "3.11"
+        python-version: '3.11'
 
     - name: Install dependencies
       run: |
@@ -66,7 +66,7 @@ jobs:
         zip -r9 checker.zip main.app/
 
     - name: Upload package
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: mac
         path: dist/checker.zip
@@ -78,7 +78,7 @@ jobs:
 
     steps:
     - name: Download artifact
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
 
     - name: Remame artifacts
       run: |
