@@ -22,7 +22,7 @@ class dlgScan(QDialog):
     def _update_range_count(self):
         edit_translation = self.tr('编辑...')
         num_ranges = len(self.ip_ranges)
-        num_enabled_ranges = sum(1 for enabled, _, _ in self.ip_ranges if enabled)
+        num_enabled_ranges = sum(enabled for enabled, _, _ in self.ip_ranges)
         self.ui.btnEditRanges.setText(f'{edit_translation} ({num_enabled_ranges}/{num_ranges})')
 
     @Slot()
