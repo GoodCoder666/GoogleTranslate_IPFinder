@@ -19,7 +19,8 @@ from PySide6.QtWidgets import (QAbstractButton, QAbstractItemView, QApplication,
     QDialog, QDialogButtonBox, QDoubleSpinBox, QFontComboBox,
     QGridLayout, QGroupBox, QHBoxLayout, QLabel,
     QLineEdit, QListWidget, QListWidgetItem, QPushButton,
-    QSizePolicy, QSpinBox, QVBoxLayout, QWidget)
+    QSizePolicy, QSpacerItem, QSpinBox, QVBoxLayout,
+    QWidget)
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -198,6 +199,10 @@ class Ui_Dialog(object):
         self.btnRemoveHost.setSizePolicy(sizePolicy3)
 
         self.horizontalLayout_2.addWidget(self.btnRemoveHost)
+
+        self.hostsEditSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_2.addItem(self.hostsEditSpacer)
 
 
         self.verticalLayout_2.addLayout(self.horizontalLayout_2)
