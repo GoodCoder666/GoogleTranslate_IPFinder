@@ -89,7 +89,7 @@ class Ui_Dialog(object):
         self.readmeLink.setText(QCoreApplication.translate("Dialog", u"README \u5e2e\u52a9\u6587\u4ef6", None))
         self.readmeLink.setDescription(QCoreApplication.translate("Dialog", u"https://github.com/GoodCoder666/GoogleTranslate_IPFinder/blob/main/README.md", None))
         self.btnUpdate.setText(QCoreApplication.translate("Dialog", u"\u68c0\u67e5\u66f4\u65b0", None))
-        self.labCopyright.setText(QCoreApplication.translate("Dialog", u"Copyright \u00a9 GoodCoder666 2024", None))
+        self.labCopyright.setText(QCoreApplication.translate("Dialog", u"Copyright \u00a9 GoodCoder666 2025", None))
         self.label.setText(QCoreApplication.translate("Dialog", u"<html><head/><body><p>\u611f\u8c22\u4f7f\u7528<span style=\" font-weight:700;\"> GoogleTranslate_IPFinder</span>\uff01\u6b22\u8fce\u5728 <a href=\"https://github.com/GoodCoder666/GoogleTranslate_IPFinder/issues\"><span style=\" text-decoration: underline; color:#0000ff;\">issues</span></a> \u6307\u51fa bug \u6216\u63d0\u51fa\u4fee\u6539\u610f\u89c1\u3002 </p><p>\u5728 <a href=\"https://github.com/GoodCoder666/GoogleTranslate_IPFinder\"><span style=\" text-decoration: underline; color:#0000ff;\">GitHub</span></a> \u4e0a Star \u6b64\u9879\u76ee\uff1a<a href=\"https://github.com/GoodCoder666/GoogleTranslate_IPFinder\"><span style=\" text-decoration: underline; color:#0000ff;\">GoodCoder666/GoogleTranslate_IPFinder</span></a></p></body></html>", None))
     # retranslateUi
 
