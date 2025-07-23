@@ -111,7 +111,7 @@ python main.py
 - [x] 自动写入 Hosts
 - [x] 自动获取 IP 列表
 - [x] 测速/扫描进度条
-- [ ] 自定义扫描 IP 段
+- [x] 自定义扫描 IP 段
 
 ...（若有其他需求欢迎在 [issues](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/issues) 中提出）
 
