@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'dlgImport.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.4.0
+## Created by: Qt User Interface Compiler version 6.6.3
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -47,7 +47,7 @@ class Ui_Dialog(object):
 
         self.groupBox_Source = QGroupBox(Dialog)
         self.groupBox_Source.setObjectName(u"groupBox_Source")
-        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.groupBox_Source.sizePolicy().hasHeightForWidth())

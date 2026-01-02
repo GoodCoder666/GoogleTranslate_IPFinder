@@ -84,14 +84,14 @@ Windows 11 系统演示如下：
 
 ## 从源代码运行
 
-从源代码运行的方法适用于所有支持图形界面的操作系统，只需 Python >= 3.6（额外安装 `PySide6` 包）。
+从源代码运行的方法适用于所有支持图形界面的操作系统，只需 Python >= 3.8（推荐 3.12 及以上版本）。
 
 对于 Linux 系统：
 
 ```bash
 $ git clone https://github.com/GoodCoder666/GoogleTranslate_IPFinder.git
 $ cd GoogleTranslate_IPFinder
-$ pip3 install PySide6
+$ pip3 install PySide6 aiohttp
 $ python3 main.py
 ```
 

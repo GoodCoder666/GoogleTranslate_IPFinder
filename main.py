@@ -29,6 +29,33 @@ class QTableWidgetTimeItem(QTableWidgetItem):
         return self.secs < other.secs
 
 
+class ElidedLabel(QLabel):
+    def __init__(self, parent=None, mode=Qt.ElideRight):
+        super().__init__(parent)
+        self._mode = mode
+        self._full_text = ''
+        self.setWordWrap(False)
+        self.setTextInteractionFlags(Qt.NoTextInteraction)
+        self.setMinimumWidth(0)
+        self.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Preferred)
+
+    def setText(self, text: str):
+        self._full_text = text
+        self._update_elide()
+
+    def resizeEvent(self, event):
+        super().resizeEvent(event)
+        self._update_elide()
+
+    def _update_elide(self):
+        w = self.width()
+        if w > 0:
+            fm = self.fontMetrics()
+            super().setText(fm.elidedText(self._full_text, self._mode, w))
+        else:
+            super().setText(self._full_text)
+
+
 class MainWindow(QMainWindow):
     SUPPORTED_INPUT_FILTERS = QMainWindow.tr('文本文件(*.txt);;所有文件(*.*)')
     SUPPORTED_OUTPUT_FILTERS = QMainWindow.tr('文本文件(*.txt);;CSV 表格(*.csv);;所有文件(*.*)')
@@ -67,6 +94,10 @@ class MainWindow(QMainWindow):
 
         # clipboard
         self.clipboard = QApplication.clipboard()
+
+        # status bar
+        self.ui.statusbar.setContentsMargins(9, 0, 9, 0)
+        self.ui.statusbar.setStyleSheet('QStatusBar::item { border: none; }')
 
         # settings
         self.ui.actResetSettings.triggered.connect(self._reset_settings)
@@ -280,15 +311,15 @@ class MainWindow(QMainWindow):
         self.ui.btnWait_Test.setEnabled(enabled)
 
     def _init_progessBar(self, prog_max):
-        self.progressBar = QProgressBar(self)
-        self.progressBar.setFixedWidth(390)
+        self.progressBar = QProgressBar(self.ui.statusbar)
         self.progressBar.setRange(0, prog_max)
         self.progressBar.setValue(0)
-        self.logLabel = QLabel(self)
-        self.logLabel.setMaximumWidth(370)
+        self.progressBar.setMaximumHeight(18)
+        self.logLabel = ElidedLabel(self.ui.statusbar)
+        self.logLabel.setAlignment(Qt.AlignCenter)
         self.ui.statusbar.clearMessage()
-        self.ui.statusbar.addWidget(self.progressBar)
-        self.ui.statusbar.addWidget(self.logLabel)
+        self.ui.statusbar.addWidget(self.progressBar, 1)
+        self.ui.statusbar.addWidget(self.logLabel, 1)
 
     def _update_progressBar(self, dt=1):
         self.progressBar.setValue(self.progressBar.value() + dt)
@@ -301,21 +332,21 @@ class MainWindow(QMainWindow):
         self.progressBar.deleteLater()
         self.logLabel.deleteLater()
 
-    def _add_result(self, ip, seconds):
+    def _add_result(self, ip, latency):
         self.ui.resultTable.setSortingEnabled(False) # TODO: maybe there's a better way to temporarily disable sorting?
 
         row = self.ui.resultTable.rowCount()
         self.ui.resultTable.setRowCount(row + 1)
         self.ui.resultTable.setItem(row, 0, QTableWidgetItem(ip))
-        time_str = time_repr(seconds)
-        self.ui.resultTable.setItem(row, 1, QTableWidgetTimeItem(seconds, time_str))
+        time_str = time_repr(latency)
+        self.ui.resultTable.setItem(row, 1, QTableWidgetTimeItem(latency, time_str))
         self.logLabel.setText(self.tr('发现可用IP: %s [%s]') % (ip, time_str))
         self._update_progressBar()
 
         self.ui.resultTable.setSortingEnabled(True)
 
     def _found_unavailable(self, ip, reason):
-        self.logLabel.setText(self.tr('IP %s 不可用 [原因: %s]') % (ip, reason))
+        self.logLabel.setText(self.tr('IP %s 不可用 [%s]') % (ip, reason))
         self._update_progressBar()
 
     def _speedtest_finished(self):
@@ -327,8 +358,9 @@ class MainWindow(QMainWindow):
         self.ui.resultTable.setRowCount(0)
         ips = [self.ui.ipList.item(i).text() for i in range(self.ui.ipList.count())]
         if after_scan:
-            self.progressBar.setValue(0)
             self.progressBar.setMaximum(len(ips))
+            self.progressBar.setValue(0)
+            self.logLabel.setText(self.tr('扫描完成，开始测速...'))
             self.ui.btnWait_Scan.setText(self.tr('扫描'))
             self.ui.btnWait_Scan.setEnabled(False)
         else:
@@ -336,11 +368,11 @@ class MainWindow(QMainWindow):
         thread = SpeedtestThread(self, ips,
                                  host=self.settings.value('test/host'),
                                  request_format=self.settings.value('test/template'),
-                                 available_callback=self._add_result,
-                                 unavailable_callback=self._found_unavailable,
                                  timeout=self.settings.value('test/timeout', type=float),
                                  repeat=self.settings.value('test/repeat', type=int),
                                  num_workers=self.settings.value('test/num_threads', type=int))
+        thread.foundAvailable.connect(self._add_result)
+        thread.foundUnavailable.connect(self._found_unavailable)
         thread.finished.connect(self._speedtest_finished)
         thread.start()
 
@@ -349,9 +381,9 @@ class MainWindow(QMainWindow):
         self._set_buttons_enabled(False)
         self._test_ips(False)
 
-    def _report_single_scan_result(self, ip):
+    def _report_single_scan_result(self, ip, latency):
         self.ui.ipList.addItem(QListWidgetItem(ip))
-        self.logLabel.setText(self.tr('发现可用IP: %s') % ip)
+        self.logLabel.setText(self.tr('发现可用IP: %s [%s]') % (ip, time_repr(latency)))
 
     def _after_scan(self):
         self._set_buttons_enabled(True)
@@ -368,6 +400,9 @@ class MainWindow(QMainWindow):
 
         dlg = dlgScan(self, self.settings.value('scan/ranges'))
         if dlg.exec() == QDialog.Accepted:
+            # TODO: add separate host/template settings for scan?
+            host = self.settings.value('test/host')
+            request_format = self.settings.value('test/template')
             max_ips = dlg.ui.spinBox_MaxIP.value()
             num_workers = int(dlg.ui.comboBox_threads.currentText())
             timeout = dlg.ui.spinBox_timeout.value()
@@ -394,13 +429,13 @@ class MainWindow(QMainWindow):
             self._set_buttons_enabled(False)
             self.ui.ipList.clear()
 
-            thread = ScanThread(self, ip_networks, max_ips, num_workers, timeout, randomized)
+            thread = ScanThread(self, ip_networks, host, request_format,
+                                max_ips, num_workers, timeout, randomized)
             thread.finished.connect(self._test_ips if autoTest else self._after_scan)
             thread.foundAvailable.connect(self._report_single_scan_result)
             thread.progressUpdate.connect(self._scan_update)
-            total_addrs = sum(map(len, thread.networks))
-            self._init_progessBar(total_addrs)
-            self.logLabel.setText(self.tr('开始扫描，共 %n 个 IP...', '', total_addrs))
+            self._init_progessBar(thread.total_ips)
+            self.logLabel.setText(self.tr('开始扫描，共 %n 个 IP...', '', thread.total_ips))
             thread.start()
 
             self.sthread = thread

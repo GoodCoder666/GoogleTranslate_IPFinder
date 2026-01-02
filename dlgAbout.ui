@@ -73,7 +73,7 @@
    <item row="3" column="0">
     <widget class="QLabel" name="labCopyright">
      <property name="text">
-      <string>Copyright © GoodCoder666 2025</string>
+      <string>Copyright © GoodCoder666 2026</string>
      </property>
     </widget>
    </item>

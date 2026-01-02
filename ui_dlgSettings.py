@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'dlgSettings.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.4.0
+## Created by: Qt User Interface Compiler version 6.6.3
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -35,7 +35,7 @@ class Ui_Dialog(object):
         self.gridLayout.setObjectName(u"gridLayout")
         self.labStyle = QLabel(self.groupBox_appearance)
         self.labStyle.setObjectName(u"labStyle")
-        sizePolicy = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Preferred)
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Maximum, QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.labStyle.sizePolicy().hasHeightForWidth())
@@ -45,7 +45,7 @@ class Ui_Dialog(object):
 
         self.fontComboBox = QFontComboBox(self.groupBox_appearance)
         self.fontComboBox.setObjectName(u"fontComboBox")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.fontComboBox.sizePolicy().hasHeightForWidth())
@@ -103,7 +103,7 @@ class Ui_Dialog(object):
 
         self.doubleSpinBox_timeout = QDoubleSpinBox(self.groupBox_speedTest)
         self.doubleSpinBox_timeout.setObjectName(u"doubleSpinBox_timeout")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Fixed)
+        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Maximum, QSizePolicy.Policy.Fixed)
         sizePolicy2.setHorizontalStretch(0)
         sizePolicy2.setVerticalStretch(0)
         sizePolicy2.setHeightForWidth(self.doubleSpinBox_timeout.sizePolicy().hasHeightForWidth())
@@ -185,7 +185,7 @@ class Ui_Dialog(object):
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.btnAddHost = QPushButton(self.groupBox_saveHosts)
         self.btnAddHost.setObjectName(u"btnAddHost")
-        sizePolicy3 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        sizePolicy3 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
         sizePolicy3.setHorizontalStretch(0)
         sizePolicy3.setVerticalStretch(0)
         sizePolicy3.setHeightForWidth(self.btnAddHost.sizePolicy().hasHeightForWidth())
@@ -200,7 +200,7 @@ class Ui_Dialog(object):
 
         self.horizontalLayout_2.addWidget(self.btnRemoveHost)
 
-        self.hostsEditSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.hostsEditSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_2.addItem(self.hostsEditSpacer)
 
@@ -255,7 +255,7 @@ class Ui_Dialog(object):
         self.labHost.setText(QCoreApplication.translate("Dialog", u"\u57df\u540d", None))
         self.templateEdit.setText(QCoreApplication.translate("Dialog", u"https://{}/translate_a/single?client=gtx&sl=en&tl=fr&q=a", None))
         self.templateEdit.setPlaceholderText(QCoreApplication.translate("Dialog", u"\u7528{}\u4ee3\u66ff\u57df\u540d", None))
-        self.labThreads.setText(QCoreApplication.translate("Dialog", u"\u7ebf\u7a0b\u6570", None))
+        self.labThreads.setText(QCoreApplication.translate("Dialog", u"\u5e76\u53d1\u6570", None))
         self.hostEdit.setText(QCoreApplication.translate("Dialog", u"translate.googleapis.com", None))
         self.hostEdit.setPlaceholderText(QCoreApplication.translate("Dialog", u"translate.googleapis.com", None))
         self.labTimeout.setText(QCoreApplication.translate("Dialog", u"\u6d4b\u901f\u8d85\u65f6\uff08\u79d2\uff09", None))

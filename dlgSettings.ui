@@ -198,7 +198,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>线程数</string>
+         <string>并发数</string>
         </property>
        </widget>
       </item>

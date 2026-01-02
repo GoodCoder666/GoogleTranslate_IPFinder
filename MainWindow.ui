@@ -161,7 +161,11 @@
    <addaction name="optionsMenu"/>
    <addaction name="helpMenu"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QStatusBar" name="statusbar">
+   <property name="sizeGripEnabled">
+    <bool>false</bool>
+   </property>
+  </widget>
   <action name="actSettings">
    <property name="text">
     <string>设置…</string>

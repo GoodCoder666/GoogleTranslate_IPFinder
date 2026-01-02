@@ -1,1 +1,2 @@
-PySide6-Essentials
+PySide6-Essentials>=6.6.0,<7.0
+aiohttp>=3.8.1,<4.0

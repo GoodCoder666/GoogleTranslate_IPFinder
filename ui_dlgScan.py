@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'dlgScan.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.4.0
+## Created by: Qt User Interface Compiler version 6.6.3
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -36,7 +36,7 @@ class Ui_Dialog(object):
 
         self.spinBox_MaxIP = QSpinBox(Dialog)
         self.spinBox_MaxIP.setObjectName(u"spinBox_MaxIP")
-        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.spinBox_MaxIP.sizePolicy().hasHeightForWidth())
@@ -63,6 +63,9 @@ class Ui_Dialog(object):
         self.threadsLayout.addWidget(self.labThreads)
 
         self.comboBox_threads = QComboBox(Dialog)
+        self.comboBox_threads.addItem("")
+        self.comboBox_threads.addItem("")
+        self.comboBox_threads.addItem("")
         self.comboBox_threads.addItem("")
         self.comboBox_threads.addItem("")
         self.comboBox_threads.addItem("")
@@ -160,7 +163,7 @@ class Ui_Dialog(object):
         Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"\u626b\u63cf\u8bbe\u7f6e", None))
         self.labMaxIP_1.setText(QCoreApplication.translate("Dialog", u"\u626b\u63cf\u51fa", None))
         self.labMaxIP_2.setText(QCoreApplication.translate("Dialog", u"\u6761IP\u540e\u505c\u6b62\u626b\u63cf", None))
-        self.labThreads.setText(QCoreApplication.translate("Dialog", u"\u6700\u5927\u7ebf\u7a0b\u6570\uff1a", None))
+        self.labThreads.setText(QCoreApplication.translate("Dialog", u"\u6700\u5927\u5e76\u53d1\u6570\uff1a", None))
         self.comboBox_threads.setItemText(0, QCoreApplication.translate("Dialog", u"1", None))
         self.comboBox_threads.setItemText(1, QCoreApplication.translate("Dialog", u"2", None))
         self.comboBox_threads.setItemText(2, QCoreApplication.translate("Dialog", u"4", None))
@@ -169,7 +172,10 @@ class Ui_Dialog(object):
         self.comboBox_threads.setItemText(5, QCoreApplication.translate("Dialog", u"32", None))
         self.comboBox_threads.setItemText(6, QCoreApplication.translate("Dialog", u"64", None))
         self.comboBox_threads.setItemText(7, QCoreApplication.translate("Dialog", u"128", None))
-        self.comboBox_threads.setItemText(8, QCoreApplication.translate("Dialog", u"200", None))
+        self.comboBox_threads.setItemText(8, QCoreApplication.translate("Dialog", u"256", None))
+        self.comboBox_threads.setItemText(9, QCoreApplication.translate("Dialog", u"512", None))
+        self.comboBox_threads.setItemText(10, QCoreApplication.translate("Dialog", u"768", None))
+        self.comboBox_threads.setItemText(11, QCoreApplication.translate("Dialog", u"1024", None))
 
         self.labTimeout.setText(QCoreApplication.translate("Dialog", u"\u54cd\u5e94\u65f6\u95f4\u4e0a\u9650\uff1a", None))
         self.labTimeout_2.setText(QCoreApplication.translate("Dialog", u"s", None))
