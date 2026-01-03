@@ -27,8 +27,25 @@ jobs:
         pip install pyinstaller "PySide6-Essentials==6.6.3.1" "aiohttp==3.12.15"
 
     - name: Package application
-      run: |
-        pyinstaller -i icons/icon.ico -F -w --clean --log-level WARN main.py
+      run: >
+        pyinstaller -i icons/icon.ico -F -w --clean --noupx --log-level WARN
+        --exclude-module tkinter
+        --exclude-module unittest
+        --exclude-module pydoc
+        --exclude-module PySide6.QtQml
+        --exclude-module PySide6.QtQuick
+        --exclude-module PySide6.QtQuickControls2
+        --exclude-module PySide6.QtQuickWidgets
+        --exclude-module PySide6.QtOpenGL
+        --exclude-module PySide6.QtOpenGLWidgets
+        --exclude-module PySide6.QtDesigner
+        --exclude-module PySide6.QtUiTools
+        --exclude-module PySide6.QtTest
+        --exclude-module PySide6.QtSql
+        --exclude-module PySide6.QtXml
+        --exclude-module PySide6.QtDBus
+        --exclude-module PySide6.QtNetwork
+        main.py
 
     - name: Upload package
       uses: actions/upload-artifact@v4
@@ -53,10 +70,30 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install pyinstaller "PySide6-Essentials==6.6.3.1" "aiohttp==3.12.15"
-  
+
     - name: Package application
+      run: >
+        pyinstaller -i icons/icon.icns -F -w --clean --log-level WARN
+        --exclude-module tkinter
+        --exclude-module unittest
+        --exclude-module pydoc
+        --exclude-module PySide6.QtQml
+        --exclude-module PySide6.QtQuick
+        --exclude-module PySide6.QtQuickControls2
+        --exclude-module PySide6.QtQuickWidgets
+        --exclude-module PySide6.QtOpenGL
+        --exclude-module PySide6.QtOpenGLWidgets
+        --exclude-module PySide6.QtDesigner
+        --exclude-module PySide6.QtUiTools
+        --exclude-module PySide6.QtTest
+        --exclude-module PySide6.QtSql
+        --exclude-module PySide6.QtXml
+        --exclude-module PySide6.QtDBus
+        --exclude-module PySide6.QtNetwork
+        main.py
+
+    - name: Zip application
       run: |
-        pyinstaller -i icons/icon.icns -F -w --clean --log-level WARN main.py
         cd dist
         zip -r9 checker.zip main.app/
 
