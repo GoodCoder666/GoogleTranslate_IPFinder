@@ -125,7 +125,7 @@ python main.py
 
 另有新收录的[超级地址库](https://github.com/GoodCoder666/gtdb/tree/main/full)，建议在上面的所有 IP 全部失效时尝试。
 
-同时，若 GitHub Raw 无法连接，程序将尝试使用 [ghproxy](https://ghp.ci/) 镜像，请耐心等待。
+同时，若 GitHub Raw 无法连接，程序将尝试使用 [ghproxy](https://ghproxy.net/) 镜像，请耐心等待。
 
 ## 版权说明
 

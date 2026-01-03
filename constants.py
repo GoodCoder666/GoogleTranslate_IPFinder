@@ -30,23 +30,23 @@ class DefaultConfig:
 
 ONLINE_SERVICES = (
     (
-        'https://ghp.ci/https://raw.githubusercontent.com/GoodCoder666/gtdb/main/src/ip.txt',
+        'https://ghproxy.net/https://raw.githubusercontent.com/GoodCoder666/gtdb/main/src/ip.txt',
         'https://raw.githubusercontent.com/GoodCoder666/gtdb/main/src/ip.txt'
     ),
     (
-        'https://ghp.ci/https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/ip.txt',
+        'https://ghproxy.net/https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/ip.txt',
         'https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/ip.txt'
     ),
     (
-        'https://ghp.ci/https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/IPv6.txt',
+        'https://ghproxy.net/https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/IPv6.txt',
         'https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/IPv6.txt'
     ),
     (
-        'https://ghp.ci/https://raw.githubusercontent.com/GoodCoder666/gtdb/refs/heads/main/full/v4.txt',
+        'https://ghproxy.net/https://raw.githubusercontent.com/GoodCoder666/gtdb/refs/heads/main/full/v4.txt',
         'https://raw.githubusercontent.com/GoodCoder666/gtdb/refs/heads/main/full/v4.txt'
     ),
     (
-        'https://ghp.ci/https://raw.githubusercontent.com/GoodCoder666/gtdb/refs/heads/main/full/v6.txt',
+        'https://ghproxy.net/https://raw.githubusercontent.com/GoodCoder666/gtdb/refs/heads/main/full/v6.txt',
         'https://raw.githubusercontent.com/GoodCoder666/gtdb/refs/heads/main/full/v6.txt'
     )
 )

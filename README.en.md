@@ -136,7 +136,7 @@ The [official IPv4 address library](https://github.com/GoodCoder666/gtdb) is bui
 - Extended IPv4: https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/ip.txt
 - Extended IPv6: https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/IPv6.txt
 
-Additionally, if GitHub Raw cannot be connected, the program will attempt to use the [ghproxy](https://ghp.ci/) mirror. Please be patient.
+Additionally, if GitHub Raw cannot be connected, the program will attempt to use the [ghproxy](https://ghproxy.net/) mirror. Please be patient.
 
 ## License Information
 
