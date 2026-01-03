@@ -146,6 +146,8 @@ class Ui_Dialog(object):
         self.radioOnline.toggled.connect(self.chkBox_off4.setEnabled)
         self.radioOnline.toggled.connect(self.chkBox_ext4.setEnabled)
         self.radioOnline.toggled.connect(self.chkBox_ext6.setEnabled)
+        self.radioOnline.toggled.connect(self.chkBox_full4.setEnabled)
+        self.radioOnline.toggled.connect(self.chkBox_full6.setEnabled)
         self.radioSingleIP.toggled.connect(self.singleIPEdit.setEnabled)
         self.radioCustomURL.toggled.connect(self.customURLEdit.setEnabled)
 

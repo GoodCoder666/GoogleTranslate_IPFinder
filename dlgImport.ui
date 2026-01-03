@@ -263,6 +263,38 @@
    </hints>
   </connection>
   <connection>
+   <sender>radioOnline</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>chkBox_full4</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>132</x>
+     <y>158</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>96</x>
+     <y>237</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioOnline</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>chkBox_full6</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>132</x>
+     <y>158</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>198</x>
+     <y>237</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
    <sender>radioSingleIP</sender>
    <signal>toggled(bool)</signal>
    <receiver>singleIPEdit</receiver>
