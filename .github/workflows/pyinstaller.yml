@@ -32,6 +32,9 @@ jobs:
         --exclude-module tkinter
         --exclude-module unittest
         --exclude-module pydoc
+        --exclude-module multiprocessing
+        --exclude-module curses
+        --exclude-module lib2to3
         --exclude-module PySide6.QtQml
         --exclude-module PySide6.QtQuick
         --exclude-module PySide6.QtQuickControls2
@@ -77,6 +80,8 @@ jobs:
         --exclude-module tkinter
         --exclude-module unittest
         --exclude-module pydoc
+        --exclude-module multiprocessing
+        --exclude-module lib2to3
         --exclude-module PySide6.QtQml
         --exclude-module PySide6.QtQuick
         --exclude-module PySide6.QtQuickControls2
