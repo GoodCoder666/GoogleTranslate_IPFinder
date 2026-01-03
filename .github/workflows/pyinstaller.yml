@@ -26,11 +26,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install pyinstaller "PySide6-Essentials==6.6.3.1" "aiohttp==3.12.15"
 
-    - name: Install UPX
-      uses: crazy-max/ghaction-upx@v3
-      with:
-        install-only: true
-
     - name: Package application
       run: |
         pyinstaller -i icons/icon.ico -F -w --clean --log-level WARN main.py
