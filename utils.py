@@ -43,7 +43,7 @@ async def test_ip(session, ip, host, request_format):
                                headers={'Host': host},
                                allow_redirects=False,
                                trace_request_ctx=ctx) as response:
-            await response.read()
+            await response.release()
         return ctx.duration
     except Exception as e:
         return (type(e).__name__, str(e))

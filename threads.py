@@ -37,7 +37,7 @@ class SpeedtestThread(QThread):
                     self.foundUnavailable.emit(ip, result[0])
                     return
                 total += result
-                await asyncio.sleep(0.1)
+                await asyncio.sleep(1.0)
             latency = total / self.repeat
             self.foundAvailable.emit(ip, latency)
 
