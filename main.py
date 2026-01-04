@@ -104,7 +104,7 @@ class MainWindow(QMainWindow):
         self.settings = QSettings('GoodCoder666', 'IPFinder')
         if set(self.settings.allKeys()) == {
                 'appearance/style', 'appearance/font', 'appearance/language', 'scan/ranges', 'test/host',
-                'test/template', 'test/num_threads', 'test/timeout', 'test/repeat', 'saveHosts'}:
+                'test/template', 'test/num_workers', 'test/timeout', 'test/repeat', 'saveHosts'}:
             self._update_ui()
         else:
             self._reset_settings()
@@ -165,7 +165,7 @@ class MainWindow(QMainWindow):
         self.settings.setValue('scan/ranges', DefaultConfig.scan_ranges)
         self.settings.setValue('test/host', DefaultConfig.test_host)
         self.settings.setValue('test/template', DefaultConfig.template)
-        self.settings.setValue('test/num_threads', DefaultConfig.num_threads)
+        self.settings.setValue('test/num_workers', DefaultConfig.num_workers)
         self.settings.setValue('test/timeout', DefaultConfig.timeout)
         self.settings.setValue('test/repeat', DefaultConfig.repeat)
         self.settings.setValue('saveHosts', DefaultConfig.save_hosts)
@@ -370,7 +370,7 @@ class MainWindow(QMainWindow):
                                  request_format=self.settings.value('test/template'),
                                  timeout=self.settings.value('test/timeout', type=float),
                                  repeat=self.settings.value('test/repeat', type=int),
-                                 num_workers=self.settings.value('test/num_threads', type=int))
+                                 num_workers=self.settings.value('test/num_workers', type=int))
         thread.foundAvailable.connect(self._add_result)
         thread.foundUnavailable.connect(self._found_unavailable)
         thread.finished.connect(self._speedtest_finished)

@@ -150,15 +150,15 @@ class Ui_Dialog(object):
 
         self.gridLayout_2.addWidget(self.hostEdit, 0, 1, 1, 1)
 
-        self.spinBox_threads = QSpinBox(self.groupBox_speedTest)
-        self.spinBox_threads.setObjectName(u"spinBox_threads")
-        sizePolicy2.setHeightForWidth(self.spinBox_threads.sizePolicy().hasHeightForWidth())
-        self.spinBox_threads.setSizePolicy(sizePolicy2)
-        self.spinBox_threads.setMinimum(1)
-        self.spinBox_threads.setMaximum(256)
-        self.spinBox_threads.setValue(64)
+        self.spinBox_workers = QSpinBox(self.groupBox_speedTest)
+        self.spinBox_workers.setObjectName(u"spinBox_workers")
+        sizePolicy2.setHeightForWidth(self.spinBox_workers.sizePolicy().hasHeightForWidth())
+        self.spinBox_workers.setSizePolicy(sizePolicy2)
+        self.spinBox_workers.setMinimum(1)
+        self.spinBox_workers.setMaximum(256)
+        self.spinBox_workers.setValue(64)
 
-        self.gridLayout_2.addWidget(self.spinBox_threads, 3, 1, 1, 1)
+        self.gridLayout_2.addWidget(self.spinBox_workers, 3, 1, 1, 1)
 
         self.labTimeout = QLabel(self.groupBox_speedTest)
         self.labTimeout.setObjectName(u"labTimeout")

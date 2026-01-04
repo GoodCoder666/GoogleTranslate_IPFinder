@@ -8,7 +8,7 @@ class DefaultConfig:
     test_host = 'translate.googleapis.com'
     save_hosts = ['translate.googleapis.com', 'translate-pa.googleapis.com']
     template = 'https://{}/translate_a/single?client=gtx&sl=en&tl=fr&q=a'
-    num_threads = 64
+    num_workers = 64
     timeout = 1.5
     repeat = 3
 
