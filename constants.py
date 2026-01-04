@@ -7,8 +7,8 @@ class DefaultConfig:
     language = 'zh_CN' if 'zh' in QLocale.system().name() else 'en_US'
     test_host = 'translate.googleapis.com'
     save_hosts = ['translate.googleapis.com', 'translate-pa.googleapis.com']
-    template = 'https://{}/translate_a/single?client=gtx&sl=en&tl=fr&q=a'
-    num_workers = 64
+    template = 'https://{}/translate_a/element.js'
+    num_workers = 96
     timeout = 1.5
     repeat = 3
 
@@ -22,7 +22,7 @@ class DefaultConfig:
         (False, '216.58.192.0/19', 'GWS'),
         (False, '72.14.192.0/18', 'GWS'),
         (False, '74.125.0.0/16', 'GWS'),
-        (True, '2001:4860:4802:32::/112', 'GWS v6'),
+        (False, '2001:4860:4802:32::/112', 'GWS v6'),
         (False, '2607:f8b0:4000:80a::/112', 'GWS v6'),
         (False, '2607:f8b0:4005:801::/112', 'GWS v6'),
         (False, '2a00:1450:4010:c0d::/112', 'GWS v6')
