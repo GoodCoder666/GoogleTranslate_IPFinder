@@ -8,7 +8,8 @@ import aiohttp
 from PySide6.QtCore import QUrl
 from PySide6.QtGui import QDesktopServices
 
-__all__ = ['test_ip', 'time_repr', 'read_url', 'open_url']
+__all__ = ['test_ip', 'get_session', 'ip_generator',
+           'time_repr', 'read_url', 'open_url']
 
 class _TraceContext:
     __slots__ = ('start_time', 'end_time')
