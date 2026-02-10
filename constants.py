@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
+from dataclasses import dataclass
 from PySide6.QtCore import QLocale
 
 __all__ = ['DefaultConfig', 'GTDB_IPS', 'ONLINE_SERVICES']
 
+@dataclass
 class DefaultConfig:
     language = 'zh_CN' if 'zh' in QLocale.system().name() else 'en_US'
     test_host = 'translate.googleapis.com'
@@ -52,7 +54,7 @@ ONLINE_SERVICES = (
 )
 
 # IPs from gtdb
-# updated 2026-02-01
+# updated 2026-02-06
 GTDB_IPS = '''108.177.111.90
 108.177.122.90
 108.177.123.90
