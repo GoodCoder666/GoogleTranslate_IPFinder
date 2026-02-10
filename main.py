@@ -228,8 +228,9 @@ class MainWindow(QMainWindow):
                         QMessageBox.critical(self, self.tr('错误'), self.tr('%s 获取失败。请检查网络状况，然后再试。') % checkBox.text())
                         return
                     new_ips |= current_ips
+        new_ips = sorted(new_ips, key=lambda ip: tuple(map(int, ip.split('.'))))
         if dlg.ui.radioReplace.isChecked():
-            self._replace_ips(sorted(new_ips))
+            self._replace_ips(new_ips)
         else:
             self._add_ips(new_ips)
 
