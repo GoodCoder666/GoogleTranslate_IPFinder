@@ -1,4 +1,4 @@
-name: Package Application with Pyinstaller
+name: Package Application
 
 on: [push]
 permissions:
@@ -8,8 +8,8 @@ permissions:
   pull-requests: "read"
 
 jobs:
-  winbuild: # Windows build
-    name: Build package on Windows
+  win-pyinstaller:
+    name: Build package on Windows (Pyinstaller)
     runs-on: windows-latest
 
     steps:
@@ -53,11 +53,48 @@ jobs:
     - name: Upload package
       uses: actions/upload-artifact@v4
       with:
-        name: win
+        name: win-pyinstaller
         path: dist/main.exe
 
-  macbuild: # MacOS Build
-    name: Build package on MacOS
+  win-nuitka:
+    name: Build package on Windows (Nuitka)
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout source code
+      uses: actions/checkout@v4
+
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install "PySide6-Essentials==6.6.3.1" "aiohttp==3.12.15"
+
+    - name: Package application
+      uses: Nuitka/Nuitka-Action@main
+      with:
+        nuitka-version: main
+        script-name: main.py
+        output-dir: build
+        mode: onefile
+        enable-plugins: pyside6
+        msvc: latest
+        windows-console-mode: disable
+        windows-icon-from-ico: icons/icon.ico
+        disable-cache: true
+
+    - name: Upload package
+      uses: actions/upload-artifact@v4
+      with:
+        name: win-nuitka
+        path: build/main.exe
+
+  mac-pyinstaller:
+    name: Build package on MacOS (Pyinstaller)
     runs-on: macos-latest
 
     steps:
@@ -105,22 +142,23 @@ jobs:
     - name: Upload package
       uses: actions/upload-artifact@v4
       with:
-        name: mac
+        name: mac-pyinstaller
         path: dist/checker.zip
 
-  upload: # Upload releases
+  upload:
     name: Upload releases
     runs-on: ubuntu-latest
-    needs: [winbuild, macbuild]
+    needs: [win-pyinstaller, win-nuitka, mac-pyinstaller]
 
     steps:
     - name: Download artifact
       uses: actions/download-artifact@v4
 
-    - name: Remame artifacts
+    - name: Organize artifacts
       run: |
-        mv win/main.exe checker-win-x64.exe
-        mv mac/checker.zip checker-mac.zip
+        mv win-pyinstaller/main.exe checker-win-x64.exe
+        mv win-nuitka/main.exe checker-win-nuitka.exe
+        mv mac-pyinstaller/checker.zip checker-mac.zip
 
     - name: Create & upload release
       uses: marvinpinto/action-automatic-releases@latest
@@ -131,4 +169,5 @@ jobs:
         title: GoogleTranslate_IPFinder
         files: |
           checker-win-x64.exe
+          checker-win-nuitka.exe
           checker-mac.zip
