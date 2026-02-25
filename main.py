@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import asyncio
+import contextlib
 import sys
-from ipaddress import ip_network
+from ipaddress import ip_address, ip_network
 
 from PySide6.QtWidgets import *
 from PySide6.QtCore import QSettings, Qt, QTranslator, Slot
@@ -223,7 +224,14 @@ class MainWindow(QMainWindow):
             if failed:
                 names = self.tr('、').join(cbs[i].text() for i in failed)
                 QMessageBox.warning(self, self.tr('警告'), self.tr('%s 获取失败。请检查网络状况，然后再试。') % names)
-        new_ips = sorted(new_ips, key=lambda ip: tuple(map(int, ip.split('.'))))
+        valid_ips = []
+        for ip in new_ips:
+            with contextlib.suppress(ValueError):
+                valid_ips.append(ip_address(ip))
+        invalid_count = len(new_ips) - len(valid_ips)
+        if invalid_count > 0:
+            QMessageBox.warning(self, self.tr('警告'), self.tr('共 %n 条无效 IP 被忽略。', '', invalid_count))
+        new_ips = [ip.compressed for ip in sorted(valid_ips, key=lambda ip: (ip.version, ip))]
         if dlg.ui.radioReplace.isChecked():
             self._replace_ips(new_ips)
         else:
