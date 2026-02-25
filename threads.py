@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 import asyncio
+import random
+
 from PySide6.QtCore import QThread, Signal
 from utils import get_session, ip_generator, test_ip
 
@@ -21,6 +23,7 @@ class SpeedtestThread(QThread):
         self.num_workers = num_workers
 
     def run(self):
+        random.shuffle(self.ips)
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
         try:
