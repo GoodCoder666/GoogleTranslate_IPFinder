@@ -30,8 +30,23 @@ jobs:
       run: >
         pyinstaller -i icons/icon.ico -F -w --clean --noupx --log-level WARN
         --exclude-module tkinter
+        --exclude-module turtle
         --exclude-module unittest
         --exclude-module pydoc
+        --exclude-module xml
+        --exclude-module xmlrpc
+        --exclude-module sqlite3
+        --exclude-module csv
+        --exclude-module ftplib
+        --exclude-module imaplib
+        --exclude-module smtplib
+        --exclude-module poplib
+        --exclude-module telnetlib
+        --exclude-module nntplib
+        --exclude-module pdb
+        --exclude-module doctest
+        --exclude-module ensurepip
+        --exclude-module distutils
         --exclude-module multiprocessing
         --exclude-module lib2to3
         --exclude-module PySide6.QtHelp
@@ -52,7 +67,6 @@ jobs:
         --exclude-module PySide6.QtSvg
         --exclude-module PySide6.QtSvgWidgets
         --exclude-module PySide6.QtUiTools
-        main.py
 
     - name: Upload package
       uses: actions/upload-artifact@v4
@@ -119,8 +133,23 @@ jobs:
       run: >
         pyinstaller -i icons/icon.icns -F -w --clean --log-level WARN
         --exclude-module tkinter
+        --exclude-module turtle
         --exclude-module unittest
         --exclude-module pydoc
+        --exclude-module xml
+        --exclude-module xmlrpc
+        --exclude-module sqlite3
+        --exclude-module csv
+        --exclude-module ftplib
+        --exclude-module imaplib
+        --exclude-module smtplib
+        --exclude-module poplib
+        --exclude-module telnetlib
+        --exclude-module nntplib
+        --exclude-module pdb
+        --exclude-module doctest
+        --exclude-module ensurepip
+        --exclude-module distutils
         --exclude-module multiprocessing
         --exclude-module curses
         --exclude-module lib2to3
