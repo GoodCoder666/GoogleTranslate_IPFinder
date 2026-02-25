@@ -460,8 +460,8 @@
     </message>
     <message>
         <location filename="../MainWindow.ui" line="42"/>
-        <location filename="../main.py" line="360"/>
-        <location filename="../main.py" line="386"/>
+        <location filename="../main.py" line="368"/>
+        <location filename="../main.py" line="394"/>
         <source>扫描</source>
         <translation>Scan</translation>
     </message>
@@ -472,7 +472,7 @@
     </message>
     <message>
         <location filename="../MainWindow.ui" line="52"/>
-        <location filename="../main.py" line="194"/>
+        <location filename="../main.py" line="195"/>
         <source>导入</source>
         <translation>Import</translation>
     </message>
@@ -498,7 +498,7 @@
     </message>
     <message>
         <location filename="../MainWindow.ui" line="90"/>
-        <location filename="../main.py" line="234"/>
+        <location filename="../main.py" line="242"/>
         <source>导出</source>
         <translation>Export</translation>
     </message>
@@ -509,7 +509,7 @@
     </message>
     <message>
         <location filename="../MainWindow.ui" line="100"/>
-        <location filename="../main.py" line="91"/>
+        <location filename="../main.py" line="92"/>
         <source>复制</source>
         <translation>Copy</translation>
     </message>
@@ -569,43 +569,43 @@
         <translation>Ctrl+H</translation>
     </message>
     <message>
-        <location filename="../main.py" line="76"/>
-        <location filename="../main.py" line="185"/>
+        <location filename="../main.py" line="77"/>
+        <location filename="../main.py" line="186"/>
         <source>响应时间</source>
         <translation>Response time</translation>
     </message>
     <message>
-        <location filename="../main.py" line="86"/>
+        <location filename="../main.py" line="87"/>
         <source>删除</source>
         <translation>Remove</translation>
     </message>
     <message>
-        <location filename="../main.py" line="92"/>
+        <location filename="../main.py" line="93"/>
         <source>清空</source>
         <translation>Clear</translation>
     </message>
     <message>
-        <location filename="../main.py" line="93"/>
+        <location filename="../main.py" line="94"/>
         <source>调试</source>
         <translation>Debug</translation>
     </message>
     <message>
-        <location filename="../main.py" line="112"/>
+        <location filename="../main.py" line="113"/>
         <source>设置初始化完成</source>
         <translation>Settings initialized.</translation>
     </message>
     <message>
-        <location filename="../main.py" line="117"/>
+        <location filename="../main.py" line="118"/>
         <source>已复制 %s 到剪切板。</source>
         <translation>%s is copied to clipboard.</translation>
     </message>
     <message>
-        <location filename="../main.py" line="122"/>
+        <location filename="../main.py" line="123"/>
         <source>已删除 %s。</source>
         <translation>%s is removed.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../main.py" line="133"/>
+        <location filename="../main.py" line="134"/>
         <source>导入成功，共 %n 条 IP。</source>
         <translation>
             <numerusform>%n IP imported.</numerusform>
@@ -613,7 +613,7 @@
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../main.py" line="143"/>
+        <location filename="../main.py" line="144"/>
         <source>导入成功，新增 %n 条 IP。</source>
         <translation>
             <numerusform>%n IP imported.</numerusform>
@@ -621,131 +621,140 @@
         </translation>
     </message>
     <message>
-        <location filename="../main.py" line="175"/>
+        <location filename="../main.py" line="176"/>
         <source>设置已重置。</source>
         <translation>Settings reset.</translation>
     </message>
     <message>
-        <location filename="../main.py" line="204"/>
-        <location filename="../main.py" line="213"/>
-        <location filename="../main.py" line="242"/>
-        <location filename="../main.py" line="281"/>
-        <location filename="../main.py" line="293"/>
-        <location filename="../main.py" line="296"/>
-        <location filename="../main.py" line="418"/>
-        <location filename="../main.py" line="421"/>
+        <location filename="../main.py" line="205"/>
+        <location filename="../main.py" line="214"/>
+        <location filename="../main.py" line="250"/>
+        <location filename="../main.py" line="289"/>
+        <location filename="../main.py" line="301"/>
+        <location filename="../main.py" line="304"/>
+        <location filename="../main.py" line="426"/>
+        <location filename="../main.py" line="429"/>
         <source>错误</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location filename="../main.py" line="204"/>
+        <location filename="../main.py" line="205"/>
         <source>文件编码错误。请检查文件内容，然后再试。</source>
         <translation>File encoding error. Please check through the contents of the file, and try again.</translation>
     </message>
     <message>
-        <location filename="../main.py" line="213"/>
-        <location filename="../main.py" line="225"/>
+        <location filename="../main.py" line="214"/>
+        <location filename="../main.py" line="226"/>
         <source>%s 获取失败。请检查网络状况，然后再试。</source>
         <translation>Failed to fetch %s. Ensure you are connected, and try again.</translation>
     </message>
     <message>
-        <location filename="../main.py" line="224"/>
+        <location filename="../main.py" line="225"/>
         <source>、</source>
         <translation>, </translation>
     </message>
     <message>
-        <location filename="../main.py" line="225"/>
+        <location filename="../main.py" line="226"/>
+        <location filename="../main.py" line="233"/>
         <source>警告</source>
         <translation>Warning</translation>
     </message>
+    <message numerus="yes">
+        <location filename="../main.py" line="233"/>
+        <source>共 %n 条无效 IP 被忽略。</source>
+        <translation>
+            <numerusform>%n invalid entry discarded.</numerusform>
+            <numerusform>%n invalid entries discarded.</numerusform>
+        </translation>
+    </message>
     <message>
-        <location filename="../main.py" line="237"/>
+        <location filename="../main.py" line="245"/>
         <source>成功导出 IP 测速结果文件 [%s]</source>
         <translation>Speedtest results saved to %s</translation>
     </message>
     <message>
-        <location filename="../main.py" line="242"/>
+        <location filename="../main.py" line="250"/>
         <source>请先测速后再复制。</source>
         <translation>Please copy only after running a speedtest.</translation>
     </message>
     <message>
-        <location filename="../main.py" line="247"/>
+        <location filename="../main.py" line="255"/>
         <source>成功复制最佳 IP [%s %s]</source>
         <translation>Best IP copied [%s %s]</translation>
     </message>
     <message>
-        <location filename="../main.py" line="281"/>
+        <location filename="../main.py" line="289"/>
         <source>请先测速后再写入Hosts。</source>
         <translation>Please update hosts only after running a speedtest.</translation>
     </message>
     <message>
-        <location filename="../main.py" line="293"/>
+        <location filename="../main.py" line="301"/>
         <source>无权限访问Hosts文件。请检查程序权限，然后再试。
 您也可尝试复制IP后手动写入。</source>
         <translation>Access to the HOSTS file is denied.
 Please check the program&apos;s permissions, and try again.</translation>
     </message>
     <message>
-        <location filename="../main.py" line="296"/>
+        <location filename="../main.py" line="304"/>
         <source>未知错误：%s
 若此错误反复出现，请在issues中提出。</source>
         <translation>Unknown error: %s
 If the issue persists, please open an issue.</translation>
     </message>
     <message>
-        <location filename="../main.py" line="298"/>
+        <location filename="../main.py" line="306"/>
         <source>成功写入 Hosts [%s %s]</source>
         <translation>Hosts file updated [%s %s]</translation>
     </message>
     <message>
-        <location filename="../main.py" line="325"/>
+        <location filename="../main.py" line="333"/>
         <source>已扫描: %s / %s</source>
         <translation>Scanned: %s / %s</translation>
     </message>
     <message>
-        <location filename="../main.py" line="339"/>
-        <location filename="../main.py" line="382"/>
+        <location filename="../main.py" line="347"/>
+        <location filename="../main.py" line="390"/>
         <source>发现可用IP: %s [%s]</source>
         <translation>Found available IP: %s [%s]</translation>
     </message>
     <message>
-        <location filename="../main.py" line="345"/>
+        <location filename="../main.py" line="353"/>
         <source>IP %s 不可用 [%s]</source>
         <translation>%s is unavailable [%s]</translation>
     </message>
     <message>
-        <location filename="../main.py" line="359"/>
+        <location filename="../main.py" line="367"/>
         <source>扫描完成，开始测速...</source>
         <translation>Scan completed, speedtest starting...</translation>
     </message>
     <message>
-        <location filename="../main.py" line="351"/>
+        <location filename="../main.py" line="359"/>
         <source>测速完成</source>
         <translation>Speedtest finished</translation>
     </message>
     <message>
-        <location filename="../main.py" line="388"/>
+        <location filename="../main.py" line="396"/>
         <source>扫描完成</source>
         <translation>Scan finished</translation>
     </message>
     <message>
-        <location filename="../main.py" line="393"/>
-        <location filename="../main.py" line="439"/>
+        <location filename="../main.py" line="401"/>
+        <location filename="../main.py" line="447"/>
         <source>取消</source>
         <translation>Cancel</translation>
     </message>
     <message>
-        <location filename="../main.py" line="418"/>
+        <location filename="../main.py" line="426"/>
         <source>%s 不是一个合法的 IP 段。</source>
         <translation>%s is not a valid IP range.</translation>
     </message>
     <message>
-        <location filename="../main.py" line="421"/>
+        <location filename="../main.py" line="429"/>
         <source>请至少选择一个 IP 段。</source>
         <translation>Please select at least one IP range.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../main.py" line="434"/>
+        <location filename="../main.py" line="442"/>
         <source>开始扫描，共 %n 个 IP...</source>
         <translation>
             <numerusform>Scan started. %n IP in total...</numerusform>
@@ -753,7 +762,7 @@ If the issue persists, please open an issue.</translation>
         </translation>
     </message>
     <message>
-        <location filename="../main.py" line="447"/>
+        <location filename="../main.py" line="455"/>
         <source>设置已更新。</source>
         <translation>Settings updated.</translation>
     </message>
@@ -761,12 +770,12 @@ If the issue persists, please open an issue.</translation>
 <context>
     <name>QMainWindow</name>
     <message>
-        <location filename="../main.py" line="62"/>
+        <location filename="../main.py" line="63"/>
         <source>文本文件(*.txt);;所有文件(*.*)</source>
         <translation>Text files(*.txt);;Any(*.*)</translation>
     </message>
     <message>
-        <location filename="../main.py" line="65"/>
+        <location filename="../main.py" line="66"/>
         <source>文本文件(*.txt);;CSV 表格(*.csv);;所有文件(*.*)</source>
         <translation>Text files(*.txt);;CSV(*.csv);;Any(*.*)</translation>
     </message>
