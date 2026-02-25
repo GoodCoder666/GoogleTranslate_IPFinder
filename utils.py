@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
+import asyncio
+import contextlib
 import random
 import time
-from gzip import GzipFile
-from urllib.request import Request, urlopen
 
 import aiohttp
 from PySide6.QtCore import QUrl
 from PySide6.QtGui import QDesktopServices
 
 __all__ = ['test_ip', 'get_session', 'ip_generator',
-           'time_repr', 'read_url', 'open_url']
+           'time_repr', 'read_url', 'read_urls_parallel', 'open_url']
 
 class _TraceContext:
     __slots__ = ('start_time', 'end_time')
@@ -95,15 +95,50 @@ def ip_generator(networks, shuffle=True):
 def time_repr(secs):
     return f'{secs*1000:.0f}ms' if secs < 0.9995 else f'{secs:.2f}s'
 
-def read_url(url, timeout):
-    request = Request(url)
-    request.add_header('Accept-Encoding', 'gzip')
-    with urlopen(request, timeout=timeout) as response:
-        # Handle gzip
-        if response.getheader('Content-Encoding') == 'gzip':
-            with GzipFile(fileobj=response) as gz:
-                return {s.decode('utf-8').strip() for s in gz}
-        return {s.decode('utf-8').strip() for s in response}
+def _get_download_session():
+    return aiohttp.ClientSession(
+        timeout=aiohttp.ClientTimeout(
+            total=15,
+            connect=3,
+            sock_read=3
+        ),
+        cookie_jar=aiohttp.DummyCookieJar(),
+        raise_for_status=True,
+        trust_env=True,
+        auto_decompress=True,
+        headers={'Accept-Encoding': 'gzip, deflate, br'}
+    )
+
+async def read_url(url, session=None):
+    ctx = contextlib.nullcontext(session) if session else _get_download_session()
+    async with ctx as s, s.get(url) as response:
+        return set((await response.text()).split())
+
+async def read_urls_parallel(url_groups):
+    async def _fetch_group(session, urls):
+        tasks = [asyncio.create_task(read_url(url, session)) for url in urls]
+        try:
+            for coro in asyncio.as_completed(tasks):
+                with contextlib.suppress(aiohttp.ClientError, asyncio.TimeoutError):
+                    return await coro 
+        finally:
+            for task in tasks:
+                if not task.done():
+                    task.cancel()
+        return None
+
+    async with _get_download_session() as session:
+        results = await asyncio.gather(
+            *(_fetch_group(session, urls) for urls in url_groups)
+        )
+    merged = set()
+    failed = []
+    for i, result in enumerate(results):
+        if result is None:
+            failed.append(i)
+        else:
+            merged |= result
+    return merged, failed
 
 def open_url(url):
     QDesktopServices.openUrl(QUrl(url))

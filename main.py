@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import asyncio
 import sys
 from ipaddress import ip_network
 
@@ -14,7 +15,7 @@ from dlgScan import dlgScan
 from dlgSettings import dlgSettings
 from threads import ScanThread, SpeedtestThread
 from ui_MainWindow import Ui_MainWindow
-from utils import open_url, read_url, time_repr
+from utils import open_url, read_url, read_urls_parallel, time_repr
 
 
 app = QApplication(sys.argv)
@@ -207,27 +208,21 @@ class MainWindow(QMainWindow):
         elif dlg.ui.radioCustomURL.isChecked():
             url = dlg.ui.customURLEdit.text()
             try:
-                new_ips = read_url(url, timeout=5)
+                new_ips = asyncio.run(read_url(url))
             except Exception:
                 QMessageBox.critical(self, self.tr('错误'), self.tr('%s 获取失败。请检查网络状况，然后再试。') % url)
                 return
         else: # radioOnline
-            new_ips = set()
-            timeout = 3.5
-            for checkBox, urls in zip((dlg.ui.chkBox_off4, dlg.ui.chkBox_ext4, dlg.ui.chkBox_ext6,
-                                       dlg.ui.chkBox_full4, dlg.ui.chkBox_full6),
-                                      ONLINE_SERVICES):
-                if checkBox.isChecked():
-                    for url in urls:
-                        try:
-                            current_ips = read_url(url, timeout)
-                        except Exception:
-                            continue
-                        break
-                    else:
-                        QMessageBox.critical(self, self.tr('错误'), self.tr('%s 获取失败。请检查网络状况，然后再试。') % checkBox.text())
-                        return
-                    new_ips |= current_ips
+            checkBoxes = (dlg.ui.chkBox_off4, dlg.ui.chkBox_ext4, dlg.ui.chkBox_ext6,
+                          dlg.ui.chkBox_full4, dlg.ui.chkBox_full6)
+            selected = [(cb, urls) for cb, urls in zip(checkBoxes, ONLINE_SERVICES) if cb.isChecked()]
+            if not selected:
+                return
+            cbs, url_groups = zip(*selected)
+            new_ips, failed = asyncio.run(read_urls_parallel(url_groups))
+            if failed:
+                names = self.tr('、').join(cbs[i].text() for i in failed)
+                QMessageBox.warning(self, self.tr('警告'), self.tr('%s 获取失败。请检查网络状况，然后再试。') % names)
         new_ips = sorted(new_ips, key=lambda ip: tuple(map(int, ip.split('.'))))
         if dlg.ui.radioReplace.isChecked():
             self._replace_ips(new_ips)
