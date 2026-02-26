@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 from html import escape
 
-from PySide6.QtWidgets import QDialog
 from PySide6.QtCore import Slot
 from PySide6.QtGui import QTextCursor
+from PySide6.QtWidgets import QDialog
 
 from src.core.threads import DebugThread
-from src.ui.generated.ui_dlgDebug import Ui_Dialog
 from src.core.utils import time_repr
-
+from src.ui.generated.ui_dlgDebug import Ui_Dialog
 
 __all__ = ['dlgDebug']
 

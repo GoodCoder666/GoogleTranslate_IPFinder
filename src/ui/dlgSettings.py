@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
+from PySide6.QtCore import Qt, Slot
 from PySide6.QtWidgets import *
-from PySide6.QtCore import Slot, Qt
 
-from src.ui.generated.ui_dlgSettings import Ui_Dialog
 from src.core.constants import DefaultConfig
+from src.ui.generated.ui_dlgSettings import Ui_Dialog
 
 __all__ = ['dlgSettings']
 

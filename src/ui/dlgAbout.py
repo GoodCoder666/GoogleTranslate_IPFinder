@@ -3,8 +3,8 @@ from functools import partial
 
 from PySide6.QtWidgets import QDialog
 
-from src.ui.generated.ui_dlgAbout import Ui_Dialog
 from src.core.utils import open_url
+from src.ui.generated.ui_dlgAbout import Ui_Dialog
 
 __all__ = ['dlgAbout']
 

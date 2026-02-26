@@ -4,19 +4,19 @@ import contextlib
 import sys
 from ipaddress import ip_address, ip_network
 
-from PySide6.QtWidgets import *
 from PySide6.QtCore import QSettings, Qt, QTranslator, Slot
 from PySide6.QtGui import QAction
+from PySide6.QtWidgets import *
 
 from src.core.constants import GTDB_IPS, ONLINE_SERVICES, DefaultConfig
+from src.core.threads import ScanThread, SpeedtestThread
+from src.core.utils import open_url, read_url, read_urls_parallel, time_repr
 from src.ui.dlgAbout import dlgAbout
 from src.ui.dlgDebug import dlgDebug
 from src.ui.dlgImport import dlgImport
 from src.ui.dlgScan import dlgScan
 from src.ui.dlgSettings import dlgSettings
-from src.core.threads import ScanThread, SpeedtestThread
 from src.ui.generated.ui_MainWindow import Ui_MainWindow
-from src.core.utils import open_url, read_url, read_urls_parallel, time_repr
 
 
 class QTableWidgetTimeItem(QTableWidgetItem):

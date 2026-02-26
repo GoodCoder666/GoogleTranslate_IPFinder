@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
-from PySide6.QtWidgets import QDialog, QDialogButtonBox, QTableWidgetItem, QHeaderView
 from PySide6.QtCore import Qt, Slot
-from src.ui.generated.ui_dlgEditRange import Ui_Dialog
+from PySide6.QtWidgets import (QDialog, QDialogButtonBox, QHeaderView,
+                               QTableWidgetItem)
+
 from src.core.constants import DefaultConfig
+from src.ui.generated.ui_dlgEditRange import Ui_Dialog
 
 __all__ = ['dlgEditRange']
 
