@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from PySide6.QtWidgets import QDialog, QDialogButtonBox
-from ui_dlgImport import Ui_Dialog
+from src.ui.generated.ui_dlgImport import Ui_Dialog
 
 __all__ = ['dlgImport']
 

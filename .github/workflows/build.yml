@@ -28,7 +28,7 @@ jobs:
 
     - name: Package application
       run: >
-        pyinstaller -i icons/icon.ico -F -w --clean --noupx --log-level WARN
+        pyinstaller -i resources/icons/icon.ico -n main -F -w --clean --noupx --log-level WARN
         --exclude-module tkinter
         --exclude-module turtle
         --exclude-module unittest
@@ -67,7 +67,7 @@ jobs:
         --exclude-module PySide6.QtSvg
         --exclude-module PySide6.QtSvgWidgets
         --exclude-module PySide6.QtUiTools
-        main.py
+        run.py
 
     - name: Upload package
       uses: actions/upload-artifact@v4
@@ -97,13 +97,14 @@ jobs:
       uses: Nuitka/Nuitka-Action@main
       with:
         nuitka-version: main
-        script-name: main.py
+        script-name: run.py
         output-dir: build
         mode: onefile
         enable-plugins: pyside6
         msvc: latest
         windows-console-mode: disable
-        windows-icon-from-ico: icons/icon.ico
+        windows-icon-from-ico: resources/icons/icon.ico
+        output-file: main.exe
         disable-cache: true
 
     - name: Upload package
@@ -132,7 +133,7 @@ jobs:
 
     - name: Package application
       run: >
-        pyinstaller -i icons/icon.icns -F -w --clean --log-level WARN
+        pyinstaller -i resources/icons/icon.icns -n main -F -w --clean --log-level WARN
         --exclude-module tkinter
         --exclude-module turtle
         --exclude-module unittest
@@ -172,7 +173,7 @@ jobs:
         --exclude-module PySide6.QtSvg
         --exclude-module PySide6.QtSvgWidgets
         --exclude-module PySide6.QtUiTools
-        main.py
+        run.py
 
     - name: Zip application
       run: |

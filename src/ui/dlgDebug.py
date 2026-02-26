@@ -5,9 +5,9 @@ from PySide6.QtWidgets import QDialog
 from PySide6.QtCore import Slot
 from PySide6.QtGui import QTextCursor
 
-from threads import DebugThread
-from ui_dlgDebug import Ui_Dialog
-from utils import time_repr
+from src.core.threads import DebugThread
+from src.ui.generated.ui_dlgDebug import Ui_Dialog
+from src.core.utils import time_repr
 
 
 __all__ = ['dlgDebug']

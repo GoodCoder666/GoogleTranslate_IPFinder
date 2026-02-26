@@ -2,8 +2,8 @@
 from PySide6.QtWidgets import *
 from PySide6.QtCore import Slot, Qt
 
-from ui_dlgSettings import Ui_Dialog
-from constants import DefaultConfig
+from src.ui.generated.ui_dlgSettings import Ui_Dialog
+from src.core.constants import DefaultConfig
 
 __all__ = ['dlgSettings']
 

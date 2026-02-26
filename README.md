@@ -72,16 +72,6 @@ Windows 11 系统演示如下：
 >
 > 关于 IP 可用性问题的讨论请移步 [#42](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/issues/42)。
 
-## 功能对比
-
-|     功能     |       本项目       | [GoogleTranslateIpCheck](https://github.com/Ponderfly/GoogleTranslateIpCheck) | [google-translate-cn-ip](https://github.com/hcfyapp/google-translate-cn-ip) | [ip-scanner](https://github.com/csyezheng/ip-scanner) | [gscan_quic](https://codeberg.org/antigng/gscan_quic) |
-| :----------: | :----------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :---------------------------------------------------: | :---------------------------------------------------: |
-|   IP 收集    | :heavy_check_mark: |                      :heavy_check_mark:                      |                      :heavy_check_mark:                      |                  :heavy_check_mark:                   |                          :x:                          |
-|   IP 扫描    | :heavy_check_mark: |                      :heavy_check_mark:                      |                             :x:                              |                  :heavy_check_mark:                   |                  :heavy_check_mark:                   |
-|   IP 测速    | :heavy_check_mark: |                      :heavy_check_mark:                      |                      :heavy_check_mark:                      |                          :x:                          |                          :x:                          |
-|  HOSTS 写入  | :heavy_check_mark: |                      :heavy_check_mark:                      |                             :x:                              |                          :x:                          |                          :x:                          |
-| GUI 图形界面 | :heavy_check_mark: |                             :x:                              |                             :x:                              |                          :x:                          |                          :x:                          |
-
 ## 从源代码运行
 
 从源代码运行的方法适用于所有支持图形界面的操作系统，只需 Python >= 3.10（推荐 3.12 及以上版本）。
@@ -92,7 +82,7 @@ Windows 11 系统演示如下：
 $ git clone https://github.com/GoodCoder666/GoogleTranslate_IPFinder.git
 $ cd GoogleTranslate_IPFinder
 $ pip3 install PySide6 aiohttp
-$ python3 main.py
+$ python3 run.py
 ```
 
 对于非 Linux 系统：
@@ -101,7 +91,7 @@ $ python3 main.py
 git clone https://github.com/GoodCoder666/GoogleTranslate_IPFinder.git
 cd GoogleTranslate_IPFinder
 pip install -r requirements.txt
-python main.py
+python run.py
 ```
 
 ## 开发计划

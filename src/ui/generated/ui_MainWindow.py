@@ -21,7 +21,7 @@ from PySide6.QtWidgets import (QAbstractItemView, QApplication, QHBoxLayout, QHe
     QMenu, QMenuBar, QPushButton, QSizePolicy,
     QStatusBar, QTableWidget, QTableWidgetItem, QVBoxLayout,
     QWidget)
-import res_rc
+from . import res_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):

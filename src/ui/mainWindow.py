@@ -8,18 +8,15 @@ from PySide6.QtWidgets import *
 from PySide6.QtCore import QSettings, Qt, QTranslator, Slot
 from PySide6.QtGui import QAction
 
-from constants import GTDB_IPS, ONLINE_SERVICES, DefaultConfig
-from dlgAbout import dlgAbout
-from dlgDebug import dlgDebug
-from dlgImport import dlgImport
-from dlgScan import dlgScan
-from dlgSettings import dlgSettings
-from threads import ScanThread, SpeedtestThread
-from ui_MainWindow import Ui_MainWindow
-from utils import open_url, read_url, read_urls_parallel, time_repr
-
-
-app = QApplication(sys.argv)
+from src.core.constants import GTDB_IPS, ONLINE_SERVICES, DefaultConfig
+from src.ui.dlgAbout import dlgAbout
+from src.ui.dlgDebug import dlgDebug
+from src.ui.dlgImport import dlgImport
+from src.ui.dlgScan import dlgScan
+from src.ui.dlgSettings import dlgSettings
+from src.core.threads import ScanThread, SpeedtestThread
+from src.ui.generated.ui_MainWindow import Ui_MainWindow
+from src.core.utils import open_url, read_url, read_urls_parallel, time_repr
 
 
 class QTableWidgetTimeItem(QTableWidgetItem):
@@ -176,6 +173,7 @@ class MainWindow(QMainWindow):
         self.ui.statusbar.showMessage(self.tr('设置已重置。'))
 
     def _update_ui(self):
+        app = QApplication.instance()
         app.setFont(self.settings.value('appearance/font'))
         app.setStyle(QStyleFactory.create(self.settings.value('appearance/style')))
         if self.settings.value('appearance/language') == 'en_US':
@@ -474,8 +472,3 @@ class MainWindow(QMainWindow):
         with open(filename, 'r') as file:
             self._replace_ips(file.readlines())
 
-
-mainform = MainWindow()
-mainform.show()
-
-sys.exit(app.exec())

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from PySide6.QtWidgets import QDialog, QDialogButtonBox
 from PySide6.QtCore import Slot
-from ui_dlgScan import Ui_Dialog
-from dlgEditRange import dlgEditRange
+from src.ui.generated.ui_dlgScan import Ui_Dialog
+from src.ui.dlgEditRange import dlgEditRange
 
 __all__ = ['dlgScan']
 
