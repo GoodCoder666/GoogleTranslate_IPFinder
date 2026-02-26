@@ -632,8 +632,8 @@
         <location filename="../../src/ui/mainWindow.py" line="287"/>
         <location filename="../../src/ui/mainWindow.py" line="299"/>
         <location filename="../../src/ui/mainWindow.py" line="302"/>
-        <location filename="../../src/ui/mainWindow.py" line="424"/>
-        <location filename="../../src/ui/mainWindow.py" line="427"/>
+        <location filename="../../src/ui/mainWindow.py" line="426"/>
+        <location filename="../../src/ui/mainWindow.py" line="429"/>
         <source>错误</source>
         <translation>Error</translation>
     </message>
@@ -739,22 +739,22 @@ If the issue persists, please open an issue.</translation>
     </message>
     <message>
         <location filename="../../src/ui/mainWindow.py" line="399"/>
-        <location filename="../../src/ui/mainWindow.py" line="445"/>
+        <location filename="../../src/ui/mainWindow.py" line="448"/>
         <source>取消</source>
         <translation>Cancel</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainWindow.py" line="424"/>
+        <location filename="../../src/ui/mainWindow.py" line="426"/>
         <source>%s 不是一个合法的 IP 段。</source>
         <translation>%s is not a valid IP range.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainWindow.py" line="427"/>
+        <location filename="../../src/ui/mainWindow.py" line="429"/>
         <source>请至少选择一个 IP 段。</source>
         <translation>Please select at least one IP range.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/mainWindow.py" line="440"/>
+        <location filename="../../src/ui/mainWindow.py" line="443"/>
         <source>开始扫描，共 %n 个 IP...</source>
         <translation>
             <numerusform>Scan started. %n IP in total...</numerusform>
@@ -762,7 +762,7 @@ If the issue persists, please open an issue.</translation>
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainWindow.py" line="453"/>
+        <location filename="../../src/ui/mainWindow.py" line="456"/>
         <source>设置已更新。</source>
         <translation>Settings updated.</translation>
     </message>
@@ -783,22 +783,22 @@ If the issue persists, please open an issue.</translation>
 <context>
     <name>dlgEditRange</name>
     <message>
-        <location filename="../../src/ui/dlgEditRange.py" line="16"/>
+        <location filename="../../src/ui/dlgEditRange.py" line="18"/>
         <source>更新</source>
         <translation>Update</translation>
     </message>
     <message>
-        <location filename="../../src/ui/dlgEditRange.py" line="17"/>
+        <location filename="../../src/ui/dlgEditRange.py" line="19"/>
         <source>取消</source>
         <translation>Cancel</translation>
     </message>
     <message>
-        <location filename="../../src/ui/dlgEditRange.py" line="19"/>
+        <location filename="../../src/ui/dlgEditRange.py" line="21"/>
         <source>IP 段</source>
         <translation>IP range</translation>
     </message>
     <message>
-        <location filename="../../src/ui/dlgEditRange.py" line="19"/>
+        <location filename="../../src/ui/dlgEditRange.py" line="21"/>
         <source>备注</source>
         <translation>Note</translation>
     </message>
@@ -819,17 +819,17 @@ If the issue persists, please open an issue.</translation>
 <context>
     <name>dlgScan</name>
     <message>
-        <location filename="../../src/ui/dlgScan.py" line="16"/>
+        <location filename="../../src/ui/dlgScan.py" line="17"/>
         <source>扫描</source>
         <translation>Scan</translation>
     </message>
     <message>
-        <location filename="../../src/ui/dlgScan.py" line="17"/>
+        <location filename="../../src/ui/dlgScan.py" line="18"/>
         <source>取消</source>
         <translation>Cancel</translation>
     </message>
     <message>
-        <location filename="../../src/ui/dlgScan.py" line="24"/>
+        <location filename="../../src/ui/dlgScan.py" line="25"/>
         <source>编辑...</source>
         <translation>Edit...</translation>
     </message>
