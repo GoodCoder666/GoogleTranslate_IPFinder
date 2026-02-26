@@ -94,17 +94,6 @@ pip install -r requirements.txt
 python run.py
 ```
 
-## 开发计划
-
-- [x] IP 测速
-- [x] IP 扫描
-- [x] 自动写入 Hosts
-- [x] 自动获取 IP 列表
-- [x] 测速/扫描进度条
-- [x] 自定义扫描 IP 段
-
-...（若有其他需求欢迎在 [issues](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/issues) 中提出）
-
 ## 关于在线同步功能
 
 [官方 IPv4 地址库](https://github.com/GoodCoder666/gtdb) 内置在程序中，不定期随功能更新。您可以通过 `导入->在线服务` 同步最新的 IP 库。同时提供 GoogleTranslateIpCheck 中的两个 IP 库供选择（感谢 @Ponderfly）。三个库的网址如下：

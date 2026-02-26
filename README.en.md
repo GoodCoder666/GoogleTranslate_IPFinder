@@ -99,17 +99,6 @@ pip install -r requirements.txt
 python run.py
 ```
 
-## Development Roadmap
-
-* [x] IP Speed Test
-* [x] IP Scan
-* [x] Automatically Write to Hosts
-* [x] Automatically Fetch IP List
-* [x] Speed Test/Scan Progress Bar
-* [x] Custom Scan IP Ranges
-
-... (If you have other feature requests, feel free to raise them in [issues](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/issues))
-
 ## About the Online Sync Feature
 
 The [Official IPv4 Address Library](https://github.com/GoodCoder666/gtdb) is built into the program and is updated periodically alongside feature updates. You can sync the latest IP library via `Import -> Online Services`. Additionally, two IP libraries from GoogleTranslateIpCheck are provided as options (Thanks to @Ponderfly). The URLs for the three libraries are as follows:
