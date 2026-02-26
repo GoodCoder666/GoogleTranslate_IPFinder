@@ -401,48 +401,51 @@ class MainWindow(QMainWindow):
             return
 
         dlg = dlgScan(self, self.settings.value('scan/ranges'))
-        if dlg.exec() == QDialog.Accepted:
-            # TODO: add separate host/template settings for scan?
-            host = self.settings.value('test/host')
-            request_format = self.settings.value('test/template')
-            max_ips = dlg.ui.spinBox_MaxIP.value()
-            num_workers = int(dlg.ui.comboBox_threads.currentText())
-            timeout = dlg.ui.spinBox_timeout.value()
-            autoTest = dlg.ui.chkBox_autoTest.isChecked()
-            randomized = dlg.ui.chkBox_randomizeScan.isChecked()
+        if dlg.exec() != QDialog.Accepted:
+            return
 
-            # process IP ranges
-            ip_ranges = dlg.ip_ranges
-            try:
-                ip_networks = [ip_network(ip_range) for enabled, ip_range, _ in ip_ranges if enabled]
-            except ValueError:
-                for enabled, ip_range, _ in ip_ranges:
-                    if not enabled: continue
-                    try:
-                        ip_network(ip_range)
-                    except ValueError:
-                        QMessageBox.critical(self, self.tr('错误'), self.tr('%s 不是一个合法的 IP 段。') % ip_range)
-                        return
-            if not ip_networks:
-                QMessageBox.critical(self, self.tr('错误'), self.tr('请至少选择一个 IP 段。'))
-                return
-            self.settings.setValue('scan/ranges', ip_ranges)
+        # TODO: add separate host/template settings for scan?
+        host = self.settings.value('test/host')
+        request_format = self.settings.value('test/template')
+        max_ips = dlg.ui.spinBox_MaxIP.value()
+        num_workers = int(dlg.ui.comboBox_threads.currentText())
+        timeout = dlg.ui.spinBox_timeout.value()
+        autoTest = dlg.ui.chkBox_autoTest.isChecked()
+        randomized = dlg.ui.chkBox_randomizeScan.isChecked()
 
-            self._set_buttons_enabled(False)
-            self.ui.ipList.clear()
+        # process IP ranges
+        ip_ranges = dlg.ip_ranges
+        try:
+            ip_networks = [ip_network(ip_range) for enabled, ip_range, _ in ip_ranges if enabled]
+        except ValueError:
+            for enabled, ip_range, _ in ip_ranges:
+                if not enabled: continue
+                try:
+                    ip_network(ip_range)
+                except ValueError:
+                    QMessageBox.critical(self, self.tr('错误'), self.tr('%s 不是一个合法的 IP 段。') % ip_range)
+                    return
+        if not ip_networks:
+            QMessageBox.critical(self, self.tr('错误'), self.tr('请至少选择一个 IP 段。'))
+            return
 
-            thread = ScanThread(self, ip_networks, host, request_format,
-                                max_ips, num_workers, timeout, randomized)
-            thread.finished.connect(self._test_ips if autoTest else self._after_scan)
-            thread.foundAvailable.connect(self._report_single_scan_result)
-            thread.progressUpdate.connect(self._scan_update)
-            self._init_progessBar(thread.total_ips)
-            self.logLabel.setText(self.tr('开始扫描，共 %n 个 IP...', '', thread.total_ips))
-            thread.start()
+        self.settings.setValue('scan/ranges', ip_ranges)
 
-            self.sthread = thread
-            self.ui.btnWait_Scan.setEnabled(True)
-            self.ui.btnWait_Scan.setText(self.tr('取消'))
+        self._set_buttons_enabled(False)
+        self.ui.ipList.clear()
+
+        thread = ScanThread(self, ip_networks, host, request_format,
+                            max_ips, num_workers, timeout, randomized)
+        thread.finished.connect(self._test_ips if autoTest else self._after_scan)
+        thread.foundAvailable.connect(self._report_single_scan_result)
+        thread.progressUpdate.connect(self._scan_update)
+        self._init_progessBar(thread.total_ips)
+        self.logLabel.setText(self.tr('开始扫描，共 %n 个 IP...', '', thread.total_ips))
+        thread.start()
+
+        self.sthread = thread
+        self.ui.btnWait_Scan.setEnabled(True)
+        self.ui.btnWait_Scan.setText(self.tr('取消'))
 
     @Slot()
     def on_actSettings_triggered(self):
