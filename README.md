@@ -5,6 +5,7 @@
 <a href="https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases"><img alt="GitHub release" src="https://img.shields.io/github/release/GoodCoder666/GoogleTranslate_IPFinder.svg" /></a>
 <a href="https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases"><img alt="GitHub Release Date" src="https://img.shields.io/github/release-date/GoodCoder666/GoogleTranslate_IPFinder.svg" /></a>
 <a href="https://github.com/GoodCoder666/GoogleTranslate_IPFinder/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/GoodCoder666/GoogleTranslate_IPFinder.svg" /></a>
+<a href="https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases"><img alt="GitHub Release Downloads" src="https://img.shields.io/github/downloads/GoodCoder666/GoogleTranslate_IPFinder/total?color=teal" /></a>
 <a href="https://github.com/GoodCoder666/GoogleTranslate_IPFinder/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/GoodCoder666/GoogleTranslate_IPFinder.svg?style=social" /></a>
 
 简体中文 | <a href="./README.en.md">English</a>
