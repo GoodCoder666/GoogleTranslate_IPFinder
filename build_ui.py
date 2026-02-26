@@ -28,11 +28,11 @@ def build():
     ts_file = Path('resources/translations/en_US.ts')
     qm_file = Path('resources/translations/en_US.qm')
     py_files = [str(p) for p in Path('src').rglob('*.py') if 'generated' not in p.parts]
-    
+
     print(f'Updating translations -> {ts_file}')
     lupdate_args = ['pyside6-lupdate', 'resources/ui'] + py_files + ['-ts', str(ts_file)]
     subprocess.run(lupdate_args, check=True)
-    
+
     print(f'Releasing translations -> {qm_file}')
     subprocess.run(['pyside6-lrelease', str(ts_file), '-qm', str(qm_file)], check=True)
 
