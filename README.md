@@ -2,8 +2,8 @@
 
 <h1>GoogleTranslate_IPFinder</h1>
 
-<a href="https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases"><img alt="GitHub release" src="https://img.shields.io/github/release/GoodCoder666/GoogleTranslate_IPFinder.svg" /></a>
-<a href="https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases"><img alt="GitHub Release Date" src="https://img.shields.io/github/release-date/GoodCoder666/GoogleTranslate_IPFinder.svg" /></a>
+<a href="https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases/latest"><img alt="GitHub release" src="https://img.shields.io/github/release/GoodCoder666/GoogleTranslate_IPFinder.svg" /></a>
+<a href="https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases/latest"><img alt="GitHub Release Date" src="https://img.shields.io/github/release-date/GoodCoder666/GoogleTranslate_IPFinder.svg" /></a>
 <a href="https://github.com/GoodCoder666/GoogleTranslate_IPFinder/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/GoodCoder666/GoogleTranslate_IPFinder.svg" /></a>
 <a href="https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases"><img alt="GitHub Release Downloads" src="https://img.shields.io/github/downloads/GoodCoder666/GoogleTranslate_IPFinder/total?color=teal" /></a>
 <a href="https://github.com/GoodCoder666/GoogleTranslate_IPFinder/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/GoodCoder666/GoogleTranslate_IPFinder.svg?style=social" /></a>
@@ -28,7 +28,7 @@
 
 若您使用 Windows 或 Mac OS 系统，可以直接在这里下载打包好的版本：
 
-- [https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases)
+- [https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases/latest](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases/latest)
 
 我们针对 Windows 提供了两种功能完全相同、但构建方法不同的版本：
 
