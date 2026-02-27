@@ -26,14 +26,14 @@
     使用此开源软件时，请您遵守当地法律法规以及 Google 的相关规定。<strong>一切违法/违规用途后果自负。</strong>
 </details>
 
-稳定版下载地址：
+若您使用 Windows 或 Mac OS 系统，可以直接在这里下载打包好的版本：
 
 - [https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases)
 
-预览版（alpha）下载地址：
+我们针对 Windows 提供了两种功能完全相同、但构建方法不同的版本：
 
-- Windows: [https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases/download/alpha/checker-win-x64.exe](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases/download/alpha/checker-win-x64.exe)
-- Mac OS: [https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases/download/alpha/checker-mac.zip](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases/download/alpha/checker-mac.zip)
+- `checker-win-x64.exe`: PyInstaller 构建版。适合追求稳定性和兼容性的用户。
+- `checker-win-nuitka.exe`: Nuitka 构建版。适合追求更小文件体积和更高性能的用户。**如果您使用此版本遇到未知报错，请在 issues 中告知我并在问题解决之前临时改用 PyInstaller 版。**
 
 > [!NOTE]
 >

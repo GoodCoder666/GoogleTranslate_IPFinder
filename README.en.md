@@ -26,14 +26,14 @@ An IP address scanner and speed testing tool for the Google Translate API server
     When using this open-source software, please comply with local laws and regulations, as well as relevant Google policies. <strong>You are solely responsible for any consequences arising from illegal or non-compliant use.</strong>
 </details>
 
-Stable release download link:
+If you are using Windows or macOS, you can download the pre-built releases directly here:
 
 - [https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases)
 
-Preview release (alpha) download links:
+For Windows, we provide two versions with identical functionality but different build methods:
 
-- Windows: [https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases/download/alpha/checker-win-x64.exe](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases/download/alpha/checker-win-x64.exe)
-- Mac OS: [https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases/download/alpha/checker-mac.zip](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases/download/alpha/checker-mac.zip)
+- `checker-win-x64.exe`: PyInstaller build. Recommended for users who prioritize stability and compatibility.
+- `checker-win-nuitka.exe`: Nuitka build. Recommended for users who prefer a smaller file size and higher performance. **If you encounter any unknown errors with this version, please let me know in the issues and temporarily switch to the PyInstaller version until the problem is resolved.**
 
 <details>
     <summary>About the English translations</summary>
