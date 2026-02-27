@@ -207,7 +207,7 @@ jobs:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         automatic_release_tag: alpha
         prerelease: true
-        title: GoogleTranslate_IPFinder
+        title: Alpha Release
         files: |
           checker-win-x64.exe
           checker-win-nuitka.exe
