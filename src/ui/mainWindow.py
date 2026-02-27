@@ -461,7 +461,7 @@ class MainWindow(QMainWindow):
 
     @Slot()
     def on_actCheckUpdates_triggered(self):
-        open_url('https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases')
+        open_url('https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases/latest')
 
     @Slot()
     def on_actAbout_triggered(self):

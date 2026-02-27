@@ -15,4 +15,4 @@ class dlgAbout(QDialog):
         self.ui.setupUi(self)
         for link in (self.ui.githubLink, self.ui.gtdbLink, self.ui.licenseLink, self.ui.readmeLink):
             link.clicked.connect(partial(open_url, link.description()))
-        self.ui.btnUpdate.clicked.connect(partial(open_url, 'https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases'))
+        self.ui.btnUpdate.clicked.connect(partial(open_url, 'https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases/latest'))
