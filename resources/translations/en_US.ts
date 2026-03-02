@@ -61,8 +61,8 @@
     </message>
     <message>
         <location filename="../ui/dlgAbout.ui" line="76"/>
-        <source>Copyright © GoodCoder666 2026</source>
-        <translation>Copyright © GoodCoder666 2026</translation>
+        <source>Copyright © GoodCoder666 2022-2026</source>
+        <translation>Copyright © GoodCoder666 2022-2026</translation>
     </message>
     <message>
         <location filename="../ui/dlgAbout.ui" line="83"/>
