@@ -164,7 +164,7 @@ class Ui_Dialog(object):
         self.radioSingleIP.setText(QCoreApplication.translate("Dialog", u"\u5355\u4e2a IP\uff1a", None))
         self.radioOnline.setText(QCoreApplication.translate("Dialog", u"\u5728\u7ebf\u670d\u52a1\uff1a", None))
 #if QT_CONFIG(tooltip)
-        self.chkBox_off4.setToolTip(QCoreApplication.translate("Dialog", u"\u5b98\u65b9 IPv4 \u5730\u5740\u5e93\uff0c\u7ea6 1000 \u6761 IP\u3002", None))
+        self.chkBox_off4.setToolTip(QCoreApplication.translate("Dialog", u"\u5b98\u65b9 IPv4 \u5730\u5740\u5e93\uff0c\u7ea6 2500 \u6761 IP\u3002", None))
 #endif // QT_CONFIG(tooltip)
         self.chkBox_off4.setText(QCoreApplication.translate("Dialog", u"\u5b98\u65b9 IPv4", None))
 #if QT_CONFIG(tooltip)

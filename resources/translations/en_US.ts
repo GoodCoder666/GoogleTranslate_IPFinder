@@ -367,8 +367,8 @@
     </message>
     <message>
         <location filename="../ui/dlgImport.ui" line="98"/>
-        <source>官方 IPv4 地址库，约 1000 条 IP。</source>
-        <translation>Official IPv4 base, approximately 1,000 IPs.</translation>
+        <source>官方 IPv4 地址库，约 2500 条 IP。</source>
+        <translation>Official IPv4 base, approximately 2,500 IPs.</translation>
     </message>
     <message>
         <location filename="../ui/dlgImport.ui" line="101"/>

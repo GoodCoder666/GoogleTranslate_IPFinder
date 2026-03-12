@@ -95,7 +95,7 @@
         <item row="0" column="0">
          <widget class="QCheckBox" name="chkBox_off4">
           <property name="toolTip">
-           <string>官方 IPv4 地址库，约 1000 条 IP。</string>
+           <string>官方 IPv4 地址库，约 2500 条 IP。</string>
           </property>
           <property name="text">
            <string>官方 IPv4</string>
