@@ -194,11 +194,11 @@ class MainWindow(QMainWindow):
             if not filename: return
             try:
                 with open(filename, 'r') as file:
-                    new_ips = file.readlines()
+                    new_ips = file.read().split()
             except UnicodeDecodeError:
                 try:
                     with open(filename, 'r', encoding='utf-8-sig') as file:
-                        new_ips = file.readlines()
+                        new_ips = file.read().split()
                 except UnicodeDecodeError:
                     QMessageBox.critical(self, self.tr('错误'), self.tr('文件编码错误。请检查文件内容，然后再试。'))
                     return
