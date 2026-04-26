@@ -14,12 +14,7 @@
 
 ## 项目简介
 
-谷歌翻译 API 服务器（`translate.googleapis.com`）在中国大陆的 IP 地址扫描、测速工具。
-
-<details>
-    <summary>项目背景</summary>
-    Google 于 2022 年 9 月停止了中国大陆 GWS 服务器的翻译服务。本项目旨在帮助用户找到能够使用翻译的 GWS IP 并覆盖本地域名解析结果来实现对谷歌翻译服务器的访问。
-</details>
+谷歌翻译 API 服务器（`translate.googleapis.com`）的 IP 扫描、测速工具。
 
 <details>
     <summary>免责声明</summary>

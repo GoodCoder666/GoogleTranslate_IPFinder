@@ -14,12 +14,7 @@
 
 ## About the Project
 
-An IP address scanner and speed testing tool for the Google Translate API server (`translate.googleapis.com`) in mainland China.
-
-<details>
-    <summary>Project Background</summary>
-    Google stopped translation services on GWS servers in mainland China in September 2022. This project aims to help users find usable GWS IPs for translation and override local DNS resolution results to regain access to Google Translate servers.
-</details>
+An IP address scanner and speed testing tool for the Google Translate API server (`translate.googleapis.com`).
 
 <details>
     <summary>Disclaimer</summary>
