@@ -21,7 +21,7 @@
     使用此开源软件时，请您遵守当地法律法规以及 Google 的相关规定。<strong>一切违法/违规用途后果自负。</strong>
 </details>
 
-若您使用 Windows 或 Mac OS 系统，可以直接在这里下载打包好的版本：
+若您使用 Windows 或 macOS 系统，可以直接在这里下载打包好的最新版：
 
 - [https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases/latest](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases/latest)
 
@@ -38,21 +38,19 @@
 
 ## 快速上手
 
-无特殊需求的使用步骤（测速+写入Hosts）：
+基本使用步骤：
 
-1. 下载对应系统的可执行文件（链接见上方）。
-2. 使用管理员/sudo权限打开。**只有这样才能使用 Hosts 写入功能。**
-3. 选择“测速”，等待操作完成。
-4. 点击“写入Hosts”，谷歌翻译 API 即可正常使用。
+1. 从 Releases 下载对应系统的可执行文件（链接见上方）。
+2. 运行程序。若需要第四步更新 Hosts，请手动提权执行。
+3. 选择“测速”，程序会找到延迟最低的 IP。
+4. （可选）若您希望优化自定义网络解析，请点击“写入Hosts”，并在随后的弹窗中确认修改。
 
 > [!TIP]
 >
 > 区分“测速”和“扫描”：
 >
 > - **测速**：从待测速的 IP（即 IP 库）中找出可用 IP，并按照响应时间排序。此操作完成后可以写入 Hosts。
-> - **扫描**：从 GWS 的 IP 段中找到可用的 IP，并置于 IP 库中。*由于 GWS 网络极为庞大，即使是扫描预设的一小部分通常也需要很长时间。*
->
-> 一般来说，启动程序后直接选择“测速”（使用默认 IP 库）再写入 Hosts 即可恢复谷歌翻译网络服务。
+> - **扫描**：从选择的 IP 段中找到可用的 IP，并置于 IP 库中。*由于 GWS 网络极为庞大，即使是扫描预设的一小部分通常也需要很长时间。*
 
 Windows 11 系统演示如下：
 
@@ -75,10 +73,10 @@ Windows 11 系统演示如下：
 对于 Linux 系统：
 
 ```bash
-$ git clone https://github.com/GoodCoder666/GoogleTranslate_IPFinder.git
-$ cd GoogleTranslate_IPFinder
-$ pip3 install PySide6 aiohttp
-$ python3 run.py
+git clone https://github.com/GoodCoder666/GoogleTranslate_IPFinder.git
+cd GoogleTranslate_IPFinder
+pip3 install PySide6 aiohttp
+python3 run.py
 ```
 
 对于非 Linux 系统：
@@ -97,10 +95,6 @@ python run.py
 - 官方 IPv4：https://raw.githubusercontent.com/GoodCoder666/gtdb/main/src/ip.txt
 - 扩展 IPv4：https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/ip.txt
 - 扩展 IPv6：https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/IPv6.txt
-
-另有新收录的[超级地址库](https://github.com/GoodCoder666/gtdb/tree/main/full)，建议在上面的所有 IP 全部失效时尝试。
-
-同时，若 GitHub Raw 无法连接，程序将尝试使用 [ghproxy](https://ghproxy.net/) 镜像，请耐心等待。
 
 ## 版权说明
 

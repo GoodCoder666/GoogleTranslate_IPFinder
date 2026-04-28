@@ -21,7 +21,7 @@ An IP address scanner and speed testing tool for the Google Translate API server
     When using this open-source software, please comply with local laws and regulations, as well as relevant Google policies. <strong>You are solely responsible for any consequences arising from illegal or non-compliant use.</strong>
 </details>
 
-If you are using Windows or macOS, you can download the pre-built releases directly here:
+If you are using Windows or macOS, you can download the latest pre-built releases directly here:
 
 - [https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases)
 
@@ -43,21 +43,19 @@ For Windows, we provide two versions with identical functionality but different 
 
 ## Quick Start
 
-Standard usage steps (Speed test + Write to Hosts):
+Standard usage steps:
 
-1. Download the executable file for your respective system (links above).
-2. Open with administrator/sudo privileges. **This is required to use the Write to Hosts feature.**
-3. Select "Speedtest" and wait for the operation to complete.
-4. Click "Write to Hosts", and the Google Translate API will function normally.
+1. Download the executable file for your OS from the Releases page (links above).
+2. Run the program. If you plan to update your Hosts file in step 4, please manually run the program with elevated privileges.
+3. Select "Speedtest", and the program will find the IP address with the lowest latency.
+4. (Optional) If you wish to optimize custom network resolution, click "Write to Hosts" and confirm the changes in the pop-up window that appears.
 
 > [!TIP]
 >
 > Difference between "Speed Test" and "Scan":
 >
 > - **Speed Test**: Finds available IPs from the IPs to be tested (i.e., the IP library) and sorts them by response time. After this operation is complete, you can write the results to your Hosts file.
-> - **Scan**: Finds available IPs from GWS IP ranges and puts them into the IP library. *Because the GWS network is extremely large, scanning even a small preset portion usually takes a long time.*
->
-> Generally, after starting the program, you can directly select "Speed Test" (using the default IP library) and then write to Hosts to restore the Google Translate web service.
+> - **Scan**: Finds available IPs from selected IP ranges and puts them into the IP library. *Because the GWS network is extremely large, scanning even a small preset portion usually takes a long time.*
 
 Windows 11 system demonstration:
 
@@ -77,13 +75,13 @@ Windows 11 system demonstration:
 
 Running from source code is applicable to all operating systems that support graphical interfaces. It requires Python >= 3.10 (3.12 and above is recommended).
 
-For Linux systems:
+For Linux:
 
 ```bash
-$ git clone https://github.com/GoodCoder666/GoogleTranslate_IPFinder.git
-$ cd GoogleTranslate_IPFinder
-$ pip3 install PySide6 aiohttp
-$ python3 run.py
+git clone https://github.com/GoodCoder666/GoogleTranslate_IPFinder.git
+cd GoogleTranslate_IPFinder
+pip3 install PySide6 aiohttp
+python3 run.py
 ```
 
 For non-Linux systems:
@@ -102,10 +100,6 @@ The [Official IPv4 Address Library](https://github.com/GoodCoder666/gtdb) is bui
 * Official IPv4: https://raw.githubusercontent.com/GoodCoder666/gtdb/main/src/ip.txt
 * Extended IPv4: https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/ip.txt
 * Extended IPv6: https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/IPv6.txt
-
-There is also a newly included [Super Address Library](https://github.com/GoodCoder666/gtdb/tree/main/full), which is recommended to try when all the above IPs become invalid.
-
-Additionally, if GitHub Raw cannot be connected, the program will attempt to use the [ghproxy](https://ghproxy.net/) mirror. Please be patient.
 
 ## License
 
