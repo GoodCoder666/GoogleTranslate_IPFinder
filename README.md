@@ -4,7 +4,7 @@
 
 <a href="https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases/latest"><img alt="GitHub release" src="https://img.shields.io/github/release/GoodCoder666/GoogleTranslate_IPFinder.svg" /></a>
 <a href="https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases/latest"><img alt="GitHub Release Date" src="https://img.shields.io/github/release-date/GoodCoder666/GoogleTranslate_IPFinder.svg" /></a>
-<a href="https://github.com/GoodCoder666/GoogleTranslate_IPFinder/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/GoodCoder666/GoogleTranslate_IPFinder.svg" /></a>
+<a href="https://www.gnu.org/licenses/gpl-3.0.html"><img alt="License" src="https://img.shields.io/github/license/GoodCoder666/GoogleTranslate_IPFinder.svg" /></a>
 <a href="https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases"><img alt="GitHub Release Downloads" src="https://img.shields.io/github/downloads/GoodCoder666/GoogleTranslate_IPFinder/total?color=teal" /></a>
 <a href="https://github.com/GoodCoder666/GoogleTranslate_IPFinder/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/GoodCoder666/GoogleTranslate_IPFinder.svg?style=social" /></a>
 
@@ -98,7 +98,7 @@ python run.py
 
 ## 版权说明
 
-本项目使用 [GPLv3](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/blob/main/LICENSE) 版权许可。IP 扫描逻辑参考 [gscan_quic](https://codeberg.org/antigng/gscan_quic)。
+本项目使用 [GPL-3.0-or-later](https://www.gnu.org/licenses/gpl-3.0.html) 版权许可。IP 扫描逻辑参考 [gscan_quic](https://codeberg.org/antigng/gscan_quic)。
 
 类似的项目：[hcfyapp/google-translate-cn-ip](https://github.com/hcfyapp/google-translate-cn-ip) [Ponderfly/GoogleTranslateIpCheck](https://github.com/Ponderfly/GoogleTranslateIpCheck) [csyezheng/ip-scanner](https://github.com/csyezheng/ip-scanner)
 

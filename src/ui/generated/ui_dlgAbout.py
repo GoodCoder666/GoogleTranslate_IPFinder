@@ -85,7 +85,7 @@ class Ui_Dialog(object):
         self.gtdbLink.setText(QCoreApplication.translate("Dialog", u"\u5b98\u65b9 IP \u5e93", None))
         self.gtdbLink.setDescription(QCoreApplication.translate("Dialog", u"https://github.com/GoodCoder666/gtdb", None))
         self.licenseLink.setText(QCoreApplication.translate("Dialog", u"\u7248\u6743\u6761\u6b3e\uff08GPLv3\uff09", None))
-        self.licenseLink.setDescription(QCoreApplication.translate("Dialog", u"https://github.com/GoodCoder666/GoogleTranslate_IPFinder/blob/main/LICENSE", None))
+        self.licenseLink.setDescription(QCoreApplication.translate("Dialog", u"https://www.gnu.org/licenses/gpl-3.0.html", None))
         self.readmeLink.setText(QCoreApplication.translate("Dialog", u"README \u5e2e\u52a9\u6587\u4ef6", None))
         self.readmeLink.setDescription(QCoreApplication.translate("Dialog", u"https://github.com/GoodCoder666/GoogleTranslate_IPFinder/blob/main/README.md", None))
         self.btnUpdate.setText(QCoreApplication.translate("Dialog", u"\u68c0\u67e5\u66f4\u65b0", None))

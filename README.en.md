@@ -4,7 +4,7 @@
 
 <a href="https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases/latest"><img alt="GitHub release" src="https://img.shields.io/github/release/GoodCoder666/GoogleTranslate_IPFinder.svg" /></a>
 <a href="https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases/latest"><img alt="GitHub Release Date" src="https://img.shields.io/github/release-date/GoodCoder666/GoogleTranslate_IPFinder.svg" /></a>
-<a href="https://github.com/GoodCoder666/GoogleTranslate_IPFinder/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/GoodCoder666/GoogleTranslate_IPFinder.svg" /></a>
+<a href="https://www.gnu.org/licenses/gpl-3.0.html"><img alt="License" src="https://img.shields.io/github/license/GoodCoder666/GoogleTranslate_IPFinder.svg" /></a>
 <a href="https://github.com/GoodCoder666/GoogleTranslate_IPFinder/releases"><img alt="GitHub Release Downloads" src="https://img.shields.io/github/downloads/GoodCoder666/GoogleTranslate_IPFinder/total?color=teal" /></a>
 <a href="https://github.com/GoodCoder666/GoogleTranslate_IPFinder/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/GoodCoder666/GoogleTranslate_IPFinder.svg?style=social" /></a>
 
@@ -103,6 +103,6 @@ The [Official IPv4 Address Library](https://github.com/GoodCoder666/gtdb) is bui
 
 ## License
 
-This project is licensed under the [GPLv3](https://github.com/GoodCoder666/GoogleTranslate_IPFinder/blob/main/LICENSE) license. The IP scanning logic is inspired by [gscan_quic](https://codeberg.org/antigng/gscan_quic).
+This project is licensed under [GPL-3.0-or-later](https://www.gnu.org/licenses/gpl-3.0.html). The IP scanning logic is inspired by [gscan_quic](https://codeberg.org/antigng/gscan_quic).
 
 Similar projects: [hcfyapp/google-translate-cn-ip](https://github.com/hcfyapp/google-translate-cn-ip) | [Ponderfly/GoogleTranslateIpCheck](https://github.com/Ponderfly/GoogleTranslateIpCheck) | [csyezheng/ip-scanner](https://github.com/csyezheng/ip-scanner)

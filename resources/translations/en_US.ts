@@ -40,8 +40,8 @@
     </message>
     <message>
         <location filename="../ui/dlgAbout.ui" line="49"/>
-        <source>https://github.com/GoodCoder666/GoogleTranslate_IPFinder/blob/main/LICENSE</source>
-        <translation>https://github.com/GoodCoder666/GoogleTranslate_IPFinder/blob/main/LICENSE</translation>
+        <source>https://www.gnu.org/licenses/gpl-3.0.html</source>
+        <translation>https://www.gnu.org/licenses/gpl-3.0.html</translation>
     </message>
     <message>
         <location filename="../ui/dlgAbout.ui" line="56"/>
