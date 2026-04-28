@@ -460,8 +460,8 @@
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="42"/>
-        <location filename="../../src/ui/mainWindow.py" line="366"/>
-        <location filename="../../src/ui/mainWindow.py" line="392"/>
+        <location filename="../../src/ui/mainWindow.py" line="379"/>
+        <location filename="../../src/ui/mainWindow.py" line="405"/>
         <source>扫描</source>
         <translation>Scan</translation>
     </message>
@@ -472,7 +472,7 @@
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="52"/>
-        <location filename="../../src/ui/mainWindow.py" line="193"/>
+        <location filename="../../src/ui/mainWindow.py" line="194"/>
         <source>导入</source>
         <translation>Import</translation>
     </message>
@@ -498,7 +498,7 @@
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="90"/>
-        <location filename="../../src/ui/mainWindow.py" line="240"/>
+        <location filename="../../src/ui/mainWindow.py" line="241"/>
         <source>导出</source>
         <translation>Export</translation>
     </message>
@@ -509,7 +509,7 @@
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="100"/>
-        <location filename="../../src/ui/mainWindow.py" line="89"/>
+        <location filename="../../src/ui/mainWindow.py" line="90"/>
         <source>复制</source>
         <translation>Copy</translation>
     </message>
@@ -569,43 +569,43 @@
         <translation>Ctrl+H</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainWindow.py" line="74"/>
-        <location filename="../../src/ui/mainWindow.py" line="184"/>
+        <location filename="../../src/ui/mainWindow.py" line="75"/>
+        <location filename="../../src/ui/mainWindow.py" line="185"/>
         <source>响应时间</source>
         <translation>Response time</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainWindow.py" line="84"/>
+        <location filename="../../src/ui/mainWindow.py" line="85"/>
         <source>删除</source>
         <translation>Remove</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainWindow.py" line="90"/>
+        <location filename="../../src/ui/mainWindow.py" line="91"/>
         <source>清空</source>
         <translation>Clear</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainWindow.py" line="91"/>
+        <location filename="../../src/ui/mainWindow.py" line="92"/>
         <source>调试</source>
         <translation>Debug</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainWindow.py" line="110"/>
+        <location filename="../../src/ui/mainWindow.py" line="111"/>
         <source>设置初始化完成</source>
         <translation>Settings initialized.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainWindow.py" line="115"/>
+        <location filename="../../src/ui/mainWindow.py" line="116"/>
         <source>已复制 %s 到剪切板。</source>
         <translation>%s is copied to clipboard.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainWindow.py" line="120"/>
+        <location filename="../../src/ui/mainWindow.py" line="121"/>
         <source>已删除 %s。</source>
         <translation>%s is removed.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/mainWindow.py" line="131"/>
+        <location filename="../../src/ui/mainWindow.py" line="132"/>
         <source>导入成功，共 %n 条 IP。</source>
         <translation>
             <numerusform>%n IP imported.</numerusform>
@@ -613,7 +613,7 @@
         </translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/mainWindow.py" line="141"/>
+        <location filename="../../src/ui/mainWindow.py" line="142"/>
         <source>导入成功，新增 %n 条 IP。</source>
         <translation>
             <numerusform>%n IP imported.</numerusform>
@@ -621,46 +621,46 @@
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainWindow.py" line="173"/>
+        <location filename="../../src/ui/mainWindow.py" line="174"/>
         <source>设置已重置。</source>
         <translation>Settings reset.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainWindow.py" line="203"/>
-        <location filename="../../src/ui/mainWindow.py" line="212"/>
-        <location filename="../../src/ui/mainWindow.py" line="248"/>
-        <location filename="../../src/ui/mainWindow.py" line="287"/>
-        <location filename="../../src/ui/mainWindow.py" line="299"/>
-        <location filename="../../src/ui/mainWindow.py" line="302"/>
-        <location filename="../../src/ui/mainWindow.py" line="426"/>
-        <location filename="../../src/ui/mainWindow.py" line="429"/>
+        <location filename="../../src/ui/mainWindow.py" line="204"/>
+        <location filename="../../src/ui/mainWindow.py" line="213"/>
+        <location filename="../../src/ui/mainWindow.py" line="249"/>
+        <location filename="../../src/ui/mainWindow.py" line="300"/>
+        <location filename="../../src/ui/mainWindow.py" line="311"/>
+        <location filename="../../src/ui/mainWindow.py" line="314"/>
+        <location filename="../../src/ui/mainWindow.py" line="439"/>
+        <location filename="../../src/ui/mainWindow.py" line="442"/>
         <source>错误</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainWindow.py" line="203"/>
+        <location filename="../../src/ui/mainWindow.py" line="204"/>
         <source>文件编码错误。请检查文件内容，然后再试。</source>
         <translation>File encoding error. Please check through the contents of the file, and try again.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainWindow.py" line="212"/>
-        <location filename="../../src/ui/mainWindow.py" line="224"/>
+        <location filename="../../src/ui/mainWindow.py" line="213"/>
+        <location filename="../../src/ui/mainWindow.py" line="225"/>
         <source>%s 获取失败。请检查网络状况，然后再试。</source>
         <translation>Failed to fetch %s. Ensure you are connected, and try again.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainWindow.py" line="223"/>
+        <location filename="../../src/ui/mainWindow.py" line="224"/>
         <source>、</source>
         <translation>, </translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainWindow.py" line="224"/>
-        <location filename="../../src/ui/mainWindow.py" line="231"/>
+        <location filename="../../src/ui/mainWindow.py" line="225"/>
+        <location filename="../../src/ui/mainWindow.py" line="232"/>
         <source>警告</source>
         <translation>Warning</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/mainWindow.py" line="231"/>
+        <location filename="../../src/ui/mainWindow.py" line="232"/>
         <source>共 %n 条无效 IP 被忽略。</source>
         <translation>
             <numerusform>%n invalid entry discarded.</numerusform>
@@ -668,93 +668,93 @@
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainWindow.py" line="243"/>
+        <location filename="../../src/ui/mainWindow.py" line="244"/>
         <source>成功导出 IP 测速结果文件 [%s]</source>
         <translation>Speedtest results saved to %s</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainWindow.py" line="248"/>
+        <location filename="../../src/ui/mainWindow.py" line="249"/>
         <source>请先测速后再复制。</source>
         <translation>Please copy only after running a speedtest.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainWindow.py" line="253"/>
+        <location filename="../../src/ui/mainWindow.py" line="254"/>
         <source>成功复制最佳 IP [%s %s]</source>
         <translation>Best IP copied [%s %s]</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainWindow.py" line="287"/>
+        <location filename="../../src/ui/mainWindow.py" line="300"/>
         <source>请先测速后再写入Hosts。</source>
         <translation>Please update hosts only after running a speedtest.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainWindow.py" line="299"/>
+        <location filename="../../src/ui/mainWindow.py" line="311"/>
         <source>无权限访问Hosts文件。请检查程序权限，然后再试。
 您也可尝试复制IP后手动写入。</source>
         <translation>Access to the HOSTS file is denied.
 Please check the program&apos;s permissions, and try again.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainWindow.py" line="302"/>
+        <location filename="../../src/ui/mainWindow.py" line="314"/>
         <source>未知错误：%s
 若此错误反复出现，请在issues中提出。</source>
         <translation>Unknown error: %s
 If the issue persists, please open an issue.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainWindow.py" line="304"/>
+        <location filename="../../src/ui/mainWindow.py" line="317"/>
         <source>成功写入 Hosts [%s %s]</source>
         <translation>Hosts file updated [%s %s]</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainWindow.py" line="331"/>
+        <location filename="../../src/ui/mainWindow.py" line="344"/>
         <source>已扫描: %s / %s</source>
         <translation>Scanned: %s / %s</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainWindow.py" line="345"/>
-        <location filename="../../src/ui/mainWindow.py" line="388"/>
+        <location filename="../../src/ui/mainWindow.py" line="358"/>
+        <location filename="../../src/ui/mainWindow.py" line="401"/>
         <source>发现可用IP: %s [%s]</source>
         <translation>Found available IP: %s [%s]</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainWindow.py" line="351"/>
+        <location filename="../../src/ui/mainWindow.py" line="364"/>
         <source>IP %s 不可用 [%s]</source>
         <translation>%s is unavailable [%s]</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainWindow.py" line="365"/>
+        <location filename="../../src/ui/mainWindow.py" line="378"/>
         <source>扫描完成，开始测速...</source>
         <translation>Scan completed, speedtest starting...</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainWindow.py" line="357"/>
+        <location filename="../../src/ui/mainWindow.py" line="370"/>
         <source>测速完成</source>
         <translation>Speedtest finished</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainWindow.py" line="394"/>
+        <location filename="../../src/ui/mainWindow.py" line="407"/>
         <source>扫描完成</source>
         <translation>Scan finished</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainWindow.py" line="399"/>
-        <location filename="../../src/ui/mainWindow.py" line="448"/>
+        <location filename="../../src/ui/mainWindow.py" line="412"/>
+        <location filename="../../src/ui/mainWindow.py" line="461"/>
         <source>取消</source>
         <translation>Cancel</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainWindow.py" line="426"/>
+        <location filename="../../src/ui/mainWindow.py" line="439"/>
         <source>%s 不是一个合法的 IP 段。</source>
         <translation>%s is not a valid IP range.</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainWindow.py" line="429"/>
+        <location filename="../../src/ui/mainWindow.py" line="442"/>
         <source>请至少选择一个 IP 段。</source>
         <translation>Please select at least one IP range.</translation>
     </message>
     <message numerus="yes">
-        <location filename="../../src/ui/mainWindow.py" line="443"/>
+        <location filename="../../src/ui/mainWindow.py" line="456"/>
         <source>开始扫描，共 %n 个 IP...</source>
         <translation>
             <numerusform>Scan started. %n IP in total...</numerusform>
@@ -762,7 +762,7 @@ If the issue persists, please open an issue.</translation>
         </translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainWindow.py" line="456"/>
+        <location filename="../../src/ui/mainWindow.py" line="469"/>
         <source>设置已更新。</source>
         <translation>Settings updated.</translation>
     </message>
@@ -770,12 +770,12 @@ If the issue persists, please open an issue.</translation>
 <context>
     <name>QMainWindow</name>
     <message>
-        <location filename="../../src/ui/mainWindow.py" line="60"/>
+        <location filename="../../src/ui/mainWindow.py" line="61"/>
         <source>文本文件(*.txt);;所有文件(*.*)</source>
         <translation>Text files(*.txt);;Any(*.*)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainWindow.py" line="63"/>
+        <location filename="../../src/ui/mainWindow.py" line="64"/>
         <source>文本文件(*.txt);;CSV 表格(*.csv);;所有文件(*.*)</source>
         <translation>Text files(*.txt);;CSV(*.csv);;Any(*.*)</translation>
     </message>
@@ -801,6 +801,34 @@ If the issue persists, please open an issue.</translation>
         <location filename="../../src/ui/dlgEditRange.py" line="21"/>
         <source>备注</source>
         <translation>Note</translation>
+    </message>
+</context>
+<context>
+    <name>dlgHostsDiff</name>
+    <message>
+        <location filename="../../src/ui/dlgHostsDiff.py" line="12"/>
+        <source>确认更新 Hosts 文件</source>
+        <translation>Confirm Hosts Update</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/dlgHostsDiff.py" line="15"/>
+        <source>即将修改系统 Hosts 文件，请仔细检查以下变更。</source>
+        <translation>The system hosts file is about to be modified. Please review the changes below.</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/dlgHostsDiff.py" line="23"/>
+        <source>确认修改</source>
+        <translation>Apply Changes</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/dlgHostsDiff.py" line="26"/>
+        <source>取消</source>
+        <translation>Cancel</translation>
+    </message>
+    <message>
+        <location filename="../../src/ui/dlgHostsDiff.py" line="58"/>
+        <source>Hosts 无需任何修改。</source>
+        <translation>No changes required.</translation>
     </message>
 </context>
 <context>

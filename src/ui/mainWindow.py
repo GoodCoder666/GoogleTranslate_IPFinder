@@ -13,6 +13,7 @@ from src.core.threads import ScanThread, SpeedtestThread
 from src.core.utils import open_url, read_url, read_urls_parallel, time_repr
 from src.ui.dlgAbout import dlgAbout
 from src.ui.dlgDebug import dlgDebug
+from src.ui.dlgHostsDiff import dlgHostsDiff
 from src.ui.dlgImport import dlgImport
 from src.ui.dlgScan import dlgScan
 from src.ui.dlgSettings import dlgSettings
@@ -253,33 +254,45 @@ class MainWindow(QMainWindow):
         message = self.tr('成功复制最佳 IP [%s %s]') % (fastest_ip, self._save_hosts_repr())
         self.ui.statusbar.showMessage(message)
 
-    def _update_hosts(self, ip, host):
+    def _update_hosts(self, ip, host_list):
         hosts_path = r'C:\Windows\System32\drivers\etc\hosts' if sys.platform == 'win32' else '/etc/hosts'
 
         try:
-            with open(hosts_path, 'r') as file:
+            with open(hosts_path, 'r', encoding='locale') as file:
                 lines = file.readlines()
         except UnicodeDecodeError:
             with open(hosts_path, 'r', encoding='utf-8') as file:
                 lines = file.readlines()
 
+        lines = [line.rstrip('\r\n') for line in lines]
+        old_lines = lines.copy()
+
         encoding = file.encoding
 
-        host_line = -1
-        for idx, line in enumerate(lines):
-            host_pos = line.find(host)
-            comment_pos = line.find('#')
-            if host_pos != -1 and (comment_pos == -1 or host_pos < comment_pos):
-                host_line = idx
+        for host in host_list:
+            effective_lines = []
+            for idx, line in enumerate(lines):
+                host_pos = line.find(host)
+                comment_pos = line.find('#')
+                if host_pos != -1 and (comment_pos == -1 or host_pos < comment_pos):
+                    effective_lines.append(idx)
+            new_line = f'{ip} {host}'
+            if len(effective_lines) == 1:
+                # patch existing line
+                lines[effective_lines[0]] = new_line
+            else:
+                # comment out, then append new line
+                for idx in effective_lines:
+                    lines[idx] = '# ' + lines[idx]
+                lines.append(new_line)
 
-        changed_line = f'{ip} {host}'
-        if host_line == -1:
-            with open(hosts_path, 'a', encoding=encoding) as file:
-                file.write('\n' + changed_line)
-        else:
-            lines[host_line] = changed_line + '\n'
-            with open(hosts_path, 'w', encoding=encoding) as file:
-                file.writelines(lines)
+        dlg = dlgHostsDiff(self, old_lines, lines)
+        if dlg.exec() != QDialog.Accepted:
+            return False
+
+        with open(hosts_path, 'w', encoding=encoding) as file:
+            file.writelines(line + '\n' for line in lines)
+        return True
 
     @Slot()
     def on_btnResult_WriteHosts_clicked(self):
@@ -293,16 +306,16 @@ class MainWindow(QMainWindow):
             row = 0
         selected_ip = self.ui.resultTable.item(row, 0).text()
         try:
-            for host in self.settings.value('saveHosts'):
-                self._update_hosts(selected_ip, host)
+            accepted = self._update_hosts(selected_ip, self.settings.value('saveHosts'))
         except PermissionError:
             QMessageBox.critical(self, self.tr('错误'), self.tr('无权限访问Hosts文件。请检查程序权限，然后再试。\n您也可尝试复制IP后手动写入。'))
             return
         except Exception as e:
             QMessageBox.critical(self, self.tr('错误'), self.tr('未知错误：%s\n若此错误反复出现，请在issues中提出。') % e)
             return
-        message = self.tr('成功写入 Hosts [%s %s]') % (selected_ip, self._save_hosts_repr())
-        self.ui.statusbar.showMessage(message)
+        if accepted:
+            message = self.tr('成功写入 Hosts [%s %s]') % (selected_ip, self._save_hosts_repr())
+            self.ui.statusbar.showMessage(message)
 
     def _set_buttons_enabled(self, enabled):
         self.ui.btnResult_Copy.setEnabled(enabled)
