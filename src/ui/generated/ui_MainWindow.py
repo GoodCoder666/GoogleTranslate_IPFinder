@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'MainWindow.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.6.3
+## Created by: Qt User Interface Compiler version 6.12.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -30,7 +30,7 @@ class Ui_MainWindow(object):
         MainWindow.resize(800, 600)
         MainWindow.setAcceptDrops(True)
         icon = QIcon()
-        icon.addFile(u":/images/icons/icon.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(u":/images/icons/icon.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         MainWindow.setWindowIcon(icon)
         self.actSettings = QAction(MainWindow)
         self.actSettings.setObjectName(u"actSettings")

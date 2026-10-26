@@ -22,15 +22,15 @@ jobs:
     - name: Checkout source code
       uses: actions/checkout@v6
 
-    - name: Set up Python 3.12
+    - name: Set up Python 3.14
       uses: actions/setup-python@v6
       with:
-        python-version: '3.12'
+        python-version: '3.14.10'
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pyinstaller "PySide6-Essentials==6.6.3.1" "aiohttp==3.12.15"
+        pip install pyinstaller "PySide6-Essentials==6.12.0" "aiohttp==3.14.5"
 
     - name: Package application
       run: >
@@ -94,20 +94,20 @@ jobs:
     - name: Checkout source code
       uses: actions/checkout@v6
 
-    - name: Set up Python 3.12
+    - name: Set up Python 3.14
       uses: actions/setup-python@v6
       with:
-        python-version: '3.12'
+        python-version: '3.14.10'
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install "PySide6-Essentials==6.6.3.1" "aiohttp==3.12.15"
+        pip install "PySide6-Essentials==6.12.0" "aiohttp==3.14.5"
 
     - name: Package application
-      uses: Nuitka/Nuitka-Action@main
+      uses: Nuitka/Nuitka-Action@v1.5
       with:
-        nuitka-version: main
+        nuitka-version: '4.3.2'
         script-name: run.py
         output-dir: build
         mode: onefile
@@ -137,15 +137,15 @@ jobs:
     - name: Checkout source code
       uses: actions/checkout@v6
 
-    - name: Set up Python 3.12
+    - name: Set up Python 3.14
       uses: actions/setup-python@v6
       with:
-        python-version: '3.12'
+        python-version: '3.14.10'
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pyinstaller "PySide6-Essentials==6.6.3.1" "aiohttp==3.12.15"
+        pip install pyinstaller "PySide6-Essentials==6.12.0" "aiohttp==3.14.5"
 
     - name: Package application
       run: >

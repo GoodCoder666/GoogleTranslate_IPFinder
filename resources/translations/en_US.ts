@@ -738,7 +738,7 @@ If the issue persists, please open an issue.</translation>
         <translation>Scan finished</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainWindow.py" line="412"/>
+        <location filename="../../src/ui/mainWindow.py" line="411"/>
         <location filename="../../src/ui/mainWindow.py" line="461"/>
         <source>取消</source>
         <translation>Cancel</translation>
@@ -770,12 +770,12 @@ If the issue persists, please open an issue.</translation>
 <context>
     <name>QMainWindow</name>
     <message>
-        <location filename="../../src/ui/mainWindow.py" line="61"/>
+        <location filename="../../src/ui/mainWindow.py" line="60"/>
         <source>文本文件(*.txt);;所有文件(*.*)</source>
         <translation>Text files(*.txt);;Any(*.*)</translation>
     </message>
     <message>
-        <location filename="../../src/ui/mainWindow.py" line="64"/>
+        <location filename="../../src/ui/mainWindow.py" line="61"/>
         <source>文本文件(*.txt);;CSV 表格(*.csv);;所有文件(*.*)</source>
         <translation>Text files(*.txt);;CSV(*.csv);;Any(*.*)</translation>
     </message>
@@ -857,7 +857,7 @@ If the issue persists, please open an issue.</translation>
         <translation>Cancel</translation>
     </message>
     <message>
-        <location filename="../../src/ui/dlgScan.py" line="25"/>
+        <location filename="../../src/ui/dlgScan.py" line="24"/>
         <source>编辑...</source>
         <translation>Edit...</translation>
     </message>
