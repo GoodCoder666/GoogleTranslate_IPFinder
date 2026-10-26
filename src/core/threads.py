@@ -35,13 +35,14 @@ class SpeedtestThread(QThread):
     async def _test_one(self, sem, session, ip):
         async with sem:
             total = 0.0
-            for _ in range(self.repeat):
+            for i in range(self.repeat):
                 result = await test_ip(session, ip, self.host, self.request_format)
                 if isinstance(result, tuple):
                     self.foundUnavailable.emit(ip, result[0])
                     return
                 total += result
-                await asyncio.sleep(1.0)
+                if i + 1 < self.repeat:
+                    await asyncio.sleep(1.0)
             latency = total / self.repeat
             self.foundAvailable.emit(ip, latency)
 
