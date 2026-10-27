@@ -33,47 +33,7 @@ jobs:
         pip install pyinstaller "PySide6-Essentials==6.12.0" "aiohttp==3.14.5"
 
     - name: Package application
-      run: >
-        pyinstaller -i resources/icons/icon.ico -n main -F -w --clean --noupx --log-level WARN
-        --exclude-module tkinter
-        --exclude-module turtle
-        --exclude-module unittest
-        --exclude-module pydoc
-        --exclude-module xml
-        --exclude-module xmlrpc
-        --exclude-module sqlite3
-        --exclude-module csv
-        --exclude-module ftplib
-        --exclude-module imaplib
-        --exclude-module smtplib
-        --exclude-module poplib
-        --exclude-module telnetlib
-        --exclude-module nntplib
-        --exclude-module pdb
-        --exclude-module doctest
-        --exclude-module ensurepip
-        --exclude-module distutils
-        --exclude-module multiprocessing
-        --exclude-module lib2to3
-        --exclude-module PySide6.QtHelp
-        --exclude-module PySide6.QtNetwork
-        --exclude-module PySide6.QtConcurrent
-        --exclude-module PySide6.QtDBus
-        --exclude-module PySide6.QtDesigner
-        --exclude-module PySide6.QtOpenGL
-        --exclude-module PySide6.QtOpenGLWidgets
-        --exclude-module PySide6.QtPrintSupport
-        --exclude-module PySide6.QtQml
-        --exclude-module PySide6.QtQuick
-        --exclude-module PySide6.QtQuickControls2
-        --exclude-module PySide6.QtQuickWidgets
-        --exclude-module PySide6.QtXml
-        --exclude-module PySide6.QtTest
-        --exclude-module PySide6.QtSql
-        --exclude-module PySide6.QtSvg
-        --exclude-module PySide6.QtSvgWidgets
-        --exclude-module PySide6.QtUiTools
-        run.py
+      run: pyinstaller --clean --noconfirm --log-level WARN IPFinder.spec
 
     - name: Attest build provenance
       uses: actions/attest@v4
@@ -148,48 +108,7 @@ jobs:
         pip install pyinstaller "PySide6-Essentials==6.12.0" "aiohttp==3.14.5"
 
     - name: Package application
-      run: >
-        pyinstaller -i resources/icons/icon.icns -n main -F -w --clean --log-level WARN
-        --exclude-module tkinter
-        --exclude-module turtle
-        --exclude-module unittest
-        --exclude-module pydoc
-        --exclude-module xml
-        --exclude-module xmlrpc
-        --exclude-module sqlite3
-        --exclude-module csv
-        --exclude-module ftplib
-        --exclude-module imaplib
-        --exclude-module smtplib
-        --exclude-module poplib
-        --exclude-module telnetlib
-        --exclude-module nntplib
-        --exclude-module pdb
-        --exclude-module doctest
-        --exclude-module ensurepip
-        --exclude-module distutils
-        --exclude-module multiprocessing
-        --exclude-module curses
-        --exclude-module lib2to3
-        --exclude-module PySide6.QtHelp
-        --exclude-module PySide6.QtNetwork
-        --exclude-module PySide6.QtConcurrent
-        --exclude-module PySide6.QtDBus
-        --exclude-module PySide6.QtDesigner
-        --exclude-module PySide6.QtOpenGL
-        --exclude-module PySide6.QtOpenGLWidgets
-        --exclude-module PySide6.QtPrintSupport
-        --exclude-module PySide6.QtQml
-        --exclude-module PySide6.QtQuick
-        --exclude-module PySide6.QtQuickControls2
-        --exclude-module PySide6.QtQuickWidgets
-        --exclude-module PySide6.QtXml
-        --exclude-module PySide6.QtTest
-        --exclude-module PySide6.QtSql
-        --exclude-module PySide6.QtSvg
-        --exclude-module PySide6.QtSvgWidgets
-        --exclude-module PySide6.QtUiTools
-        run.py
+      run: pyinstaller --clean --noconfirm --log-level WARN IPFinder.spec
 
     - name: Zip application
       run: |
